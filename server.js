@@ -5,13 +5,14 @@ var express = require('express'),
     fs = require('fs'),
     passport = require('passport'),
     logger = require('mean-logger'),
-    io = require('socket.io');
+    io = require('socket.io'),
+    dotenv = require('dotenv');
 
 /**
  * Main application entry file.
  * Please note that the order of loading is important.
  */
-
+dotenv.config();
 //Load configurations
 //if test env, load example file
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development',
