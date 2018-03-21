@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  - "node"
+  - "8.9.4"
+
+after_success:
+  - npm test
+
+before_script: cd server
+script: npm install && npm install mocha -g
