@@ -6,4 +6,5 @@ c4h_keys.txt
 .env
 package-lock.json
 bower_components
+dist
 
