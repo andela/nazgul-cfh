@@ -142,9 +142,9 @@ exports.create = (req, res, next) => {
  */
 exports.signUp = (req, res) => {
   const {
-    name, email, password, username
+    name, email, password
   } = req.body;
-  if (name && password && email && username) {
+  if (name && password && email) {
     User.findOne({
       email
     }).exec((err, existingUser) => {
@@ -161,7 +161,7 @@ exports.signUp = (req, res) => {
           }
           const payload = {
             _id: newUser._id,
-            username: newUser.username
+            email: newUser.email
           };
           const token = jwt.sign({
             payload,
