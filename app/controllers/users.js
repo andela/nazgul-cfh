@@ -185,7 +185,7 @@ exports.signUp = (req, res) => {
 };
 
 /**
- * Create User
+ * Login User and send a generated token using user's username and id
  *
  * @param {object} req
  * @param {object} res
@@ -219,7 +219,7 @@ exports.login = (req, res) => {
 };
 
 /**
- * Create User
+ * Verify user's token. If verified mount user's details on req and proceed
  *
  * @param {object} req
  * @param {object} res
