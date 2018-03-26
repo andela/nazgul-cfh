@@ -184,6 +184,67 @@ exports.signUp = (req, res) => {
   }
 };
 
+/**
+ * Create User
+ *
+ * @param {object} req
+ * @param {object} res
+ * @returns {object} return jwt token
+ */
+exports.login = (req, res) => {
+  const { username, password } = req.body;
+  if (!username || !password) {
+    return res.status(400).json({ error: 'All fields are required' });
+  }
+  User.findOne({
+    username,
+  }).exec((err, user) => {
+    if (err) {
+      return res.json.status(500).json({ error: 'Internal server error' });
+    }
+    if (!user) {
+      return res.status(400).json({ error: 'Invalid username or password' });
+    }
+    if (!user.authenticate(password)) {
+      return res.status(400).json({ error: 'Invalid username or password' });
+    }
+    const token = jwt.sign({
+      id: user._id,
+      username: user.username,
+    }, process.env.SECRET);
+    res.status(200).json({
+      token,
+    });
+  });
+};
+
+/**
+ * Create User
+ *
+ * @param {object} req
+ * @param {object} res
+ * @param {object} next
+ * @returns {object} return next()
+ */
+exports.verifyToken = (req, res, next) => {
+  const { token } = req.headers;
+  if (!token) return res.status(400).json({ error: 'no token found' });
+  const payload = jwt.verify(token, process.env.SECRET);
+  User.findOne({
+    username: payload.username,
+  }).exec((err, user) => {
+    if (err) {
+      return res.json.status(500).json({ error: 'Internal server error' });
+    }
+    if (!user) {
+      return res.status(400).json({ error: 'Invalid token' });
+    }
+    user.hashed_password = null;
+    req.user = user;
+    return next();
+  });
+};
+
 
 /**
  * Assign avatar to user
