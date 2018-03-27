@@ -4,6 +4,8 @@ import babel from 'gulp-babel';
 import sass from 'gulp-sass';
 import bower from 'gulp-bower';
 import browserSync from 'browser-sync';
+import mocha from 'gulp-mocha';
+import exit from 'gulp-exit';
 
 gulp.task('install', () => bower());
 
@@ -48,7 +50,7 @@ gulp.task('sass', () => {
   gulp
     .src('public/css/common.scss')
     .pipe(sass())
-    .pipe(gulp.dest('dist/public/css/'));
+    .pipe(gulp.dest('public/css/'));
 });
 gulp.task('dist-dep', [
   'mv-angular',
@@ -93,3 +95,14 @@ gulp.task('mv-config', () => move('config/env/*.json', './dist/config/env'));
 
 gulp.task('mv-public', () =>
   move(['public/**/*', '!public/js/**'], './dist/public'));
+
+gulp.task('test', () => {
+  gulp
+    .src(['test/**/*.js'])
+    .pipe(mocha({
+      reporter: 'spec',
+      exit: true,
+      compilers: 'babel-core/register'
+    }))
+    .pipe(exit());
+});

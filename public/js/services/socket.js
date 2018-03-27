@@ -1,34 +1,36 @@
-angular.module('mean.system')
-.factory('socket', ['$rootScope', function($rootScope){
-  var socket = io.connect();
-  return {
-    on: function(eventName, callback){
-      socket.on(eventName, function(){
-        var args = arguments;
-        $rootScope.safeApply(function(){
-          callback.apply(socket, args);
+angular.module('mean.system').factory('socket', [
+  '$rootScope',
+  function ($rootScope) {
+    const socket = io.connect();
+    return {
+      on(eventName, callback) {
+        socket.on(eventName, function () {
+          const args = arguments;
+          $rootScope.safeApply(() => {
+            callback.apply(socket, args);
+          });
         });
-      });
-    },
-    emit: function(eventName, data, callback){
-      socket.emit(eventName, data, function(){
-        var args = arguments;
-      });
-      $rootScope.safeApply(function(){
-        if(callback){
-          callback.apply(socket, args);
-        }
-      });
-    },
-    removeAllListeners: function(eventName, callback){
-      socket.removeAllListeners(eventName, function () {
-        var args = arguments;
-        $rootScope.safeApply(function() {
-          if(callback) {
+      },
+      emit(eventName, data, callback) {
+        socket.emit(eventName, data, function () {
+          const args = arguments;
+        });
+        $rootScope.safeApply(() => {
+          if (callback) {
             callback.apply(socket, args);
           }
         });
-      });
-    }
-  };
-}]);
+      },
+      removeAllListeners(eventName, callback) {
+        socket.removeAllListeners(eventName, function () {
+          const args = arguments;
+          $rootScope.safeApply(() => {
+            if (callback) {
+              callback.apply(socket, args);
+            }
+          });
+        });
+      }
+    };
+  }
+]);
