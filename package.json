@@ -16,7 +16,7 @@
     "start:dev":
       "node node_modules/gulp-cli/bin/gulp build && node node_modules/gulp-cli/bin/gulp",
     "build": "node node_modules/gulp-cli/bin/gulp build ",
-    "start": "node dist/server.js",
+    "start": "npm run build && node dist/server.js",
     "test": "node node_modules/gulp-cli/bin/gulp test",
     "postinstall": "node node_modules/gulp-cli/bin/gulp install",
     "test:karma": "node_modules/.bin/karma start karma.conf.js"
@@ -36,7 +36,7 @@
     "jade": "~0.35.0",
     "jsonwebtoken": "^8.2.0",
     "mean-logger": "~0.0.1",
-    "mongoose": "^4.13.7",
+    "mongoose": "4.13.7",
     "passport": "~0.1.17",
     "passport-facebook": "~2.0.0",
     "passport-github": "~0.1.5",
