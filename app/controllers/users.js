@@ -184,6 +184,68 @@ exports.signUp = (req, res) => {
   }
 };
 
+/**
+ * Login User and send a generated token using user's username and id
+ *
+ * @param {object} req
+ * @param {object} res
+ * @returns {object} return jwt token
+ */
+exports.login = (req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return res.status(400).json({ error: 'All fields are required' });
+  }
+  User.findOne({
+    email,
+  }).exec((err, user) => {
+    if (err) {
+      return res.json.status(500).json({ error: 'Internal server error' });
+    }
+    if (!user) {
+      return res.status(400).json({ error: 'Invalid email or password' });
+    }
+    if (!user.authenticate(password)) {
+      return res.status(400).json({ error: 'Invalid email or password' });
+    }
+    const token = jwt.sign({
+      id: user._id,
+      email: user.email,
+    }, process.env.SECRET);
+    res.status(200).json({
+      token,
+    });
+  });
+};
+
+/**
+ * Verify user's token. If verified mount user's details on req and proceed
+ *
+ * @param {object} req
+ * @param {object} res
+ * @param {object} next
+ * @returns {object} return next()
+ */
+exports.verifyToken = (req, res, next) => {
+  const { token } = req.headers;
+  if (!token) return res.status(400).json({ error: 'no token found' });
+  const payload = jwt.verify(token, process.env.SECRET);
+  User.findOne({
+    email: payload.email,
+    id: payload.id,
+  }).exec((err, user) => {
+    if (err) {
+      return res.json.status(500).json({ error: 'Internal server error' });
+    }
+    if (!user) {
+      return res.status(400).json({ error: 'Invalid token' });
+    }
+    user.hashed_password = null;
+    req.user = user;
+    return next();
+  });
+};
+
 
 /**
  * Assign avatar to user

@@ -1,9 +1,11 @@
 import gulp from 'gulp';
 import nodemon from 'gulp-nodemon';
+import mocha from 'gulp-mocha';
 import babel from 'gulp-babel';
 import sass from 'gulp-sass';
 import bower from 'gulp-bower';
 import browserSync from 'browser-sync';
+import exit from 'gulp-exit';
 
 gulp.task('install', () => bower());
 
@@ -58,6 +60,17 @@ gulp.task('dist-dep', [
   'mv-angularUtils',
   'mv-angular-bootstrap'
 ]);
+
+gulp.task('test', () => {
+  gulp
+    .src(['test/**/*.js'])
+    .pipe(mocha({
+      reporter: 'spec',
+      exit: true,
+      compilers: 'babel-core/register'
+    }))
+    .pipe(exit());
+});
 
 gulp.task('dist-base', ['mv-config', 'mv-public', 'mv-jade']);
 
