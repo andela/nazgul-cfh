@@ -50,7 +50,7 @@ gulp.task('sass', () => {
   gulp
     .src('public/css/common.scss')
     .pipe(sass())
-    .pipe(gulp.dest('dist/public/css/'));
+    .pipe(gulp.dest('public/css/'));
 });
 gulp.task('dist-dep', [
   'mv-angular',
