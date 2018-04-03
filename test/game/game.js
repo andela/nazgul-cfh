@@ -1,6 +1,7 @@
 // var should = require('should');
 // var io = require('socket.io-client');
 // var socketURL = 'http://localhost:3000';
+/* eslint-disable */
 // var options ={
 //   transports: ['websocket'],
 //   'force new connection': true
@@ -16,18 +17,21 @@
 //       done();
 //     };
 //     client1.on('connect', function(data){
-//       client1.emit('joinGame',{userID:'unauthenticated',room: '', createPrivate: false});
+//       client1.emit('joinGame',{userID:'unauthenticated',room:
+// '', createPrivate: false});
 //       setTimeout(disconnect,200);
 //     });
 //   });
-//   it('Should send a game update upon receiving request to joinGame', function(done) {
+//   it('Should send a game update upon receiving request to joinGame',
+//    function(done) {
 //     var client1 = io.connect(socketURL, options);
 //     var disconnect = function() {
 //       client1.disconnect();
 //       done();
 //     };
 //     client1.on('connect', function(data){
-//       client1.emit('joinGame',{userID:'unauthenticated',room: '', createPrivate: false});
+//       client1.emit('joinGame',{userID:'unauthenticated',
+// room: '', createPrivate: false});
 //       client1.on('gameUpdate', function(data) {
 //         data.gameID.should.match(/\d+/);
 //       });
@@ -43,10 +47,12 @@
 //       done();
 //     };
 //     client1.on('connect', function(data){
-//       client1.emit('joinGame',{userID:'unauthenticated',room: '', createPrivate: false});
+//       client1.emit('joinGame',{userID:'unauthenticated',room: '',
+//        createPrivate: false});
 //       client2 = io.connect(socketURL, options);
 //       client2.on('connect', function(data) {
-//         client2.emit('joinGame',{userID:'unauthenticated',room: '', createPrivate: false});
+//         client2.emit('joinGame',{userID:'unauthenticated',
+//          room: '', createPrivate: false});
 //         client1.on('notification', function(data) {
 //           data.notification.should.match(/ has joined the game\!/);
 //         });
@@ -54,7 +60,8 @@
 //       setTimeout(disconnect,200);
 //     });
 //   });
-//   it('Should start game when startGame event is sent with 3 players', function(done){
+//   it('Should start game when startGame event is sent with 3 players',
+//      function(done){
 //     var client1, client2, client3;
 //     client1 = io.connect(socketURL, options);
 //     var disconnect = function() {
