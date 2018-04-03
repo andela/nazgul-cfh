@@ -106,3 +106,14 @@ gulp.task('mv-config', () => move('config/env/*.json', './dist/config/env'));
 
 gulp.task('mv-public', () =>
   move(['public/**/*', '!public/js/**'], './dist/public'));
+
+gulp.task('test', () => {
+  gulp
+    .src(['test/**/*.js'])
+    .pipe(mocha({
+      reporter: 'spec',
+      exit: true,
+      compilers: 'babel-core/register'
+    }))
+    .pipe(exit());
+});

@@ -8,4 +8,3 @@ describe('A TESTING OF THE KARMA FRONTEND TEST SET-UP', () => {
     expect().toEqual(undefined);
   })
 });
-

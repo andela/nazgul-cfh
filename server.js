@@ -20,8 +20,7 @@ const config = require('./config/config');
 const auth = require('./config/middlewares/authorization');
 const mongoose = require('mongoose');
 
-//mongoose.Promise = global.Promise;
-
+mongoose.Promise = global.Promise;
 // Bootstrap db connection
 const db = mongoose.connect(config.db);
 
