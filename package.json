@@ -13,8 +13,7 @@
     "npm": "5.3.0"
   },
   "scripts": {
-    "start:dev":
-      "node node_modules/gulp-cli/bin/gulp build && node node_modules/gulp-cli/bin/gulp",
+    "start:dev": "node node_modules/gulp-cli/bin/gulp build && node node_modules/gulp-cli/bin/gulp",
     "build": "node node_modules/gulp-cli/bin/gulp build ",
     "start": "node dist/server.js",
     "test": "node node_modules/gulp-cli/bin/gulp test",
