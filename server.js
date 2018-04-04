@@ -20,8 +20,9 @@ const config = require('./config/config');
 const auth = require('./config/middlewares/authorization');
 const mongoose = require('mongoose');
 
+mongoose.Promise = global.Promise;
 // Bootstrap db connection
-const db = mongoose.connect(config.db);
+const db = mongoose.connect(config.db);// eslint-disable-line
 
 // Bootstrap models
 const modelsPath = `${__dirname}/app/models`;
@@ -62,7 +63,7 @@ const ioObj = io.listen(server, { log: false });
 // game logic handled here
 require('./config/socket/socket')(ioObj);
 
-console.log(`Express app started on port ${port}`);
+console.log(`Express app started on port ${port}`);// eslint-disable-line
 
 // Initializing logger
 logger.init(app, passport, mongoose);

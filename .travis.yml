@@ -3,7 +3,6 @@ node_js:
   - "node"
   - "8.9.4"
 
-after_success:
-  - npm test
+after_success: npm run coverage
 
-script: npm install && npm install mocha -g
+after_failure: npm run coverage

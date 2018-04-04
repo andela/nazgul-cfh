@@ -7,3 +7,5 @@ package-lock.json
 bower_components
 dist
 .env
+coverage/
+.nyc_output
