@@ -6,8 +6,13 @@
       <li><a class="white-text"  href="#htp">How to play</a></li>
       <li><a class="white-text"  href="#dtc">Charity</a></li>
       <li><a class="white-text"  href="#mtt">About us</a></li>
-      <li><a class="white-text"  href="#!/signin">Sign in</a></li>
-      <li><a class="white-text"  href="#!/signup">Sign up</a></li>
+      <span ng-show="showOptions">
+        <li><a class="white-text"  href="#!/signin">Sign in</a></li>
+        <li><a class="white-text"  href="#!/signup">Sign up</a></li>
+      </span>
+      <span ng-hide="showOptions">
+        <li><a class="white-text"  href="/signout">Sign out</a></li>
+      </span>
     </ul>
 
     <ul id="nav-mobile" class="side-nav white-text">
@@ -31,9 +36,13 @@
               <h1 class="center header bottom white-text wow fadeInLeft">Cards for Humanity</h1>
               <h5 class="header col s12 light white-text wow fadeInLeft center">A game for horrible people <b>desperately</b> trying to do good</h5>
           </div>
-          <div class="col s12 center wow fadeInRight marg20">
+          <div class="col s12 center wow fadeInRight marg20" ng-show="showOptions">
               <a href="#!/signup" class="btn-large waves-effect dark-pink white-text marg25 hvr-pulse lighten-1">Sign Up</a>
               <a href="#!/signin" class="btn-large waves-effect dark-pink white-text hvr-pulse lighten-1">Sign in</a>
+          </div>
+          <div class="col s12 center wow fadeInRight marg20" ng-hide="showOptions">
+              <a href="/play?custom" class="btn-large waves-effect dark-pink white-text marg25 hvr-pulse lighten-1">Play Game with Friends</a>
+              <a href="/play" class="btn-large waves-effect dark-pink white-text hvr-pulse lighten-1">Play Game with Strangers</a>
           </div>
       </div>
       <br><br>
