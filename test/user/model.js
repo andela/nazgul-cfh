@@ -2,6 +2,7 @@
  * Module dependencies.
  */
 // const should = require('should');
+/* eslint-disable */
 const app = require('../../server');
 const mongoose = require('mongoose');
 
