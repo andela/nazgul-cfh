@@ -1,8 +1,6 @@
 /**
  * Module dependencies.
  */
-// const should = require('should');
-/* eslint-disable */
 const app = require('../../server');
 const mongoose = require('mongoose');
 
@@ -34,7 +32,9 @@ describe('<Unit Test>', () => {
 
       it('should be able to show an error when try to save without name', (done) => {
         user.name = '';
-        user.save().catch(() => done());
+        user.save().catch(() => {
+          done();
+        });
       });
     });
 
