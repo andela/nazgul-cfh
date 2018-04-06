@@ -1,3 +1,4 @@
+
 var async = require('async');
 
 module.exports = function(app, passport, auth) {
@@ -11,6 +12,8 @@ module.exports = function(app, passport, auth) {
     //Setting up the users api
     app.post('/users', users.create);
     app.post('/users/avatars', users.avatars);
+    app.post('/api/invite/users', users.inviteUserByEmail);
+    app.post('/api/search/users', users.searchFriend);
 
     // Donation Routes
     app.post('/donations', users.addDonation);
