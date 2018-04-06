@@ -62,7 +62,7 @@ require('./config/routes')(app, passport, auth);
 
 //Start the app by listening on <port>
 var port = config.default.port;
-var server = app.listen(port);
+var server = app.listen(process.env.PORT || port);
 
 // function stop() {
 //     server.close();
@@ -71,7 +71,7 @@ var server = app.listen(port);
 var ioObj = io.listen(server, { log: false });
 //game logic handled here
 require('./config/socket/socket')(ioObj);
-console.log('Express app started on port ' + port);
+console.log(`Express app started on port ${process.env.PORT || port}`);
 
 //Initializing logger
 logger.init(app, passport, mongoose);
