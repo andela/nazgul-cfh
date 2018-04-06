@@ -1,3 +1,4 @@
+const redirectToAnotherPage = require('../../app/controllers/users').redirectToPromptPage;
 var Game = require('./game');
 var Player = require('./player');
 require("console-stamp")(console, "m/dd HH:MM:ss");
@@ -93,6 +94,7 @@ module.exports = function(io) {
           player.avatar = avatars[Math.floor(Math.random()*4)+12];
         } else {
           player.username = user.name;
+          player.redirectToNewGame = false;
           player.premium = user.premium || 0;
           player.avatar = user.avatar || avatars[Math.floor(Math.random()*4)+12];
         }
@@ -135,7 +137,7 @@ module.exports = function(io) {
           game.prepareGame();
         }
       } else {
-        // TODO: Send an error message back to this user saying the game has already started
+       socket.emit('maxPlayersReached');
       }
     } else {
       // Put players into the general queue
@@ -228,5 +230,4 @@ module.exports = function(io) {
     }
     socket.leave(socket.gameID);
   };
-
 };
