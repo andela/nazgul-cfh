@@ -1,5 +1,4 @@
 export default {
-  port: 3001,
   app: {
     name: 'Cards for Humanity'
   },
