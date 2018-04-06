@@ -22,7 +22,4 @@
         "clientSecret": "APP_SECRET",
         "callbackURL": "https://localhost:3000/auth/google/callback"
     },
-    "db": {
-        "clientId": "APP_ID"
-    }
 }

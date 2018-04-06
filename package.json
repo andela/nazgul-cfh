@@ -15,11 +15,11 @@
   "scripts": {
     "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "cover:test": "nyc --reporter=lcov --reporter=text-lcov",
-    "start:dev": "node node_modules/gulp-cli/bin/gulp build && node node_modules/gulp-cli/bin/gulp",
-    "start": "npm run build && node dist/server.js",
-    "test": "node node_modules/gulp-cli/bin/gulp test",
     "bower": "node node_modules/gulp-cli/bin/gulp install",
+    "start:dev": "node node_modules/gulp-cli/bin/gulp build && node node_modules/gulp-cli/bin/gulp",
     "build": "node node_modules/gulp-cli/bin/gulp build ",
+    "start": "npm run build && node dist/server.js",
+    "test": "NODE_ENV=test && node node_modules/gulp-cli/bin/gulp test",
     "postinstall": "node node_modules/gulp-cli/bin/gulp install",
     "test:karma": "node_modules/.bin/karma start karma.conf.js"
   },

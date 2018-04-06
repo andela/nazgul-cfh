@@ -1,8 +1,6 @@
 /**
  * Module dependencies.
  */
-// const stop = require('../../server');
-import { expect } from 'chai';
 
 const app = require('../../dist/server');
 const mongoose = require('mongoose');
