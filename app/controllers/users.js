@@ -4,6 +4,8 @@
 var mongoose = require('mongoose'),
   User = mongoose.model('User');
 var avatars = require('./avatars').all();
+const nodemailer = require('nodemailer');
+require('dotenv').config;
 
 /**
  * Auth callback
@@ -107,6 +109,78 @@ exports.create = function(req, res) {
   }
 };
 
+const searchFriend = (req, res) => {
+  const isEmail = (mail) => {
+    if (/^\w+([\.-]?\w+)*@\w+([ \.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+      return true;
+    }
+    return false;
+  };
+
+  const searchByEmail = () =>
+    (
+      User.findOne({
+        email: req.body.search
+      }).exec((err, friend) => {
+        if (err) {
+          return res.status(500).send({ error: 'An error occured' });
+        }
+        if (!friend) {
+          return res.status(200).send({ message: 'No friends found' });
+        }
+        return res.status(200).send({ message: 'success', user: friend });
+      })
+    );
+
+  const searchByUsername = () =>
+    (
+      User.findOne({
+        name: req.body.search
+      }).exec((err, friend) => {
+        if (err) {
+          return res.status(500).send({ error: 'An error occured' });
+        }
+        if (!friend) {
+          return res.status(200).send({ message: 'No friends found' });
+        }
+        return res.status(200).send({ message: 'success', user: friend });
+      })
+    );
+  if (isEmail(req.body.search)) {
+    return searchByEmail();
+  }
+  return searchByUsername();
+};
+
+const inviteUserByEmail = (req, res) => {
+  const mailOptions = {
+    from: 'nazgul-cfh',
+    to: req.body.emailOfUserToBeInvited,
+    subject: 'Invite to nazgul cfh game',
+    text: `Hey!!,You have been invited to join this current game \n ${req.body.link}`,
+  };
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.EMAIL_PASSWORD,
+    },
+    tls: {
+      rejectUnauthorized: false
+    }
+  });
+
+  transporter.sendMail(mailOptions, (err, info) => {
+    if (err) {
+      console.log(err);
+      return res.status(500).send({ error: 'an error occurred' });
+    }
+    console.log('ENVELOPE: ', info.envelope);
+    console.log('MESSAGE ID: ', info.messageId);
+    return res.status(200).send({ message: 'invite successfully sent', id: info.messageId });
+  });
+};
+
 /**
  * Assign avatar to user
  */
@@ -186,3 +260,6 @@ exports.user = function(req, res, next, id) {
       next();
     });
 };
+
+exports.searchFriend = searchFriend;
+exports.inviteUserByEmail = inviteUserByEmail;
