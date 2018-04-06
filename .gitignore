@@ -3,5 +3,9 @@ public/lib
 .sass-cache/
 .DS_store
 c4h_keys.txt
-
+package-lock.json
+bower_components
+dist
 .env
+coverage/
+.nyc_output
