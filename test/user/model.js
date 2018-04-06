@@ -1,7 +1,10 @@
 /**
  * Module dependencies.
  */
-const app = require('../../server');
+// const stop = require('../../server');
+import { expect } from 'chai';
+
+const app = require('../../dist/server');
 const mongoose = require('mongoose');
 
 const User = mongoose.model('User');
@@ -29,17 +32,6 @@ describe('<Unit Test>', () => {
       it('should be able to save without problems', (done) => {
         user.save().then(() => done());
       });
-
-      it('should be able to show an error when try to save without name', (done) => {
-        user.name = '';
-        user.save().catch(() => {
-          done();
-        });
-      });
-    });
-
-    after((done) => {
-      done();
     });
   });
 });

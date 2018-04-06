@@ -17,8 +17,6 @@ require('dotenv').config();
  * @returns {void}
  */
 exports.authCallback = (req, res) => {
-  console.log('@HHHH', req.user);
-
   const payload = {
     _id: req.user._id
   };

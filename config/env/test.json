@@ -1,28 +1,27 @@
 {
+    "port": 3001,
+	"db": "process.env.MONGOHQ_URL,
     "app": {
-        "name": "Cards for Humanity - Development"
+        "name": "Cards for Humanity - Test on travis"
     },
     "facebook": {
         "clientID": "APP_ID",
         "clientSecret": "APP_SECRET",
-        "callbackURL": "https://localhost:3000/auth/facebook/callback"
+        "callbackURL": "http://localhost:3000/auth/facebook/callback"
     },
     "twitter": {
         "clientID": "CONSUMER_KEY",
         "clientSecret": "CONSUMER_SECRET",
-        "callbackURL": "https://localhost:3000/auth/twitter/callback"
+        "callbackURL": "http://localhost:3000/auth/twitter/callback"
     },
     "github": {
         "clientID": "APP_ID",
         "clientSecret": "APP_SECRET",
-        "callbackURL": "https://localhost:3000/auth/github/callback"
+        "callbackURL": "http://localhost:3000/auth/github/callback"
     },
     "google": {
         "clientID": "APP_ID",
         "clientSecret": "APP_SECRET",
-        "callbackURL": "https://localhost:3000/auth/google/callback"
-    },
-    "db": {
-        "clientId": "APP_ID"
+        "callbackURL": "http://localhost:3000/auth/google/callback"
     }
 }
