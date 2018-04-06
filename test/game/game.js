@@ -98,7 +98,7 @@ describe("Game Server",function(){
     });
   });
 
-  it('Should automatically start game when 6 players are in a game', function(done){
+  it('Should automatically start game when 12 players are in a game', function(done){
     var client1, client2, client3, client4, client5, client6;
     client1 = io.connect(socketURL, options);
     var disconnect = function() {
