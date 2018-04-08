@@ -13,12 +13,63 @@
       <div id="loading-container">
         <div id="loading-gif"><img ng-src="../img/loader.gif"/></div>
       </div>
-      <div id="start-game-container" ng-click="startGame()" ng-show="(game.playerIndex === 0 || game.joinOverride) && game.players.length >= game.playerMinLimit">
-        <div id='start-game-button'>
-          Start Game</br>with {{game.players.length}} players
+      <div id="start-game-container"  ng-show="(game.playerIndex === 0 || game.joinOverride) ">
+        <div id='start-game-button' data-toggle="modal" data-target="#preGameModal" >
+          PLEASE  <br/> CLICK HERE TO BEGIN
+        </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="preGameModal" tabindex="-1" role="dialog" aria-labelledby="preGameModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <p>You would need a minimum of 3 Players to begin the game </p>
+                <p>Would You Like To Find More Players And Start The Game</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button"   class="btn btn-secondary" data-dismiss="modal" >No</button>
+                <button type="button" data-toggle="modal" data-dismiss="modal" data-target="#startGameModal"  class="btn btn-primary">Yes</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    <!-- End of preGameModal -->
+    
+    <!-- Modal -->
+    <div class="modal fade" id="startGameModal"  tabindex="-1" role="dialog" aria-labelledby="startGameModalLabel"  aria-hidden="true">
+      <div class="modal-dialog" role="document" >
+        <div class="modal-content" style="background-color: black">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" >
+            <div id="finding-players">Finding Players</div>
+            <div id="player-count-container">
+              <div><p >{{game.players.length}} / 6</p> </div>
+              <div id=""> Players </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button"  ng-click="startGame()" data-dismiss="modal" ng-show="game.players.length >= game.playerMinLimit" class="btn btn-primary">Start Game</br>with {{game.players.length}} players</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of startGameModal -->
+
     <!-- Game Over Stuff -->
     <div id="game-end-info">
       <div id="people-left-game-top" ng-show="game.state ==='game dissolved' && game.gameWinner === -1">
