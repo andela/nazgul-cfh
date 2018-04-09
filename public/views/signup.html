@@ -72,30 +72,36 @@
                         <div class="card-panel red lighten-2 white-text" ng-show="showError() === 'invalid'">
                             Please check your username/password and try again.
                         </div>
-                        <div class="container">
+                        <div class="container" ng-controller="IndexController">
                             <div class="row">
-                                <form method="post" action="/api/auth/signup" class="col s12 animated fadeIn">
+                                <form method="post" ng-submit="signup()" class="col s12 animated fadeIn">
                                     <div class="row">
                                         <div class="input-field col s12">
-                                            <input id="email" type="email" class="validate">
-                                            <label for="email">Email</label>
+                                            <input id="fullname" ng-model="name" type="text" name="name" class="validate">
+                                            <label for="fullname">Full name</label>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="input-field col s12">
-                                            <input id="username" type="text" class="validate">
+                                            <input id="username" ng-model="username" type="text" name="username" class="validate">
                                             <label for="username">Username</label>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="input-field col s12">
-                                            <input id="password" type="password" class="validate">
+                                            <input id="email" ng-model="email" type="email" name="email" class="validate">
+                                            <label for="email">Email</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input id="password" ng-model="password" type="password" name="password" class="validate">
                                             <label for="password">Password</label>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <button class="btn waves-effect col s12 custom-btn dark-pink white-text marg25 lighten-1">
-                                            sign in
+                                            sign up
                                         </button>
                                     </div>
                                 </form>

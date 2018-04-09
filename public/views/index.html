@@ -11,8 +11,8 @@
           <li><a class="white-text" href="#!/signin">Sign in</a></li>
           <li><a class="white-text" href="#!/signup">Sign up</a></li>
         </span>
-        <span ng-hide="showOptions">
-          <li><a class="white-text" href="/signout">Sign out</a></li>
+        <span ng-hide="showOptions" ng-controller="IndexController">
+          <li><a class="white-text" ng-click="signout()">Sign out</a></li>
         </span>
       </ul>
 
