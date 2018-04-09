@@ -7,15 +7,29 @@ module.exports = function (config) {
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
-
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine'],
 
-
     // list of files / patterns to load in the browser
     files: [
-      './unit-tests/frontend.spec.js'
+      './dist/public/lib/jquery/dist/jquery.min.js',
+      './dist/public/lib/angular/angular.min.js',
+      'bower_components/angular-route/angular-route.min.js',
+      'bower_components/angular-resource/angular-resource.min.js',
+      'node_modules/angular-mocks/angular-mocks.js',
+      'node_modules/ng-midway-tester/src/ngMidwayTester.js',
+      './dist/public/lib/angular-bootstrap/ui-bootstrap.min.js',
+      './dist/public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
+      './dist/public/lib/angular-ui-utils/modules/route.js',
+      './dist/public/js/init.js',
+      './dist/public/js/app.js',
+      './dist/public/js/controllers/*.js',
+      './dist/public/js/services/*.js',
+      './dist/public/js/directives.js',
+      './dist/public/js/filters.js',
+      './unit-tests/frontend.spec.js',
+      './public/views/*.html'
     ],
 
 
@@ -23,12 +37,11 @@ module.exports = function (config) {
     exclude: [
     ],
 
-
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      './public/views/*.html': ['ng-html2js']
     },
-
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
@@ -56,7 +69,6 @@ module.exports = function (config) {
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ['Chrome'],
-
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits

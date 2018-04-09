@@ -5,6 +5,14 @@
  *
  * Made By MaterializeCSS.com
  */
+:root {
+  --main-bg-color: #540032;
+  --main-txt-color: #540032;
+  --facebook-color: #3B5998;
+  --twitter-color: #1DA1F2;
+  --google-color: #DB4437;
+  --github-color: #333333;
+}
 
 nav ul a,
 nav .brand-logo {
@@ -24,9 +32,9 @@ p {
   height: auto;
   color: rgba(255,255,255,.9);
 }
-  .parallax-container .section {
-    width: 100%;
-  }
+.parallax-container .section {
+  width: 100%;
+}
 
 .custom-parallax .section {
   width: 100%;
@@ -81,12 +89,12 @@ footer.page-footer {
   height: 300px;
 }
 
-.btn.lighter-pink:hover, .btn-large.lighter-pink:hover {
-  background-color: #540032;
+.btn.lighter-pink:hover, .btn.lighter-pink:focus, .btn-large.lighter-pink:hover, .btn-large.lighter-pink:focus {
+  background-color: var(--main-bg-color);
 }
 
 .btn.dark-pink:hover, .btn-large.dark-pink:hover {
-  background-color: #540032;
+  background-color: var(--main-bg-color);
 }
 
 .custom-btn{
@@ -131,11 +139,11 @@ footer.page-footer {
 }
 
 .lighter-pink{
-  background-color: #540032;
+  background-color: var(--main-bg-color);
 }
 
 .dark-blue{
-  background-color: #002859; 
+  background-color: #002859;
 }
 
 .dark-pink-text{
@@ -143,11 +151,11 @@ footer.page-footer {
 }
 
 .lighter-pink-text{
-  color: #540032;
+  color: var(--main-bg-color);
 }
 
 .dark-blue-text{
-  color: #002859; 
+  color: #002859;
 }
 
 .dark-overlay{
@@ -178,24 +186,117 @@ footer.page-footer {
 .card:hover{
   cursor: pointer;
   -webkit-box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.3);
 }
 
 .card:hover .card-image img{
   transform: scale(1.1);
 }
 
-/* .fadeInLater{
-  animation: fadeInLater .5s ease-in-out .8s;
+
+.social-login-overlay{
+  display: block;
+  background-image: url(../img/header-bg.png);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-@keyframes fadeInLater {
-  0% {
-    opacity: 0;
-    transform: translateX(-200px);
-  }
-  100% {
-    transform: translateX(0px);
-    opacity: 1;
-  }
-} */
+.social-login-panel{
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.input-field {
+  color: var(--main-bg-color);
+}
+
+/* label color */
+.input-field label {
+  color: var(--main-bg-color) !important;
+}
+/* label focus color */
+.input-field input[type=text]:focus + label {
+  color: var(--main-bg-color) !important;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid var(--main-bg-color) !important;
+  box-shadow: 0 1px 0 0 var(--main-bg-color) !important;
+}
+/* valid color */
+.input-field input[type=text].valid {
+  border-bottom: 1px solid var(--main-bg-color);
+  box-shadow: 0 1px 0 0 var(--main-bg-color);
+}
+/* invalid color */
+.input-field input[type=text].invalid {
+  border-bottom: 1px solid var(--main-bg-color);
+  box-shadow: 0 1px 0 0 var(--main-bg-color);
+}
+/* icon prefix focus color */
+.input-field .prefix.active {
+  color: var(--main-bg-color);
+}
+
+input:not([type]):focus:not([readonly]),
+input[type=text]:not(.browser-default):focus:not([readonly]),
+input[type=password]:not(.browser-default):focus:not([readonly]),
+input[type=email]:not(.browser-default):focus:not([readonly]),
+input[type=url]:not(.browser-default):focus:not([readonly]),
+input[type=time]:not(.browser-default):focus:not([readonly]),
+input[type=date]:not(.browser-default):focus:not([readonly]),
+input[type=datetime]:not(.browser-default):focus:not([readonly]),
+input[type=datetime-local]:not(.browser-default):focus:not([readonly]),
+input[type=tel]:not(.browser-default):focus:not([readonly]),
+input[type=number]:not(.browser-default):focus:not([readonly]),
+input[type=search]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid var(--main-bg-color);
+  -webkit-box-shadow: 0 1px 0 0 var(--main-bg-color);
+  box-shadow: 0 1px 0 0 var(--main-bg-color);
+}
+
+.card-ovarlay-image{
+  width: 100%;
+  max-height: 200px;
+}
+
+.card-overlay{
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, .7);
+}
+
+.icon-svg{
+  width:30px;height:30px;margin-top: 50%; transform: translateY(-50%);
+}
+
+.social-btn:hover, .social-btn:focus{
+  background-color: var(--main-bg-color) !important;
+}
+
+.facebook-color{
+  background-color: var(--facebook-color);
+}
+
+.twitter-color{
+  background-color: var(--twitter-color);
+}
+
+.google-color{
+  background-color: var(--google-color);
+}
+
+.github-color{
+  background-color: var(--github-color);
+}
+
+.or:before{
+  position: absolute; content: "or";
+  background-color: #FFF;
+  width: 60px; height: 60px; color: #333;
+  border-radius: 50%; left: 50%; top: 170px;
+  transform: translateX(-50%);
+  text-align: justify; padding: 17px;
+  text-transform: uppercase; font-size: 19px;
+}
