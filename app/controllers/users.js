@@ -2,6 +2,7 @@
  * Module dependencies.
  */
 const mongoose = require('mongoose');
+
 const jwt = require('jsonwebtoken');
 
 const User = mongoose.model('User');
@@ -16,7 +17,18 @@ require('dotenv').config();
  * @returns {void}
  */
 exports.authCallback = (req, res) => {
-  res.redirect('/chooseavatars');
+  const payload = {
+    _id: req.user._id
+  };
+  const token = jwt.sign({
+    payload,
+  }, process.env.SECRET);
+  const userData = {
+    token,
+    name: req.user.name
+  };
+  res.cookie('userData', JSON.stringify(userData));
+  res.redirect('/#!/');
 };
 
 /**
@@ -29,7 +41,7 @@ exports.signin = (req, res) => {
   if (!req.user) {
     res.redirect('/#!/signin?error=invalid');
   } else {
-    res.redirect('/#!/app');
+    res.redirect('/#!');
   }
 };
 
@@ -161,14 +173,13 @@ exports.signUp = (req, res) => {
           }
           const payload = {
             _id: newUser._id,
-            email: newUser.email
           };
           const token = jwt.sign({
             payload,
           }, process.env.SECRET);
           return res.status(201).json({
-            message: 'User Created Successfully',
-            token
+            token,
+            name: newUser.name
           });
         });
       } else {
