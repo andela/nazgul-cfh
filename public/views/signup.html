@@ -24,7 +24,7 @@
 <!-- Fixed Logo & Menu Bar End -->
 
 <!-- Landing Start -->
-<div class="wpb-teaser parallax-background" id="homer">
+<div class="wpb-teaser parallax-background" id="homer" ng-controller="IndexController">
   <div class="background-opacity"></div> 
   <div class="modified-container">
     <div class="row" id="main-text"> 
@@ -41,23 +41,23 @@
 
       <div class="sign-body">
         <div class="more-sign">
-          <form class="signup form-horizontal" action="/users" method="post">
+          <form class="signup form-horizontal" ng-submit="signup()">
             <div class="control-group">
               <label for="name" class="control-label"></label>
               <div class="controls">
-                <input class="input-info" id="name" type="text" name="name" placeholder="Full name" required novalidate />
+                <input class="input-info" id="name" ng-model="name" type="text" name="name" placeholder="Full name" required novalidate />
               </div>
             </div>
             <div class="control-group">
               <label for="email" class="control-label"></label>
               <div class="controls">
-                <input class="input-info" id="email" type="email" name="email" placeholder="Email" required novalidate />
+                <input class="input-info" id="email" type="email" ng-model="email" name="email" placeholder="Email" required novalidate />
               </div>
             </div>
             <div class="control-group">
               <label for="password" class="control-label"></label>
               <div class="controls">
-                <input class="input-info" id="password" type="password" name="password" placeholder="Password" required novalidate />
+                <input class="input-info" id="password" type="password" ng-model="password" name="password" placeholder="Password" required novalidate />
               </div>
             </div>
             <div id="contain-avatars">
