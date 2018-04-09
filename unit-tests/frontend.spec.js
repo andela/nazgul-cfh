@@ -34,35 +34,4 @@ describe('A TESTING OF THE KARMA FRONTEND TEST', () => {
       expect($route.routes[null].redirectTo).toEqual('/');
     });
   });
-  // angular.module('myModule', ['ngRoute'])
-  //   .config(function($routeProvider) {
-  //     $routeProvider.when('/home', {
-  //       template : 'welcome to {{ title }}',
-  //       controller : 'HomeCtrl'
-  //     });
-  //   })
-  //   .controller('HomeCtrl', function($scope) {
-  //     $scope.title = 'my home page';
-  //   });
-
-  //this test spec uses mocha since it has nice support for async testing...
-  // describe('home spec', function() {
-  //   var tester;
-  //   beforeEach(function() {
-  //     tester = ngMidwayTester('myModule');
-  //   });
-  //
-  //   afterEach(function() {
-  //     tester.destroy();
-  //     tester = null;
-  //   });
-  //
-  //   it('should have a working home page', function(done) {
-  //     tester.visit('/home', function() {
-  //       expect(tester.path()).toEqual('/home');
-  //       console.log('element: ', tester.viewElement());
-  //       done();
-  //     });
-  //   });
-  // });
 });
