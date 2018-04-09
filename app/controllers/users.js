@@ -25,7 +25,7 @@ exports.authCallback = (req, res) => {
   }, process.env.SECRET);
   const userData = {
     token,
-    name: req.user.name
+    username: req.user.username
   };
   res.cookie('userData', JSON.stringify(userData));
   res.redirect('/#!/');
@@ -154,9 +154,9 @@ exports.create = (req, res, next) => {
  */
 exports.signUp = (req, res) => {
   const {
-    name, email, password
+    name, email, password, username
   } = req.body;
-  if (name && password && email) {
+  if (name && password && email && username) {
     User.findOne({
       email
     }).exec((err, existingUser) => {
@@ -172,14 +172,14 @@ exports.signUp = (req, res) => {
             });
           }
           const payload = {
-            _id: newUser._id,
+            _id: newUser._id
           };
           const token = jwt.sign({
             payload,
           }, process.env.SECRET);
           return res.status(201).json({
             token,
-            name: newUser.name
+            username: newUser.username
           });
         });
       } else {

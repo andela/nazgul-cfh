@@ -42,6 +42,7 @@ angular.module('mean.system')
     $scope.signup = () => {
       const userInfo = {
         name: $scope.name,
+        username: $scope.username,
         email: $scope.email,
         password: $scope.password
       };
