@@ -70,21 +70,21 @@
                         </div>
                         <div class="card-content">
                             <span class="or"></span>
-                            <div class="card-panel red lighten-2 white-text" ng-show="showError() === 'invalid'">
-                                Please check your username/password and try again.
+                            <div class="card-panel red lighten-2 white-text" ng-show="showError">
+                                {{errorMessage}}
                             </div>
                             <div class="container">
                                 <div class="row">
-                                    <form action="/users/session" method="post" class="col s12 animated fadeIn">
+                                    <form  ng-submit="signin()" class="col s12 animated fadeIn">
                                         <div class="row">
                                             <div class="input-field col s12">
-                                                <input id="email" type="email" class="validate">
+                                                <input id="email" ng-model="email" type="email" class="validate">
                                                 <label for="email">Email</label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="input-field col s12">
-                                                <input id="password" type="password" class="validate">
+                                                <input id="password" ng-model="password" type="password" class="validate">
                                                 <label for="password">Password</label>
                                             </div>
                                         </div>

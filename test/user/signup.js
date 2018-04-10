@@ -98,22 +98,3 @@ describe('Signup', () => {
   });
 });
 
-describe('Signup API', () => {
-  it('should get token on successful sign up', (done) => {
-    request
-      .post('/api/auth/signup')
-      .set('Content-Type', 'application/json')
-      .send({
-        name: 'Full name',
-        email: 'testtt@test.com',
-        username: 'user',
-        password: 'password'
-      })
-      .end((err, res) => {
-        expect(res.status).to.equal(201);
-        expect(err).to.be.null;
-        expect(res.body).to.be.an('object');
-        done();
-      });
-  });
-});

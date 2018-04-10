@@ -67,12 +67,12 @@
                             </div>
                         </span>
                     </div>
-                    <div class="card-content">
+                    <div class="card-content"  ng-controller="IndexController">
                         <span class="or"></span>
-                        <div class="card-panel red lighten-2 white-text" ng-show="showError() === 'invalid'">
-                            Please check your username/password and try again.
+                        <div class="card-panel red lighten-2 white-text" ng-show="showError">
+                            {{errorMessage}}
                         </div>
-                        <div class="container" ng-controller="IndexController">
+                        <div class="container">
                             <div class="row">
                                 <form method="post" ng-submit="signup()" class="col s12 animated fadeIn">
                                     <div class="row">
