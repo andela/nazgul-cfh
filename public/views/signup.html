@@ -1,24 +1,27 @@
+<script>
+  $('.sidenav').sidenav({
+    closeOnClick  : true
+  });
+</script>
 <nav class="dark-pink wow fadeIn" role="navigation">
     <div class="nav-wrapper container">
         <a id="logo-container" href="/" class="brand-logo white-text">CFH</a>
         <ul class="right hide-on-med-and-down">
             <li><a class="white-text right" href="#!/signin">Sign In</a></li>
         </ul>
-
-        <ul id="nav-mobile" class="side-nav white-text">
+        <ul id="slide-out" class="sidenav white-text">
             <li><a href="/">Home</a></li>
             <li><a href="#!/signin">Sign in</a></li>
         </ul>
-        <a href="#" data-activates="nav-mobile" class="button-collapse white-text"><i
-                class="material-icons">menu</i></a>
+        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
 </nav>
 
-<div class="container">
-    <div class="container">
+<div class="container container-card">
+    <div class="container container-card">
         <div class="row">
             <div class="col s12">
-                <div class="card">
+                <div class="card" style="margin-top: 50px;">
                     <div class="card-image card-ovarlay-image">
                         <img src="img/header-bg.png">
                         <span class="card-title card-overlay">
@@ -27,7 +30,7 @@
                                     <h5 class="center">Sign Up With</h5>
                                 </div>
                                 <div class="row">
-                                    <div class="col s6 m3 l3 center animated fadeInLeft">
+                                    <div class="col s3 m3 l3 center animated fadeInLeft margin-b-15">
                                         <a href="/auth/facebook"
                                            class="btn-floating btn-large waves-effect waves-light social-btn facebook-color">
                                             <svg class="icon-svg" viewBox="0 0 24 24">
@@ -36,7 +39,7 @@
                                             </svg>
                                         </a>
                                     </div>
-                                    <div class="col s6 m3 l3 center animated fadeInUp">
+                                    <div class="col s3 m3 l3 center animated fadeInUp margin-b-15">
                                         <a href="/auth/twitter"
                                            class="btn-floating btn-large waves-effect waves-light social-btn twitter-color">
                                             <svg class="icon-svg" viewBox="0 0 24 24">
@@ -45,7 +48,7 @@
                                             </svg>
                                         </a>
                                     </div>
-                                    <div class="col s6 m3 l3 center animated fadeInUp">
+                                    <div class="col s3 m3 l3 center animated fadeInUp">
                                         <a href="/auth/google"
                                            class="btn-floating btn-large waves-effect waves-light social-btn google-color">
                                             <svg class="icon-svg" viewBox="0 0 24 24">
@@ -54,7 +57,7 @@
                                             </svg>
                                         </a>
                                     </div>
-                                    <div class="col s6 m3 l3 center animated fadeInRight">
+                                    <div class="col s3 m3 l3 center animated fadeInRight">
                                         <a href="/auth/github"
                                            class="btn-floating btn-large waves-effect waves-light social-btn github-color">
                                             <svg class="icon-svg" viewBox="0 0 24 24">
@@ -69,7 +72,7 @@
                     </div>
                     <div class="card-content">
                         <span class="or"></span>
-                        <div class="card-panel red lighten-2 white-text" ng-show="showError() === 'invalid'">
+                        <div class="lighten-2 red-text center" ng-show="showError() === 'invalid'">
                             Please check your username/password and try again.
                         </div>
                         <div class="container" ng-controller="IndexController">
@@ -107,6 +110,7 @@
                                 </form>
                             </div>
                         </div>
+                        <p class="center">Already have an account? <a href="#!/signin">sign in</a></p>
                     </div>
                 </div>
             </div>
@@ -114,22 +118,22 @@
     </div>
 </div>
 
-<footer class="page-footer lighter-pink darken-4 wow fadeInUp">
-    <div class="container">
-        <div class="row">
-            <div class="col l12 s12">
-                <h5 class="white-text">Legal Stuff</h5>
-                <p class="grey-text text-lighten-4">
-                    This game is based on the Cards Against Humanity card game, which is CC licensed (BY-NC-SA). Cards
-                    for Humanity is not affiliated with Cards Against Humanity. In complying with the Creative Commons
-                    license of the Cards Against Humanity card game, all proceeds from donations go directly to charity
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="footer-copyright dark-pink">
-        <div class="container">
-            Made by <a class="brown-text text-lighten-3" href="#">Team Nazgul</a>
-        </div>
-    </div>
-</footer>
+<!--<footer class="page-footer lighter-pink darken-4 wow fadeInUp">-->
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+            <!--<div class="col l12 s12">-->
+                <!--<h5 class="white-text">Legal Stuff</h5>-->
+                <!--<p class="grey-text text-lighten-4">-->
+                    <!--This game is based on the Cards Against Humanity card game, which is CC licensed (BY-NC-SA). Cards-->
+                    <!--for Humanity is not affiliated with Cards Against Humanity. In complying with the Creative Commons-->
+                    <!--license of the Cards Against Humanity card game, all proceeds from donations go directly to charity-->
+                <!--</p>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="footer-copyright dark-pink">-->
+        <!--<div class="container">-->
+            <!--Made by <a class="brown-text text-lighten-3" href="#">Team Nazgul</a>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</footer>-->
