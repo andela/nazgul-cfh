@@ -25,7 +25,7 @@ exports.authCallback = (req, res) => {
   }, process.env.SECRET);
   const userData = {
     token,
-    name: req.user.name
+    username: req.user.username
   };
   res.cookie('userData', JSON.stringify(userData));
   res.redirect('/#!/');
@@ -226,39 +226,45 @@ const inviteUserByEmail = (req, res) => {
  */
 exports.signUp = (req, res) => {
   const {
-    name, email, password
+    name, email, password, username
   } = req.body;
-  if (name && password && email) {
+  if (name && password && email && username) {
     User.findOne({
-      email
+      $or: [
+        { email }, { username }
+      ]
     }).exec((err, existingUser) => {
-      if (!existingUser) {
-        const user = new User(req.body);
-        // Switch the user's avatar index to an actual avatar url
-        user.avatar = avatars[user.avatar];
-        user.provider = 'local';
-        user.save((err, newUser) => {
-          if (err) {
-            return res.status(500).json({
-              error: 'Internal Server Error'
-            });
-          }
-          const payload = {
-            _id: newUser._id,
-          };
-          const token = jwt.sign({
-            payload,
-          }, process.env.SECRET);
-          return res.status(201).json({
-            token,
-            name: newUser.name
-          });
+      if (err) {
+        return res.status(500).json({
+          error: 'Internal Server Error'
         });
-      } else {
+      }
+      if (existingUser) {
         return res.status(409).json({
           error: 'User already exists'
         });
       }
+      const user = new User(req.body);
+      // Switch the user's avatar index to an actual avatar url
+      user.avatar = avatars[user.avatar];
+      user.provider = 'local';
+      user.save((err, newUser) => {
+        if (err) {
+          return res.status(500).json({
+            error: 'Internal Server Error'
+          });
+        }
+        const payload = {
+          _id: newUser._id
+        };
+        const token = jwt.sign({
+          payload,
+        }, process.env.SECRET);
+        return res.status(201).json({
+          token,
+          username: newUser.username
+        });
+      });
     });
   } else {
     return res.status(400).json({
@@ -292,11 +298,11 @@ exports.login = (req, res) => {
       return res.status(400).json({ error: 'Invalid email or password' });
     }
     const token = jwt.sign({
-      id: user._id,
-      email: user.email,
+      _id: user._id,
     }, process.env.SECRET);
     res.status(200).json({
       token,
+      username: user.username
     });
   });
 };

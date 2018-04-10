@@ -105,23 +105,35 @@ describe('Signup API', () => {
       .set('Content-Type', 'application/json')
       .send({
         name: 'Full name',
-        email: 'testtt@test.com',
-        username: 'user',
+        email: 'tester@test.com',
+        username: 'user_test',
         password: 'password'
       })
       .end((err, res) => {
+        console.log(res.body);
         expect(res.status).to.equal(201);
-        expect(err).to.be.null;
         expect(res.body).to.be.an('object');
+        done();
+      });
+  });
+  it('performs a retrieval if email is passed', (done) => {
+    const searchQuery = {
+      emailOrUsernameOfFriend: 'tester@test.com',
+    };
+    request
+      .post('/api/search/users')
+      .set('Content-Type', 'application/json')
+      .send(searchQuery)
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
+        console.log(res.body), 'jdhJHSGSGGSG'
+        expect(res.body.user.email).to.equal('efosaokpugie@gmail.com')
         done();
       });
   });
 });
 
 describe('POST /api/search/users', () => {
-  const searchQuery = {
-    emailOrUsernameOfFriend: 'testtt@test.com',
-  };
   it('performs a retrieval if email is passed', (done) => {
     request
       .post('/api/search/users')
@@ -131,18 +143,100 @@ describe('POST /api/search/users', () => {
         expect(res.status).to.equal(200);
         console.log(res.body), 'jdhJHSGSGGSG'
         expect(res.body.user.email).to.equal('efosaokpugie@gmail.com')
+        done();
       });
   });
   it('performs a retrieval if username is sent', (done) => {
-    searchQuery.emailOrUsernameOfFriend = 'Full name';
+    const searchQuery = {
+      emailOrUsernameOfFriend: 'Full name',
+    };
     request
       .post('/api/search/users')
       .set('Content-Type', 'application/json')
       .send(searchQuery)
-      .expect(200, done)
       .end((err, res) => {
         expect(res.status).to.equal(200);
         expect(res.body.user.name).to.equal('full name');
+        done();
       });
   });
 });
+describe('Signin', () => {
+  it('should not allow a user to login with no email', (done) => {
+    request
+      .post('/api/auth/login')
+      .set('Content-Type', 'application/json')
+      .send({
+        password: 'test',
+      })
+      .end((err, res) => {
+        const { error } = res.body;
+        expect(res.status).to.equal(400);
+        expect(error).to.equal('All fields are required');
+        done();
+      });
+  });
+
+  it('should not allow a user to login with no password', (done) => {
+    request
+      .post('/api/auth/login')
+      .set('Content-Type', 'application/json')
+      .send({
+        email: 'test@yahoo.com',
+      })
+      .end((err, res) => {
+        const { error } = res.body;
+        expect(res.status).to.equal(400);
+        expect(error).to.equal('All fields are required');
+        done();
+      });
+  });
+
+  it('should not allow a user to login with empty email', (done) => {
+    request
+      .post('/api/auth/login')
+      .set('Content-Type', 'application/json')
+      .send({
+        email: '',
+        password: 'test',
+      })
+      .end((err, res) => {
+        const { error } = res.body;
+        expect(res.status).to.equal(400);
+        expect(error).to.equal('All fields are required');
+        done();
+      });
+  });
+
+  it('should not allow a user to login with empty password', (done) => {
+    request
+      .post('/api/auth/login')
+      .set('Content-Type', 'application/json')
+      .send({
+        email: 'test@yahoo.com',
+        password: '',
+      })
+      .end((err, res) => {
+        const { error } = res.body;
+        expect(res.status).to.equal(400);
+        expect(error).to.equal('All fields are required');
+        done();
+      });
+  });
+
+  it('should get token on successful login', (done) => {
+    request
+      .post('/api/auth/login')
+      .set('Content-Type', 'application/json')
+      .send({
+        email: 'tester@test.com',
+        password: 'password'
+      })
+      .end((err, res) => {
+        expect(res.status).to.equal(200);
+        expect(res.body).to.be.an('object');
+        done();
+      });
+  });
+});
+

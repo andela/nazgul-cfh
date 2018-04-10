@@ -1,7 +1,6 @@
 /**
  * Module dependencies.
  */
-
 const app = require('../../dist/server');
 const mongoose = require('mongoose');
 

@@ -157,7 +157,7 @@ Game.prototype.stateChoosing = function(self) {
     });
   }
   self.round++;
-  self.dealAnswers();
+  self.dealAnswers(this);
   // Rotate card czar
   if (self.czar >= self.players.length - 1) {
     self.czar = 0;
