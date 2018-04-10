@@ -1,8 +1,12 @@
+import Game from '../app/controllers/game';
+
 const users = require('../app/controllers/users');
 const answers = require('../app/controllers/answers');
 const questions = require('../app/controllers/questions');
 const avatars = require('../app/controllers/avatars');
 const index = require('../app/controllers/index');
+
+
 
 module.exports = (app, passport) => {
   // User Routes
@@ -90,4 +94,6 @@ module.exports = (app, passport) => {
   // Home route
   app.get('/play', index.play);
   app.get('/', index.render);
+
+  app.post('/api/games/:id/start', Game.gameHistory);
 };

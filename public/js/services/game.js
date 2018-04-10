@@ -1,5 +1,5 @@
 angular.module('mean.system')
-  .factory('game', ['socket', '$timeout', function (socket, $timeout) {
+  .factory('game', ['socket', '$timeout', '$http', function (socket, $timeout, $http) {
 
   var game = {
     id: null, // This player's socket ID, so we know who this player is
@@ -67,11 +67,31 @@ angular.module('mean.system')
   });
 
   socket.on('gameUpdate', function(data) {
+    console.log('this is game update from public/services/games.js >>>>',data)
 
     // Update gameID field only if it changed.
     // That way, we don't trigger the $scope.$watch too often
     if (game.gameID !== data.gameID) {
       game.gameID = data.gameID;
+    }
+    if (game.state === 'game ended') {
+      let gameLog = {};
+      gameLog.gameId = game.gameID,
+      gameLog.players = game.players,
+      gameLog.rounds = game.round,
+      gameLog.gameWinner = game.players[game.gameWinner];
+
+      $http({
+        method: 'POST',
+        url: `/api/games/${game.gameID}/start`,
+        data: {
+          gameLog: gameLog
+        }
+      }).then((res) => {
+        console.log('this is the response from  the api>>>>>>', res)
+      }, (err) => {
+        console.log('this is the error>>>>', err)
+      })
     }
 
     game.joinOverride = false;

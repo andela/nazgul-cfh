@@ -140,6 +140,7 @@ Game.prototype.startGame = function() {
 };
 
 Game.prototype.sendUpdate = function() {
+  console.log('this is the payload from the config/socket/game.js>>>>> ', this.payload());
   this.io.sockets.in(this.gameID).emit('gameUpdate', this.payload());
 };
 
@@ -224,6 +225,7 @@ Game.prototype.stateResults = function(self) {
 Game.prototype.stateEndGame = function(winner) {
   this.state = "game ended";
   this.gameWinner = winner;
+  console.log('this is from the EndGame config/socket/game.js >>>>>>', this.sendUpdate())
   this.sendUpdate();
 };
 
