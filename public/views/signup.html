@@ -1,6 +1,8 @@
 <script>
   $('.sidenav').sidenav({
-    closeOnClick  : true
+    onCloseStart: function () {
+      $('div[class="sidenav-overlay"]').remove();
+    }
   });
 </script>
 <nav class="dark-pink wow fadeIn" role="navigation">
@@ -118,22 +120,3 @@
     </div>
 </div>
 
-<!--<footer class="page-footer lighter-pink darken-4 wow fadeInUp">-->
-    <!--<div class="container">-->
-        <!--<div class="row">-->
-            <!--<div class="col l12 s12">-->
-                <!--<h5 class="white-text">Legal Stuff</h5>-->
-                <!--<p class="grey-text text-lighten-4">-->
-                    <!--This game is based on the Cards Against Humanity card game, which is CC licensed (BY-NC-SA). Cards-->
-                    <!--for Humanity is not affiliated with Cards Against Humanity. In complying with the Creative Commons-->
-                    <!--license of the Cards Against Humanity card game, all proceeds from donations go directly to charity-->
-                <!--</p>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<div class="footer-copyright dark-pink">-->
-        <!--<div class="container">-->
-            <!--Made by <a class="brown-text text-lighten-3" href="#">Team Nazgul</a>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</footer>-->
