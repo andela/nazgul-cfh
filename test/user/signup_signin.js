@@ -11,7 +11,7 @@ after((done) => {
   mongoose.connection.db.dropDatabase(done);
 });
 
-describe('Signup', () => {
+describe('POST api/auth/signup', () => {
   it('should not allow a user to sign up with no name', (done) => {
     request
       .post('/api/auth/signup')
@@ -46,23 +46,6 @@ describe('Signup', () => {
       });
   });
 
-  it('should not allow a user to sign up with no email', (done) => {
-    request
-      .post('/api/auth/signup')
-      .set('Content-Type', 'application/json')
-      .send({
-        name: 'test',
-        email: '',
-        password: 'test',
-      })
-      .end((err, res) => {
-        const { error } = res.body;
-        expect(res.status).to.equal(400);
-        expect(error).to.equal('All fields are required');
-        done();
-      });
-  });
-
   it('should not allow a user to sign up with no password', (done) => {
     request
       .post('/api/auth/signup')
@@ -80,25 +63,6 @@ describe('Signup', () => {
       });
   });
 
-  it('should not allow a user to sign up with no password', (done) => {
-    request
-      .post('/api/auth/signup')
-      .set('Content-Type', 'application/json')
-      .send({
-        name: 'test',
-        email: 'test@yahoo.com',
-        password: '',
-      })
-      .end((err, res) => {
-        const { error } = res.body;
-        expect(res.status).to.equal(400);
-        expect(error).to.equal('All fields are required');
-        done();
-      });
-  });
-});
-
-describe('Signup API', () => {
   it('should get token on successful sign up', (done) => {
     request
       .post('/api/auth/signup')
@@ -110,7 +74,6 @@ describe('Signup API', () => {
         password: 'password'
       })
       .end((err, res) => {
-        // console.log(res);
         expect(res.status).to.equal(201);
         expect(res.body).to.be.an('object');
         done();
@@ -118,7 +81,7 @@ describe('Signup API', () => {
   });
 });
 
-describe('Signin', () => {
+describe('POST api/auth/login', () => {
   it('should not allow a user to login with no email', (done) => {
     request
       .post('/api/auth/login')
