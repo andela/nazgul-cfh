@@ -4,11 +4,10 @@
 const mongoose = require('mongoose');
 
 const jwt = require('jsonwebtoken');
-
+const nodemailer = require('nodemailer');
 const User = mongoose.model('User');
 const avatars = require('./avatars').all();
 require('dotenv').config();
-
 
 /**
  * Auth callback
@@ -152,7 +151,6 @@ const searchFriend = (req, res) => {
     }
     return false;
   };
-
   const searchByEmail = () =>
     (
       User.findOne({
@@ -171,7 +169,7 @@ const searchFriend = (req, res) => {
   const searchByUsername = () =>
     (
       User.findOne({
-        name: req.body.search
+        username: req.body.search
       }).exec((err, friend) => {
         if (err) {
           return res.status(500).send({ error: 'An error occured' });
@@ -259,7 +257,9 @@ exports.signUp = (req, res) => {
         };
         const token = jwt.sign({
           payload,
-        }, process.env.SECRET);
+        }, process.env.SECRET, {
+        expiresIn: '10h' }
+      );
         return res.status(201).json({
           token,
           username: newUser.username
@@ -299,7 +299,9 @@ exports.login = (req, res) => {
     }
     const token = jwt.sign({
       _id: user._id,
-    }, process.env.SECRET);
+    }, process.env.SECRET, {
+    expiresIn: '10h'},
+  );
     res.status(200).json({
       token,
       username: user.username
@@ -316,23 +318,18 @@ exports.login = (req, res) => {
  * @returns {object} return next()
  */
 exports.verifyToken = (req, res, next) => {
-  const { token } = req.headers;
-  if (!token) return res.status(400).json({ error: 'no token found' });
-  const payload = jwt.verify(token, process.env.SECRET);
-  User.findOne({
-    email: payload.email,
-    id: payload.id,
-  }).exec((err, user) => {
-    if (err) {
-      return res.json.status(500).json({ error: 'Internal server error' });
-    }
-    if (!user) {
-      return res.status(400).json({ error: 'Invalid token' });
-    }
-    user.hashed_password = null;
-    req.user = user;
-    return next();
-  });
+  const token = req.headers.authorization || req.headers['x-access-token'];
+  if (token) {
+    jwt.verify(token, process.env.SECRET, (err, decoded) => {
+      if (err) {
+        return res.status(400).send({ error: 'Oops, An error occured please log in again' });
+      }
+      req.decoded = decoded;
+      next();
+    });
+  } else {
+    return res.status(403).send({ error: 'You have to login First' });
+  }
 };
 
 
