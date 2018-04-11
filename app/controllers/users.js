@@ -207,11 +207,8 @@ const inviteUserByEmail = (req, res) => {
 
   transporter.sendMail(mailOptions, (err, info) => {
     if (err) {
-      console.log(err);
       return res.status(500).send({ error: 'an error occurred' });
     }
-    console.log('ENVELOPE: ', info.envelope);
-    console.log('MESSAGE ID: ', info.messageId);
     return res.status(200).send({ message: 'invite successfully sent', id: info.messageId });
   });
 };
