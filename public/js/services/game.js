@@ -85,7 +85,10 @@ angular.module('mean.system')
         method: 'POST',
         url: `/api/games/${game.gameID}/start`,
         data: {
-          gameLog: gameLog
+          gameLog: gameLog,
+          headers: {
+            'x-access-token': localStorage.getItem('x-access-token')
+          },
         }
       }).then((res) => {
         console.log('this is the response from  the api>>>>>>', res)

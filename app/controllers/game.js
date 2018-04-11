@@ -28,16 +28,20 @@ class Game {
       gameID: gameLog.gameId,
       gamePlayers: gameLog.players,
       gameRound: gameLog.rounds,
-      gameWinner: gameLog.gameWinner.username,
-      gameRounds: gameLog.rounds
+      gameWinner: gameLog.gameWinner.username
     });
 
     GameLog.save((err) => {
       if (err) {
         return res.status(422).send({
+          status: 'Unsuccessful',
           errors: err.errors
         });
       }
+      return res.status(201).send({
+        status: 'Successful',
+        message: 'Game history successfully saved'
+      });
     });
   }
 }
