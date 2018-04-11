@@ -192,7 +192,8 @@ const inviteUserByEmail = (req, res) => {
     from: 'nazgul-cfh',
     to: req.body.emailOfUserToBeInvited,
     subject: 'Invite to nazgul cfh game',
-    text: `Hey!!,You have been invited to join this current game \n ${req.body.link}`,
+    text: `Hey!!,You have been invited to join this current 
+    game \n ${req.body.link}`,
   };
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -209,7 +210,10 @@ const inviteUserByEmail = (req, res) => {
     if (err) {
       return res.status(500).send({ error: 'an error occurred' });
     }
-    return res.status(200).send({ message: 'invite successfully sent', id: info.messageId });
+    return res.status(200).send({
+      message: 'invite successfully sent',
+      id: info.messageId
+    });
   });
 };
 
