@@ -62,7 +62,6 @@ gulp.task('dist-dep', [
 ]);
 
 gulp.task('test', () => {
-  console.log("sssfssfsfsfsfsfsf*********")
   gulp
     .src(['test/**/*.js'])
     .pipe(mocha({
