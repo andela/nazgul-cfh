@@ -13,9 +13,22 @@ angular.module('mean.system')
     $scope.foundUser = false;
     $scope.invitedUser = false;
     $scope.userDetails = {};
+    
+    $http.defaults.headers.common.Authorization = JSON.parse(localStorage.getItem('userData')).token;
+    $scope.openSearchModal = () => {
+      document.getElementById('myModal').style.display = 'block';
+    }
+
+    $scope.closeSearchModal = () => {
+      document.getElementById('myModal').style.display = 'none';
+    }
+    
+    $scope.closeCannotStartGameModal = () => {
+      document.getElementById('cannot-start-game-modal').style.display = 'none';
+    }
 
     $rootScope.$on('maxPlayersReached', () => {
-      $('#game-already-started-modal').modal();
+      document.getElementById('game-already-started-modal').style.display = 'block';
     });
 
     $scope.searchUser = () => {
@@ -182,7 +195,7 @@ angular.module('mean.system')
 
     $scope.startGame = function() {
       if (game.players.length < 3) {
-        $('#cannot-start-game-modal').modal();
+        document.getElementById('cannot-start-game-modal').style.display = 'block';
       } else {
         game.startGame();
       }
