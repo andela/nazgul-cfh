@@ -6,7 +6,7 @@
       <span id="second-word"> for</span>
       <span id="third-word">Humanity</span>
     </div>
-    <div id = 'abandon-game-button' style="background-color: skyblue" data-toggle="modal" data-target="#myModal" class="waves-effect btn">
+    <div id = 'abandon-game-button' style="background-color: skyblue" class="waves-effect btn" ng-click="openSearchModal()">
       Invite Friends
     </div>
     <div id = 'abandon-game-button' ng-click="abandonGame()">
@@ -32,7 +32,7 @@
       </div>
     </div>
     <div>
-      <div id="myModal" class="modal animated rollIn" style="z-index: 1000;margin-top: -20%; height: 220px">
+      <div id="myModal" class="modal animated rollIn" style="z-index: 1000;margin-top:-20px; height: 220px">
         <div class="modal-dialog modal-sm">     
           <!-- Modal content-->
           <div class="modal-content animated rollIn">
@@ -42,7 +42,7 @@
             <div class="modal-body" style="text-align: center">
               <form class="form-inline">
                 <div class="form-group">
-                  <input class="form-control" type=text placeholder="type username or email" style="width: 80%;" id="email_inline" ng-model="emailOrUsernameOfFriend">
+                  <input class="form-control" type=text style="width: 80%;" id="email_inline" ng-model="emailOrUsernameOfFriend">
                   <button class="btn btn-success animated wobble" style="margin-top: 5px; background-color:  #2E112D" ng-click="searchUser()">SEARCH</button>
                 </div>
               </form>
@@ -69,12 +69,12 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal" style="background-color: #540032; font-family: Allerta Stencil">DONE</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal" style="background-color: #540032; font-family: Allerta Stencil" ng-click="closeSearchModal()">DONE</button>
             </div>
           </div>
         </div>
       </div>
-      <div id="game-already-started-modal" class="modal animated rollIn" style="z-index: 1000;margin-top: -20%; height: 280px">
+      <div id="game-already-started-modal" class="modal animated rollIn" style="z-index: 1000;margin-top: -20px; height: 280px">
           <div class="modal-dialog modal-sm">     
             <!-- Modal content-->
             <div class="modal-content animated rollIn" style="background-color: white;">
@@ -94,7 +94,7 @@
           </div>
         </div>
     </div>
-    <div id="cannot-start-game-modal" class="modal animated rollIn" style="z-index: 1000;margin-top: -20%; height: 280px">
+    <div id="cannot-start-game-modal" class="modal animated rollIn" style="z-index: 1000;margin-top: -20px; height: 280px">
       <div class="modal-dialog modal-sm">     
         <!-- Modal content-->
         <div class="modal-content animated rollIn" style="background-color: white;">
@@ -105,7 +105,7 @@
             <p style="font-family: 'Nova Flat'; font-size: 1.2em;">Hi!, The game cannot start now because<br>the number of players is not yet up to<br>three, Please wait or invite Friends</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn waves-effect waves-green" data-dismiss="modal" style="background-color: #540032; font-family: Allerta Stencil">ok, THANKS</button>
+            <button type="button" class="btn waves-effect waves-green" data-dismiss="modal" style="background-color: #540032; font-family: Allerta Stencil" ng-click="closeCannotStartGameModal()">ok, THANKS</button>
           </div>
         </div>
       </div>
