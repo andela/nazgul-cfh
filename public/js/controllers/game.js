@@ -32,54 +32,54 @@ angular.module('mean.system')
     });
 
     $scope.searchUser = () => {
-      $scope.isSearchingUser = true
+      $scope.isSearchingUser = true;
       $http({
         method: 'POST',
         url: '/api/search/users',
         data: { search: $scope.emailOrUsernameOfFriend },
       })
-      .then((res) => {
-        if (!res.data.user) {
+        .then((res) => {
+          if (!res.data.user) {
+            $scope.foundUser = true;
+            $scope.isSearchingUser = false;
+            $scope.searchResult = 'No matching results';
+            $scope.isSearchingUser = false;
+            return $scope.searchResult;
+          }
+          $scope.isSearchingUser = false;
           $scope.foundUser = true;
-          $scope.isSearchingUser = false;
-          $scope.searchResult = 'No matching results';
-          $scope.isSearchingUser = false;
+          $scope.userDetails = res.data.user;
+          $scope.searchResult = res.data.user.email;
           return $scope.searchResult;
-        }
-        $scope.isSearchingUser = false;
-        $scope.foundUser = true;
-        $scope.userDetails = res.data.user;
-        $scope.searchResult = res.data.user.email;
-        return $scope.searchResult;
-      }, (err) => {
-        $scope.isSearchingUser = false;
-        $scope.foundUser = false;
-        $scope.searchResult = 'oops, an error occured,please try again';
-        $scope.userDetails = {};
-        return $scope.searchResult;
-      });
+        }, (err) => {
+          $scope.isSearchingUser = false;
+          $scope.foundUser = false;
+          $scope.searchResult = 'oops, an error occured,please try again';
+          $scope.userDetails = {};
+          return $scope.searchResult;
+        });
     };
 
     $scope.inviteUser = () => {
-      $scope.isInvitingUser = true
+      $scope.isInvitingUser = true;
       $http({
         method: 'POST',
         url: '/api/invite/users',
         data: { emailOfUserToBeInvited: $scope.userDetails.email, link: document.URL },
       })
-      .then((res) => {
-        $scope.isInvitingUser = false;
-        $scope.invitedUser = true;
-        $scope.searchResult = `${$scope.userDetails.name} has been invited to the game`;
-        $scope.userDetails = {};
-        return $scope.searchResult;
-      }, (err) => {
-        $scope.isInvitingUser = false;
-        $scope.invitedUser = true;
-        $scope.searchResult = 'oops, an error occured,please try again';
-        $scope.userDetails = {};
-        return $scope.searchResult;
-      })
+        .then((res) => {
+          $scope.isInvitingUser = false;
+          $scope.invitedUser = true;
+          $scope.searchResult = `${$scope.userDetails.name} has been invited to the game`;
+          $scope.userDetails = {};
+          return $scope.searchResult;
+        }, (err) => {
+          $scope.isInvitingUser = false;
+          $scope.invitedUser = true;
+          $scope.searchResult = 'oops, an error occured,please try again';
+          $scope.userDetails = {};
+          return $scope.searchResult;
+        });
     };
 
     $scope.pickCard = function(card) {

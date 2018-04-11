@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
+
 const User = mongoose.model('User');
 const avatars = require('./avatars').all();
 require('dotenv').config();
@@ -255,11 +256,12 @@ exports.signUp = (req, res) => {
         const payload = {
           _id: newUser._id
         };
-        const token = jwt.sign({
-          payload,
-        }, process.env.SECRET, {
-        expiresIn: '10h' }
-      );
+        const token = jwt.sign(
+          {
+            payload,
+          }, process.env.SECRET,
+          { expiresIn: '10h' }
+        );
         return res.status(201).json({
           token,
           username: newUser.username
@@ -297,11 +299,12 @@ exports.login = (req, res) => {
     if (!user.authenticate(password)) {
       return res.status(400).json({ error: 'Invalid email or password' });
     }
-    const token = jwt.sign({
-      _id: user._id,
-    }, process.env.SECRET, {
-    expiresIn: '10h'},
-  );
+    const token = jwt.sign(
+      {
+        _id: user._id,
+      }, process.env.SECRET,
+      { expiresIn: '10h' },
+    );
     res.status(200).json({
       token,
       username: user.username

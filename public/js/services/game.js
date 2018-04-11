@@ -28,9 +28,9 @@ angular.module('mean.system')
   var self = this;
   var joinOverrideTimeout = 0;
 
-  socket.on('maxPlayersReached', () => {
-    $rootScope.$emit('maxPlayersReached');
-  });
+    socket.on('maxPlayersReached', () => {
+      $rootScope.$emit('maxPlayersReached');
+    });
 
   var addToNotificationQueue = function(msg) {
     notificationQueue.push(msg);
