@@ -67,13 +67,14 @@ angular.module('mean.system')
   });
 
   socket.on('gameUpdate', function(data) {
-    console.log('this is game update from public/services/games.js >>>>',data)
 
     // Update gameID field only if it changed.
     // That way, we don't trigger the $scope.$watch too often
     if (game.gameID !== data.gameID) {
       game.gameID = data.gameID;
     }
+    // check if game has ended and then
+    // send to the url 
     if (game.state === 'game ended') {
       let gameLog = {};
       gameLog.gameId = game.gameID,
@@ -90,11 +91,7 @@ angular.module('mean.system')
             'x-access-token': localStorage.getItem('x-access-token')
           },
         }
-      }).then((res) => {
-        console.log('this is the response from  the api>>>>>>', res)
-      }, (err) => {
-        console.log('this is the error>>>>', err)
-      })
+      }).then(null, null);
     }
 
     game.joinOverride = false;
@@ -194,7 +191,7 @@ angular.module('mean.system')
       game.players[game.playerIndex].hand = [];
       game.time = 0;
     }
-  });
+    });
 
   socket.on('notification', function(data) {
     addToNotificationQueue(data.notification);

@@ -225,7 +225,6 @@ Game.prototype.stateResults = function(self) {
 Game.prototype.stateEndGame = function(winner) {
   this.state = "game ended";
   this.gameWinner = winner;
-  console.log('this is from the EndGame config/socket/game.js >>>>>>', this.sendUpdate())
   this.sendUpdate();
 };
 

@@ -17,7 +17,7 @@ const gameLog = {
   gameWinner: 'Felix'
 };
 
-describe('TEST FOR SAVING GAME HISTORY', () => {
+describe('POST /api/games/:id/start', () => {
   it('should return "No data supplied" when no game data' +
   ' is sent after game ends', (done) => {
     request
@@ -25,7 +25,6 @@ describe('TEST FOR SAVING GAME HISTORY', () => {
       .set('Content-Type', 'application/json')
       .end((err, res) => {
         expect(res.status).to.equal(422);
-        expect(res.body.status).to.equal('Unsuccessful');
         expect(res.body.errors).to.equal('No data supplied');
         done();
       });
@@ -35,11 +34,10 @@ describe('TEST FOR SAVING GAME HISTORY', () => {
     request
       .post(`/api/games/${gameLog.gameId}/start`)
       .send({
-        gameLog: gameLog
+        gameLog,
       })
       .end((err, res) => {
         expect(res.status).to.equal(201);
-        expect(res.body.status).to.equal('Successful');
         expect(res.body.message).to.equal('Game history successfully saved');
         done();
       });

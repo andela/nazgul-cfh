@@ -103,7 +103,6 @@ angular.module('mean.system')
 
     $scope.winningColor = function($index) {
       if (game.winningCardPlayer !== -1 && $index === game.winningCard) {
-        //console.log('this is from the controllers>>>', game)
         return $scope.colors[game.players[game.winningCardPlayer].color];
       } else {
         return '#f9f9f9';
