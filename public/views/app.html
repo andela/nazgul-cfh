@@ -6,12 +6,12 @@
       <span id="second-word"> for</span>
       <span id="third-word">Humanity</span>
     </div>
-    <div id = 'abandon-game-button' style="background-color: skyblue" class="waves-effect btn" ng-click="openSearchModal()">
+    <button id = 'abandon-game-button' style="font-family: Allerta Stencil; background-color: #540032" class="waves-effect btn" ng-click="openSearchModal()">
       Invite Friends
-    </div>
-    <div id = 'abandon-game-button' ng-click="abandonGame()">
+    </button>
+    <button id = 'abandon-game-button' ng-click="abandonGame()">
         Abandon Game
-    </div>
+    </button>
         <span id="tweet-container">
       <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://cfh.io" data-text="Cards for Humanity: A Game for Horrible People Desperately Trying to do Good" data-related="CFH_App">Tweet</a>
     <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
@@ -32,10 +32,10 @@
       </div>
     </div>
     <div>
-      <div id="myModal" class="modal animated rollIn" style="z-index: 1000; margin-top:-20%; height: 220px">
-        <div class="modal-dialog modal-sm">     
+      <div id="myModal" class="modal animated rollIn modal-fixed-footer" style="z-index: 1000; margin-top: -220px; height: 320px; max-height: 320px;">
+        <div>     
           <!-- Modal content-->
-          <div class="modal-content animated rollIn">
+          <div class="modal-content animated rollIn" style="height:280px">
             <div class="modal-header">
               <h4 class="modal-title center-align" style="color: #2E112D; font-family: Allerta Stencil">Invite Friends</h4>
             </div>
@@ -63,18 +63,18 @@
                     <p class="panel-body" style="font-family: 'Nova Flat'; color: #540032">{{searchResult}}</p>
                   </div>
                   <div class="col-xs-6" ng-show="userDetails.email !== undefined">
-                    <button class="btn btn-default" style="background-color: #540032" ng-click="inviteUser()">invite</button>
+                    <button class="btn btn-default" style="background-color: #540032;" ng-click="inviteUser()">invite</button>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal" style="background-color: #540032; font-family: Allerta Stencil" ng-click="closeSearchModal()">DONE</button>
-            </div>
           </div>
         </div>
+        <div class="modal-footer" style="height: 50px">
+          <button type="button" class="btn btn-default closemyModal" data-dismiss="modal" style="background-color: #540032; font-family: Allerta Stencil; margin-right: 20px" ng-click="closeSearchModal()">DONE</button>
+        </div>
       </div>
-      <div id="game-already-started-modal" class="modal animated rollIn" style="z-index: 1000; margin-top: -10%; height: 280px">
+      <div id="game-already-started-modal" class="modal animated rollIn" style="z-index: 1000; margin-top: -5%; height: 280px">
           <div class="modal-dialog modal-sm">     
             <!-- Modal content-->
             <div class="modal-content animated rollIn" style="background-color: white;">
@@ -87,14 +87,14 @@
               <div class="center-align">
                 <a class="btn waves-effect waves-green" style="background-color: #540032; font-family: 'Nova Flat'" href="/play">JOIN</a>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn waves-effect waves-green" data-dismiss="modal" style="background-color: #540032; font-family: Allerta Stencil" ng-click="abandonGame()">no, THANKS</button>
-              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn waves-effect waves-green" data-dismiss="modal" style="background-color: #540032; font-family: Allerta Stencil" ng-click="abandonGame()">no, THANKS</button>
             </div>
           </div>
         </div>
     </div>
-    <div id="cannot-start-game-modal" class="modal animated rollIn" style="z-index: 1000; margin-top: -20%; height: 280px">
+    <div id="cannot-start-game-modal" class="modal animated rollIn" style="z-index: 1000; margin-top: -220px; height: 280px">
       <div class="modal-dialog modal-sm">     
         <!-- Modal content-->
         <div class="modal-content animated rollIn" style="background-color: white;">

@@ -48,6 +48,14 @@ angular.module('mean.system')
             data: { search: $scope.emailOrUsernameOfFriend },
           })
             .then((res) => {
+              if (res.data.message === 'You cannot search for yourself') {
+                $scope.foundUser = true;
+                $scope.isSearchingUser = false;
+                $scope.searchResult = 'You cannot search for yourself';
+                $scope.isSearchingUser = false;
+                $scope.userDetails = {};
+                return $scope.searchResult;
+              }
               if (!res.data.user) {
                 $scope.foundUser = true;
                 $scope.isSearchingUser = false;
@@ -59,7 +67,7 @@ angular.module('mean.system')
               $scope.isSearchingUser = false;
               $scope.foundUser = true;
               $scope.userDetails = res.data.user;
-              $scope.searchResult = res.data.user.email;
+              $scope.searchResult = 'User is found';
               return $scope.searchResult;
             }, () => {
               $scope.isSearchingUser = false;

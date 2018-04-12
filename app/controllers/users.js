@@ -163,7 +163,10 @@ const searchFriend = (req, res) => {
         if (!friend) {
           return res.status(200).send({ message: 'No friends found' });
         }
-        return res.status(200).send({ message: 'success', user: friend });
+        if (friend._id == req.decoded._id) {
+          return res.status(200).send({ message: 'You cannot search for yourself' });
+        }
+        res.status(200).send({ message: 'success', user: friend });
       })
     );
 
@@ -177,6 +180,9 @@ const searchFriend = (req, res) => {
         }
         if (!friend) {
           return res.status(200).send({ message: 'No friends found' });
+        }
+        if (friend._id == req.decoded._id) {
+          return res.status(200).send({ message: 'You cannot search for yourself' });
         }
         return res.status(200).send({ message: 'success', user: friend });
       })

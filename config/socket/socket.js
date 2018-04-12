@@ -147,7 +147,6 @@ module.exports = function(io) {
         fireGame(player,socket);
       }
     }
-
   };
 
   var fireGame = function(player,socket) {
