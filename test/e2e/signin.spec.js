@@ -1,3 +1,4 @@
+// eslint-disable-file no-undef
 describe('Nazgul front-end UI', () => {
   // Initialize required variables
   let authForm, socialFacebook, socialTwitter, socialGoogle, socialGithub,

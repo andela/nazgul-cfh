@@ -1,3 +1,4 @@
+// eslint-disable-file no-undef
 describe('Nazgul front-end UI', () => {
   // Initialize required variables
   const root = 'http://localhost:3001/#!/';
