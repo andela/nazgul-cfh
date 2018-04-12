@@ -20,10 +20,14 @@ describe('Nazgul front-end UI', () => {
       socialTwitter = browser.findElement(by.css('.social-btn.twitter-color'));
       socialGoogle = browser.findElement(by.css('.social-btn.google-color'));
       socialGithub = browser.findElement(by.css('.social-btn.github-color'));
-      expect(browser.isElementPresent(socialFacebook)).toBe(true);
-      expect(browser.isElementPresent(socialTwitter)).toBe(true);
-      expect(browser.isElementPresent(socialGoogle)).toBe(true);
-      expect(browser.isElementPresent(socialGithub)).toBe(true);
+      expect(browser.isElementPresent(socialFacebook))
+        .toBe(true);
+      expect(browser.isElementPresent(socialTwitter))
+        .toBe(true);
+      expect(browser.isElementPresent(socialGoogle))
+        .toBe(true);
+      expect(browser.isElementPresent(socialGithub))
+        .toBe(true);
     });
 
     it('should see a sign up form', () => {
@@ -32,11 +36,16 @@ describe('Nazgul front-end UI', () => {
       username = browser.findElement(by.id('username'));
       email = browser.findElement(by.id('email'));
       password = browser.findElement(by.id('password'));
-      expect(browser.isElementPresent(authForm)).toBe(true);
-      expect(browser.isElementPresent(fullname)).toBe(true);
-      expect(browser.isElementPresent(email)).toBe(true);
-      expect(browser.isElementPresent(username)).toBe(true);
-      expect(browser.isElementPresent(password)).toBe(true);
+      expect(browser.isElementPresent(authForm))
+        .toBe(true);
+      expect(browser.isElementPresent(fullname))
+        .toBe(true);
+      expect(browser.isElementPresent(email))
+        .toBe(true);
+      expect(browser.isElementPresent(username))
+        .toBe(true);
+      expect(browser.isElementPresent(password))
+        .toBe(true);
     });
   });
 });

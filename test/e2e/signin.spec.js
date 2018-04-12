@@ -24,10 +24,14 @@ describe('Nazgul front-end UI', () => {
       socialTwitter = browser.findElement(by.css('.social-btn.twitter-color'));
       socialGoogle = browser.findElement(by.css('.social-btn.google-color'));
       socialGithub = browser.findElement(by.css('.social-btn.github-color'));
-      expect(browser.isElementPresent(socialFacebook)).toBe(true);
-      expect(browser.isElementPresent(socialTwitter)).toBe(true);
-      expect(browser.isElementPresent(socialGoogle)).toBe(true);
-      expect(browser.isElementPresent(socialGithub)).toBe(true);
+      expect(browser.isElementPresent(socialFacebook))
+        .toBe(true);
+      expect(browser.isElementPresent(socialTwitter))
+        .toBe(true);
+      expect(browser.isElementPresent(socialGoogle))
+        .toBe(true);
+      expect(browser.isElementPresent(socialGithub))
+        .toBe(true);
     });
 
     it('should see a sign in form', () => {
