@@ -53,6 +53,7 @@ angular.module('mean.system')
                 $scope.isSearchingUser = false;
                 $scope.searchResult = 'No matching results';
                 $scope.isSearchingUser = false;
+                $scope.userDetails = {};
                 return $scope.searchResult;
               }
               $scope.isSearchingUser = false;
