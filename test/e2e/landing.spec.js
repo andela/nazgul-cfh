@@ -1,4 +1,4 @@
-// eslint-disable-file no-undef
+/* global browser, expect, by */
 describe('Nazgul front-end UI', () => {
   // Initialize required variables
   const root = 'http://localhost:3001/#!/';

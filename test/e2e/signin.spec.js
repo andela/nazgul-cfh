@@ -1,4 +1,4 @@
-// eslint-disable-file no-undef
+/* global browser, expect, by */
 describe('Nazgul front-end UI', () => {
   // Initialize required variables
   let authForm, socialFacebook, socialTwitter, socialGoogle, socialGithub,
