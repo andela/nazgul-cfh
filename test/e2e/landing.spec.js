@@ -58,10 +58,6 @@ describe('Nazgul front-end UI', () => {
       signinBtn = browser.findElement(by.id('signinBtn'));
       signinBtn.click();
       expect(browser.getCurrentUrl()).toBe("http://localhost:3001/#!/signin");
-      // browser.get(root);
-      // signupBtn = browser.findElement(by.id('signupBtn'));
-      // signupBtn.click();
-      // expect(browser.getCurrentUrl()).toBe('http://localhost:3001/#!/signup');
     });
   });
 });
