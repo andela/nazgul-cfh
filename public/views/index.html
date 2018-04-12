@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <script type="text/javascript">
   $(document).ready(function () {
 
@@ -12,21 +13,48 @@
 
   });
 </script>
+=======
+<landing>
+  <nav class="lighter-pink wow fadeIn" role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="#" class="brand-logo white-text">CFH</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a class="white-text" href="/">Home</a></li>
+        <li><a class="white-text" href="#htp">How to play</a></li>
+        <li><a class="white-text" href="#dtc">Charity</a></li>
+        <li><a class="white-text" href="#mtt">About us</a></li>
+        <span ng-show="showOptions">
+          <li><a class="white-text" href="#!/signin">Sign in</a></li>
+          <li><a class="white-text" href="#!/signup">Sign up</a></li>
+        </span>
+        <span ng-hide="showOptions" ng-controller="IndexController">
+          <li><a class="white-text" ng-click="signout()">Sign out</a></li>
+        </span>
+      </ul>
 
-<script></script>
-<div landing id="main-bod">
-  <!-- Fixed Logo & Menu Bar Start -->
-  <div id="top-part">
-    <div class="wpb-top-bar">
-      <div class="mod-contain" id="navver">
+      <ul id="nav-mobile" class="side-nav white-text">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">How to play</a></li>
+        <li><a href="#">Charity</a></li>
+        <li><a href="#">About us</a></li>
+        <li><a href="#!/signin">Sign in</a></li>
+        <li><a href="#!/signup">Sign up</a></li>
+      </ul>
+      <a href="#!" data-activates="nav-mobile" class="button-collapse white-text"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+>>>>>>> db52d4b4ce0e1750421f52f8871325ad341b93f9
+
+  <div id="index-banner" class="custom-parallax custom-parallax-1">
+    <div class="section no-pad-bot dark-overlay">
+      <div class="container">
+        <br><br>
         <div class="row">
-          <!-- Logo -->
-          <div class="wpb-logo-container">
-            <div id="landing-logo">
-              <span id="first-word">Cards</span>
-              <span id="second-word"> for</span>
-              <span id="third-word">Humanity</span>
+            <div class="col s12">
+                <h1 class="center header bottom white-text wow fadeInLeft">Cards for Humanity</h1>
+                <h5 class="header col s12 light white-text wow fadeInLeft center">A game for horrible people <b>desperately</b> trying to do good</h5>
             </div>
+<<<<<<< HEAD
             <div class="col-md-9 wpb-menu-container">
               <ul class="wpb-main-menu">
                 <li>
@@ -55,12 +83,22 @@
                   </li>
                 </span>
               </ul>
+=======
+            <div class="col s12 center wow fadeInRight marg20" ng-show="showOptions">
+                <a href="#!/signup" class="btn-large waves-effect dark-pink white-text marg25 hvr-pulse lighten-1">Sign Up</a>
+                <a href="#!/signin" class="btn-large waves-effect dark-pink white-text hvr-pulse lighten-1">Sign in</a>
             </div>
-          </div>
+            <div class="col s12 center wow fadeInRight marg20" ng-hide="showOptions">
+                <a href="/play?custom" class="btn-large waves-effect dark-pink white-text marg25 hvr-pulse lighten-1">Play Game with Friends</a>
+                <a href="/play" class="btn-large waves-effect dark-pink white-text hvr-pulse lighten-1">Play Game with Strangers</a>
+>>>>>>> db52d4b4ce0e1750421f52f8871325ad341b93f9
+            </div>
         </div>
+        <br><br>
       </div>
     </div>
   </div>
+<<<<<<< HEAD
   <!-- Fixed Logo & Menu Bar End -->
 
   <!-- Landing Start -->
@@ -245,9 +283,98 @@
               <img src="img/make-a-wish-logo-white-large.png" id="wish" />
             </a>
           </div>
+=======
+
+
+  <div class="description-section">
+        <div class="container">
+            <img class="wow fadeInRight" src="/img/card-bw.jpg" alt="">
+          <div class="section wow fadeInUp">
+              <h3 class="center lighter-pink-text">What is Cards for Humanity?</h3>
+              <div class="row">
+                  <div class="col s12">
+                      <p class="lighter-pink-text">
+                          Cards for Humanity is a fast-paced online version of the popular card game, Cards Against Humanity, that gives you the opportunity to donate
+                          to children in need - all while remaining as despicable and awkward as you naturally are.
+
+                          Warning! This game contains offensive, profane, explicit content created by Cards Against Humanity and provided here, uncensored and complete,
+                          in digital form. Human Resources made us say that.
+                      </p>
+                  </div>
+              </div>
+          </div>
         </div>
+  </div>
+
+
+  <div class="custom-parallax custom-parallax-2" id="htp">
+    <div class="section wow fadeInTop dark-overlay">
+      <div class="container">
+            <h3 class="center white-text wow fadeIn">How to play</h3>
+            <div class="row">
+                <div class="col s12 m6 l3 wow fadeInLeft">
+                    <div class="card black">
+                        <div class="card-content htp-cards white-text">
+                            <h1 class="center"><i class="large material-icons">assistant_photo</i></h1>
+                            Each player begins with, and will always have, 10 white answer cards
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6 l3 wow fadeInUp">
+                    <div class="card">
+                        <div class="card-content htp-cards black-text">
+                            <h1 class="center lighter-pink-text"><i class="large material-icons">style</i></h1>
+                            For each round, one player is randomly chosen as the Card Czar
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6 l3 wow fadeInUp">
+                    <div class="card black">
+                        <div class="card-content htp-cards white-text">
+                            <h1 class="center "><i class="large material-icons">toys</i></h1>
+                            Everyone else answers the black question card by clicking on the answer card they want to use
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6 l3 wow fadeInRight">
+                    <div class="card">
+                        <div class="card-content htp-cards black-text">
+                            <h1 class="center lighter-pink-text"><i class="large material-icons">layers</i></h1>
+                            The Card Czar then picks a favorite answer, and whoever played that answer wins the round
+                        </div>
+                    </div>
+                </div>
+            </div>
       </div>
     </div>
+  </div>
+
+  <div class="custom-container" id="dtc">
+    <div class="section">
+      <div class="row">
+        <div class="col s12 center">
+          <h3><i class="mdi-content-send brown-text"></i></h3>
+          <h4 class="lighter-pink-text">Donate to Charity</h4>
+          <div class="container">
+            <div class="divider"></div>
+          </div>
+          <br>
+          <br>
+          <div class="row">
+              <div class="col s12 m12 l6 wow fadeInLeft">
+                    <iframe class="charity-iframe" src="https://www.youtube.com/embed/jT-Fbm8Ddt4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+              </div>
+              <div class="col s12 m12 l6 wow fadeInRight">
+                    <p class="lighter-pink-text">"If you don't give back, no one will like you™" - crowdrise.com We're quite sure you feel the same way, so we've integrated donation widgets (via crowdrise.com), along with some not-so-subtle reminders throughout the game to give you the opportunity to donate. If you're signed in when you donate, we'll even upgrade your account and place a crown on your avatar's head (to remind other players how much better you are than them). All donations go to the Make-a-Wish Foundation and benefit children in need.</p>
+                    <a href="#" class="width50 center btn-large custom-btn dark-pink darken-1 hvr-pulse-shrink">Donate now</a>
+              </div>
+          </div>
+>>>>>>> db52d4b4ce0e1750421f52f8871325ad341b93f9
+        </div>
+      </div>
+
+    </div>
+<<<<<<< HEAD
   </section>
   <!-- Donation Info End -->
 
@@ -307,3 +434,85 @@
   </section>
   <!-- Footer End -->
   </div>
+=======
+  </div>
+
+  <div class="container">
+    <div class="divider"></div>
+  </div>
+
+  <div class="container" id="mtt">
+        <div class="section wow fadeInTop">
+                <h3 class="center wow fadeIn lighter-pink-text">Meet the Team</h3>
+                <div class="row">
+                    <div class="col s12 m4 l2">
+                        <div class="card rounded black-text z-depth-3 wow fadeInLeft">
+                            <div class="card-image rounded">
+                                <img src="/img/gabriel-micah.jpg" alt="">
+                            </div>
+                        </div>
+                        <p class="center">Gabriel Micah</p>
+                    </div>
+                    <div class="col s12 m4 l2">
+                        <div class="card rounded black-text z-depth-3 wow fadeInUp">
+                            <div class="card-image rounded">
+                                <img src="/img/faith-adekunle.jpg" alt="">
+                            </div>
+                        </div>
+                        <p class="center">Faith Adekunle</p>
+                    </div>
+                    <div class="col s12 m4 l2">
+                        <div class="card rounded black-text z-depth-3 wow zoomIn">
+                            <div class="card-image rounded">
+                                <img src="/img/idrees-ibraheem.jpg" alt="">
+                            </div>
+                        </div>
+                        <p class="center">Idrees Ibraheem</p>
+                    </div>
+                    <div class="col s12 m4 l2">
+                        <div class="card rounded black-text z-depth-3 wow zoomIn">
+                            <div class="card-image rounded">
+                                <img src="/img/efosa-okpugie.jpg" alt="">
+                            </div>
+                        </div>
+                        <p class="center">Efosa Okpugie</p>
+                    </div>
+                    <div class="col s12 m4 l2">
+                        <div class="card rounded black-text z-depth-3 wow fadeInUp">
+                            <div class="card-image rounded">
+                                <img src="/img/taiwo-kolawole.jpg" alt="">
+                            </div>
+                        </div>
+                        <p class="center">Taiwo Kolawole</p>
+                    </div>
+                    <div class="col s12 m4 l2">
+                        <div class="card rounded black-text z-depth-3 wow fadeInRight">
+                            <div class="card-image rounded">
+                                <img src="/img/felix-amande.jpg" alt="">
+                            </div>
+                        </div>
+                        <p class="center">Felix Amande</p>
+                    </div>
+                </div>
+        </div>
+  </div>
+
+  <footer class="page-footer lighter-pink darken-4 wow fadeInUp">
+    <div class="container">
+      <div class="row">
+        <div class="col l12 s12">
+          <h5 class="white-text">Legal Stuff</h5>
+          <p class="grey-text text-lighten-4">
+                This game is based on the Cards Against Humanity card game, which is CC licensed (BY-NC-SA). Cards for Humanity is not affiliated with Cards Against Humanity. In complying with the Creative Commons license of the Cards Against Humanity card game, all proceeds from donations go directly to charity
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright dark-pink">
+      <div class="container">
+      Made by <a class="brown-text text-lighten-3" href="#">Team Nazgul</a>
+      </div>
+    </div>
+  </footer>
+</div>
+>>>>>>> db52d4b4ce0e1750421f52f8871325ad341b93f9

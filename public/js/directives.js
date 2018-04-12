@@ -58,8 +58,7 @@ angular.module('mean.directives', [])
       templateUrl: '/views/question.html',
       link: function(scope, elem, attr) {}
     };
-  })
-  .directive('timer', function(){
+  }).directive('timer', function(){
     return{
       restrict: 'EA',
       templateUrl: '/views/timer.html',
@@ -68,12 +67,14 @@ angular.module('mean.directives', [])
   }).directive('landing', function() {
     return {
       restrict: 'EA',
-      link: function(scope, elem, attr) {
+      link: (scope) => {
         scope.showOptions = true;
-
-        if (scope.$$childHead.global.authenticated === true) {
+        if (window.localStorage.userData) {
           scope.showOptions = false;
+        } else {
+          scope.showOptions = true;
         }
       }
     };
   });
+  
