@@ -164,7 +164,8 @@ const searchFriend = (req, res) => {
           return res.status(200).send({ message: 'No friends found' });
         }
         if (friend._id == req.decoded._id) {
-          return res.status(200).send({ message: 'You cannot search for yourself' });
+          return res.status(200)
+            .send({ message: 'You cannot search for yourself' });
         }
         res.status(200).send({ message: 'success', user: friend });
       })
@@ -182,7 +183,8 @@ const searchFriend = (req, res) => {
           return res.status(200).send({ message: 'No friends found' });
         }
         if (friend._id == req.decoded._id) {
-          return res.status(200).send({ message: 'You cannot search for yourself' });
+          return res.status(200)
+            .send({ message: 'You cannot search for yourself' });
         }
         return res.status(200).send({ message: 'success', user: friend });
       })
@@ -215,6 +217,7 @@ const inviteUserByEmail = (req, res) => {
 
   transporter.sendMail(mailOptions, (err, info) => {
     if (err) {
+      console.log(err);
       return res.status(500).send({ error: 'an error occurred' });
     }
     return res.status(200).send({
@@ -333,7 +336,8 @@ exports.verifyToken = (req, res, next) => {
   if (token) {
     jwt.verify(token, process.env.SECRET, (err, decoded) => {
       if (err) {
-        return res.status(400).send({ error: 'Oops, An error occured please log in again' });
+        return res.status(400)
+          .send({ error: 'Oops, An error occured please log in again' });
       }
       req.decoded = decoded;
       next();
