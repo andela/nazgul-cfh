@@ -35,13 +35,12 @@ describe('Nazgul front-end UI', () => {
         .toBe(true);
 
       headerText = browser
-        .findElement(
-          by.css('.center.header.bottom.white-text.wow.fadeInLeft')
+        .findElement(by
+          .css('.center.header.bottom.white-text.wow.fadeInLeft')
         );
       headerDescription = browser
-        .findElement(
-          by
-            .css('.header.col.s12.light.white-text.wow.fadeInLeft.center')
+        .findElement(by
+          .css('.header.col.s12.light.white-text.wow.fadeInLeft.center')
         );
       expect(headerText.getText())
         .toEqual('Cards for Humanity');
@@ -72,9 +71,8 @@ describe('Nazgul front-end UI', () => {
         .toBe(true);
 
       donateBtn =
-        element(
-          by.css('a.width50.center.btn-large.custom-btn.dark-pink.darken-1')
-        );
+        element(by
+          .css('a.width50.center.btn-large.custom-btn.dark-pink.darken-1'));
       expect(browser.isElementPresent(donateBtn))
         .toBe(true);
     });
