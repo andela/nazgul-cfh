@@ -1,6 +1,7 @@
 describe('Nazgul front-end UI', () => {
   // Initialize required variables
-  let authForm, socialFacebook, socialTwitter, socialGoogle, socialGithub, emailField, passwordField;
+  let authForm, socialFacebook, socialTwitter, socialGoogle, socialGithub,
+    emailField, passwordField;
 
   beforeEach(() => {
     browser.waitForAngularEnabled(false);
