@@ -91,7 +91,7 @@ angular.module('mean.system')
               'x-access-token': localStorage.getItem('userData')
             },
           }
-          }).then(null, null);
+        }).then(null, null);
       }
 
     game.joinOverride = false;
