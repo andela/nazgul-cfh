@@ -1,8 +1,8 @@
-/* global browser, expect, by */
+/* global browser, expect, by, element */
 describe('Nazgul front-end UI', () => {
   // Initialize required variables
   const root = 'http://localhost:3001/#!/';
-  let nav, headerBanner, signinBtn, howToPlay,
+  let nav, headerBanner, headerText, signinBtn, howToPlay,
     headerDescription, donate,
     about, aboutDescription, donateBtn;
 
@@ -29,11 +29,14 @@ describe('Nazgul front-end UI', () => {
       headerBanner = browser.findElement(by.id('index-banner'));
       expect(browser.isElementPresent(headerBanner)).toBe(true);
 
-      headerText = browser.findElement(
-        by.css('.center.header.bottom.white-text.wow.fadeInLeft'));
+      headerText = browser
+        .findElement(
+          by.css('.center.header.bottom.white-text.wow.fadeInLeft')
+        );
       headerDescription = browser
-        .findElement(by
-          .css('.header.col.s12.light.white-text.wow.fadeInLeft.center'));
+        .findElement(
+          by.css('.header.col.s12.light.white-text.wow.fadeInLeft.center')
+        );
       expect(headerText.getText()).toEqual('Cards for Humanity');
       expect(headerDescription
         .getText())
@@ -68,7 +71,8 @@ describe('Nazgul front-end UI', () => {
       () => {
         signinBtn = browser.findElement(by.id('signinBtn'));
         signinBtn.click();
-        expect(browser.getCurrentUrl()).toBe("http://localhost:3001/#!/signin");
-    });
+        expect(browser.getCurrentUrl()).toBe('http://localhost:3001/#!/signin');
+      }
+    );
   });
 });

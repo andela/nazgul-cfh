@@ -1,4 +1,4 @@
-/* global browser, expect, by */
+/* global browser, expect, by, afterAll */
 describe('Nazgul front-end UI', () => {
   // Initialize required variables
   let authForm, socialFacebook, socialTwitter, socialGoogle, socialGithub,
@@ -14,8 +14,8 @@ describe('Nazgul front-end UI', () => {
 
   describe('sign in page', () => {
     it('should have a title of "Cards for Humanity - Development"', () => {
-      expect(browser.getCurrentUrl()).
-      toEqual('http://localhost:3001/#!/signin');
+      expect(browser.getCurrentUrl())
+        .toEqual('http://localhost:3001/#!/signin');
     });
 
     it('should see social media icons', () => {
