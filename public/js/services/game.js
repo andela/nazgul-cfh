@@ -73,26 +73,26 @@ angular.module('mean.system')
     if (game.gameID !== data.gameID) {
       game.gameID = data.gameID;
     }
-    // check if game has ended and then
-    // send to the url 
-    if (game.state === 'game ended') {
-      let gameLog = {};
-      gameLog.gameId = game.gameID,
-      gameLog.players = game.players,
-      gameLog.rounds = game.round,
-      gameLog.gameWinner = game.players[game.gameWinner];
+      // check if game has ended and then
+      // send to the url 
+        if (game.state === 'game ended') {
+          let gameLog = {};
+          gameLog.gameId = game.gameID,
+          gameLog.players = game.players,
+          gameLog.rounds = game.round,
+          gameLog.gameWinner = game.players[game.gameWinner];
 
-      $http({
-        method: 'POST',
-        url: `/api/games/${game.gameID}/start`,
-        data: {
-          gameLog: gameLog,
-          headers: {
-            'x-access-token': localStorage.getItem('x-access-token')
-          },
+        $http({
+          method: 'POST',
+          url: `/api/games/${game.gameID}/start`,
+          data: {
+            gameLog: gameLog,
+            headers: {
+                'x-access-token': localStorage.getItem('userData')
+                },
+              }
+            }).then(null, null);
         }
-      }).then(null, null);
-    }
 
     game.joinOverride = false;
     clearTimeout(game.joinOverrideTimeout);
