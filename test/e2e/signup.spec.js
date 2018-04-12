@@ -29,11 +29,11 @@ describe('Nazgul front-end UI', () => {
       username = browser.findElement(by.id('username'));
       email = browser.findElement(by.id('email'));
       password = browser.findElement(by.id('password'));
-      expect(browser.isElementPresent(authForm));
-      expect(browser.isElementPresent(fullname));
-      expect(browser.isElementPresent(email));
-      expect(browser.isElementPresent(authForm));
-      expect(browser.isElementPresent(password));
+      expect(browser.isElementPresent(authForm)).toBe(true);
+      expect(browser.isElementPresent(fullname)).toBe(true);
+      expect(browser.isElementPresent(email)).toBe(true);
+      expect(browser.isElementPresent(username)).toBe(true);
+      expect(browser.isElementPresent(password)).toBe(true);
     });
   });
 });

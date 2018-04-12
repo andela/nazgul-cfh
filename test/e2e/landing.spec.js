@@ -1,9 +1,9 @@
 describe('Nazgul front-end UI', () => {
   // Initialize required variables
-  let root = 'http://localhost:3001/#!/',
-    nav, landing, headerBanner, signinBtn, howToPlay,
-    menuList, headerDescription, signupBtn, donate,
-    section, about, aboutDescription, donateBtn;
+  const root = 'http://localhost:3001/#!/';
+  let nav, headerBanner, signinBtn, howToPlay,
+    headerDescription, donate,
+    about, aboutDescription, donateBtn;
 
   browser.get(root);
 
