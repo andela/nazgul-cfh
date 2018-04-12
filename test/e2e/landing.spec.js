@@ -28,10 +28,15 @@ describe('Nazgul front-end UI', () => {
       headerBanner = browser.findElement(by.id('index-banner'));
       expect(browser.isElementPresent(headerBanner)).toBe(true);
 
-      headerText = browser.findElement(by.css('.center.header.bottom.white-text.wow.fadeInLeft'));
-      headerDescription = browser.findElement(by.css('.header.col.s12.light.white-text.wow.fadeInLeft.center'));
+      headerText = browser.findElement(
+        by.css('.center.header.bottom.white-text.wow.fadeInLeft'));
+      headerDescription = browser
+        .findElement(by
+          .css('.header.col.s12.light.white-text.wow.fadeInLeft.center'));
       expect(headerText.getText()).toEqual('Cards for Humanity');
-      expect(headerDescription.getText()).toEqual('A game for horrible people desperately trying to do good');
+      expect(headerDescription
+        .getText())
+        .toEqual('A game for horrible people desperately trying to do good');
       about = browser.findElement(by.css('h3.center.lighter-pink-text'));
       aboutDescription = browser.findElement(by.css('p.lighter-pink-text'));
 
@@ -50,14 +55,19 @@ describe('Nazgul front-end UI', () => {
       donate = browser.findElement(by.id('dtc'));
       expect(browser.isElementPresent(donate)).toBe(true);
 
-      donateBtn = element(by.css('a.width50.center.btn-large.custom-btn.dark-pink.darken-1.hvr-pulse-shrink'));
+      donateBtn =
+      element(by
+        .css(
+          'a.width50.center.btn-large.custom-btn.dark-pink.darken-1'
+        ));
       expect(browser.isElementPresent(donateBtn)).toBe(true);
     });
 
-    it('should be able to see call to action buttons that leads to signup or signin', () => {
-      signinBtn = browser.findElement(by.id('signinBtn'));
-      signinBtn.click();
-      expect(browser.getCurrentUrl()).toBe("http://localhost:3001/#!/signin");
+    it('should be able to see a buttons that leads to signup or signin',
+      () => {
+        signinBtn = browser.findElement(by.id('signinBtn'));
+        signinBtn.click();
+        expect(browser.getCurrentUrl()).toBe("http://localhost:3001/#!/signin");
     });
   });
 });

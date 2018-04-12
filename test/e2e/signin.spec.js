@@ -13,11 +13,13 @@ describe('Nazgul front-end UI', () => {
 
   describe('sign in page', () => {
     it('should have a title of "Cards for Humanity - Development"', () => {
-      expect(browser.getCurrentUrl()).toEqual('http://localhost:3001/#!/signin');
+      expect(browser.getCurrentUrl()).
+      toEqual('http://localhost:3001/#!/signin');
     });
 
     it('should see social media icons', () => {
-      socialFacebook = browser.findElement(by.css('.social-btn.facebook-color'));
+      socialFacebook = browser
+        .findElement(by.css('.social-btn.facebook-color'));
       socialTwitter = browser.findElement(by.css('.social-btn.twitter-color'));
       socialGoogle = browser.findElement(by.css('.social-btn.google-color'));
       socialGithub = browser.findElement(by.css('.social-btn.github-color'));
