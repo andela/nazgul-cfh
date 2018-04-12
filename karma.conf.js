@@ -12,36 +12,15 @@ module.exports = function (config) {
     frameworks: ['jasmine'],
 
     // list of files / patterns to load in the browser
-    files: [
-      // './dist/public/lib/jquery/dist/jquery.min.js',
-      // './dist/public/lib/angular/angular.min.js',
-      // 'bower_components/angular-route/angular-route.min.js',
-      // 'bower_components/angular-resource/angular-resource.min.js',
-      // 'node_modules/angular-mocks/angular-mocks.js',
-      // 'node_modules/ng-midway-tester/src/ngMidwayTester.js',
-      // './dist/public/lib/angular-bootstrap/ui-bootstrap.min.js',
-      // './dist/public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
-      // './dist/public/lib/angular-ui-utils/modules/route.js',
-      // './dist/public/js/init.js',
-      // './dist/public/js/app.js',
-      // './dist/public/js/controllers/*.js',
-      // './dist/public/js/services/*.js',
-      // './dist/public/js/directives.js',
-      // './dist/public/js/filters.js',
-      // './unit-tests/frontend.spec.js',
-      // './public/views/*.html'
-    ],
+    files: [],
 
 
     // list of files / patterns to exclude
-    exclude: [
-    ],
+    exclude: [],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-      // './public/views/*.html': ['ng-html2js']
-    },
+    preprocessors: {},
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
