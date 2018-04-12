@@ -19,7 +19,7 @@
     "start:dev": "node node_modules/gulp-cli/bin/gulp build && node node_modules/gulp-cli/bin/gulp",
     "build": "node node_modules/gulp-cli/bin/gulp build ",
     "start": "npm run build && node dist/server.js",
-    "test": "NODE_ENV=test && node node_modules/gulp-cli/bin/gulp test",
+    "test": "NODE_ENV=test && node node_modules/gulp-cli/bin/gulp test --exit",
     "postinstall": "node node_modules/gulp-cli/bin/gulp install",
     "test:karma": "node_modules/.bin/karma start karma.conf.js",
     "test:protractor": "protractor ./test/e2e/conf.js"
