@@ -36,12 +36,10 @@ describe('Nazgul front-end UI', () => {
 
       headerText = browser
         .findElement(by
-          .css('.center.header.bottom.white-text.wow.fadeInLeft')
-        );
+          .css('.center.header.bottom.white-text.wow.fadeInLeft'));
       headerDescription = browser
         .findElement(by
-          .css('.header.col.s12.light.white-text.wow.fadeInLeft.center')
-        );
+          .css('.header.col.s12.light.white-text.wow.fadeInLeft.center'));
       expect(headerText.getText())
         .toEqual('Cards for Humanity');
       expect(headerDescription
