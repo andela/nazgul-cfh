@@ -18,7 +18,6 @@ module.exports = function (config) {
       // 'bower_components/angular-route/angular-route.min.js',
       // 'bower_components/angular-resource/angular-resource.min.js',
       // 'node_modules/angular-mocks/angular-mocks.js',
-      // 'node_modules/ng-midway-tester/src/ngMidwayTester.js',
       // './dist/public/lib/angular-bootstrap/ui-bootstrap.min.js',
       // './dist/public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
       // './dist/public/lib/angular-ui-utils/modules/route.js',

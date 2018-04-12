@@ -1,6 +1,10 @@
 /* A dummy test suit to test the functionality of the Karma test set-up */
 /* eslint-disable */
-// describe('A TESTING OF THE KARMA FRONTEND TEST', () => {
+// describe('nazgul front-end UI', () => {
+//   it('should have a title', function() {
+//     browser.get('http://juliemr.github.io/protractor-demo/');
+//     expect(browser.getTitle()).toEqual('Super Calculator');
+//   });
 //   beforeEach(() => {
 //     module('mean');
 //   });
