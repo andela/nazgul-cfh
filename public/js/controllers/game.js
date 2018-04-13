@@ -1,3 +1,4 @@
+/* global document angular hopscotch localStorage $ */
 angular.module('mean.system').controller('GameController', [
   '$scope',
   'game',
@@ -5,7 +6,7 @@ angular.module('mean.system').controller('GameController', [
   '$location',
   'MakeAWishFactsService',
   '$dialog',
-  ($scope, game, $timeout, $location, MakeAWishFactsService, $dialog) => {
+  ($scope, game, $timeout, $location, MakeAWishFactsService) => {
     $scope.hasPickedCards = false;
     $scope.winningCardPicked = false;
     $scope.showTable = false;
@@ -233,7 +234,8 @@ angular.module('mean.system').controller('GameController', [
           // reset the URL so they don't think they're in the requested room.
           $location.search({});
         } else if ($scope.isCustomGame() && !$location.search().game) {
-          // Once the game ID is set, update the URL if this is a game with friends,
+          // Once the game ID is set,
+          // update the URL if this is a game with friends,
           // where the link is meant to be shared.
           $location.search({ game: game.gameID });
           if (!$scope.modalShown) {

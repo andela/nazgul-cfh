@@ -1,19 +1,28 @@
 <landing>
+  <script>
+    $('.sidenav')
+      .sidenav({
+        onCloseStart: function () {
+          $('div[class="sidenav-overlay"]')
+            .remove();
+        }
+      });
+  </script>
   <nav class="lighter-pink wow fadeIn" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="#" class="brand-logo white-text">CFH</a>
+      <a id="logo-container" href="/" class="brand-logo white-text">CFH</a>
       <ul class="right hide-on-med-and-down">
         <li>
           <a class="white-text" href="/">Home</a>
         </li>
         <li>
-          <a class="white-text" href="#htp">How to play</a>
+          <a class="white-text" href="/#htp">How to play</a>
         </li>
         <li>
-          <a class="white-text" href="#dtc">Charity</a>
+          <a class="white-text" href="/#dtc">Charity</a>
         </li>
         <li>
-          <a class="white-text" href="#mtt">About us</a>
+          <a class="white-text" href="/#mtt">About us</a>
         </li>
         <span ng-show="showOptions">
           <li>
@@ -29,8 +38,7 @@
           </li>
         </span>
       </ul>
-
-      <ul id="nav-mobile" class="side-nav white-text">
+      <ul id="slide-out" class="sidenav white-text">
         <li>
           <a href="#">Home</a>
         </li>
@@ -50,12 +58,11 @@
           <a href="#!/signup">Sign up</a>
         </li>
       </ul>
-      <a href="#!" data-activates="nav-mobile" class="button-collapse white-text">
+      <a href="#" data-target="slide-out" class="sidenav-trigger">
         <i class="material-icons">menu</i>
       </a>
     </div>
   </nav>
-
   <div id="index-banner" class="custom-parallax custom-parallax-1">
     <div class="section no-pad-bot dark-overlay">
       <div class="container">
@@ -68,12 +75,14 @@
               <b>desperately</b> trying to do good</h5>
           </div>
           <div class="col s12 center wow fadeInRight marg20" ng-show="showOptions">
-            <a href="#!/signup" class="btn-large waves-effect dark-pink white-text marg25 hvr-pulse lighten-1">Sign Up</a>
-            <a href="#!/signin" class="btn-large waves-effect dark-pink white-text hvr-pulse lighten-1">Sign in</a>
+            <a id="signupBtn" href="#!/signup" class="btn-large waves-effect dark-pink white-text marg25 hvr-pulse lighten-1">Sign Up
+            </a>
+            <a id="signinBtn" href="#!/signin" class="btn-large waves-effect dark-pink white-text hvr-pulse lighten-1">Sign in</a>
           </div>
           <div class="col s12 center wow fadeInRight marg20" ng-hide="showOptions">
             <a href="/play?custom" class="btn-large waves-effect dark-pink white-text marg25 hvr-pulse lighten-1">Play Game with Friends</a>
-            <a href="/play" class="btn-large waves-effect dark-pink white-text hvr-pulse lighten-1">Play Game with Strangers</a>
+            <a href="/play" class="btn-large waves-effect dark-pink white-text hvr-pulse lighten-1">Play Game with Strangers
+            </a>
           </div>
         </div>
         <br>
@@ -107,7 +116,7 @@
     <div class="section wow fadeInTop dark-overlay">
       <div class="container">
         <h3 class="center white-text wow fadeIn">How to play</h3>
-        <div class="row">
+        <div class="row" id="how-to-play">
           <div class="col s12 m6 l3 wow fadeInLeft">
             <div class="card black">
               <div class="card-content htp-cards white-text">
@@ -194,7 +203,7 @@
     <div class="section wow fadeInTop">
       <h3 class="center wow fadeIn lighter-pink-text">Meet the Team</h3>
       <div class="row">
-        <div class="col s12 m4 l2">
+        <div class="col s4 m4 l2">
           <div class="card rounded black-text z-depth-3 wow fadeInLeft">
             <div class="card-image rounded">
               <img src="/img/gabriel-micah.jpg" alt="">
@@ -202,7 +211,7 @@
           </div>
           <p class="center">Gabriel Micah</p>
         </div>
-        <div class="col s12 m4 l2">
+        <div class="col s4 m4 l2">
           <div class="card rounded black-text z-depth-3 wow fadeInUp">
             <div class="card-image rounded">
               <img src="/img/faith-adekunle.jpg" alt="">
@@ -210,7 +219,7 @@
           </div>
           <p class="center">Faith Adekunle</p>
         </div>
-        <div class="col s12 m4 l2">
+        <div class="col s4 m4 l2">
           <div class="card rounded black-text z-depth-3 wow zoomIn">
             <div class="card-image rounded">
               <img src="/img/idrees-ibraheem.jpg" alt="">
@@ -218,7 +227,7 @@
           </div>
           <p class="center">Idrees Ibraheem</p>
         </div>
-        <div class="col s12 m4 l2">
+        <div class="col s4 m4 l2">
           <div class="card rounded black-text z-depth-3 wow zoomIn">
             <div class="card-image rounded">
               <img src="/img/efosa-okpugie.jpg" alt="">
@@ -226,7 +235,7 @@
           </div>
           <p class="center">Efosa Okpugie</p>
         </div>
-        <div class="col s12 m4 l2">
+        <div class="col s4 m4 l2">
           <div class="card rounded black-text z-depth-3 wow fadeInUp">
             <div class="card-image rounded">
               <img src="/img/taiwo-kolawole.jpg" alt="">
@@ -234,7 +243,7 @@
           </div>
           <p class="center">Taiwo Kolawole</p>
         </div>
-        <div class="col s12 m4 l2">
+        <div class="col s4 m4 l2">
           <div class="card rounded black-text z-depth-3 wow fadeInRight">
             <div class="card-image rounded">
               <img src="/img/felix-amande.jpg" alt="">

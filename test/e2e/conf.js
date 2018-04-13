@@ -1,3 +1,4 @@
+/* global browser by */
 exports.config = {
   directConnect: true,
   capabilities: {
@@ -7,17 +8,12 @@ exports.config = {
   specs: ['onboarding.spec.js'],
 
   onPrepare: () => {
+    /* eslint-disable */
     require('babel-register');
     require('babel-core/register')({ presets: ['es2015'] });
+    /* eslint-enable */
 
     browser.driver.get('http://localhost:3000');
-    /* Sign up
-    browser.driver.findElement(by.id('sign-up-btn-landing')).click();
-    browser.driver.findElement(by.id('name')).sendKeys('Taiwo');
-    browser.driver.findElement(by.id('email')).sendKeys('taiwo@yahoo.com');
-    browser.driver.findElement(by.id('password')).sendKeys('1234');
-    browser.driver.findElement(by.id('sign-up-btn-other')).click();
-    */
 
     browser.driver.findElement(by.id('signin')).click();
     browser.driver.findElement(by.id('email')).sendKeys('taiwo@yahoo.com');

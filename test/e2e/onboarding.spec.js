@@ -1,3 +1,5 @@
+/* global expect */
+
 import { browser, element, by } from 'protractor';
 
 describe('Protractor test for onboarding user', () => {
