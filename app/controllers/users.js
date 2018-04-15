@@ -146,6 +146,7 @@ exports.create = (req, res, next) => {
 };
 
 const searchFriend = (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
   const isEmail = (mail) => {
     if (/^\w+([\.-]?\w+)*@\w+([ \.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
       return true;
@@ -163,7 +164,7 @@ const searchFriend = (req, res) => {
         if (!friend) {
           return res.status(200).send({ message: 'No friends found' });
         }
-        if (friend._id == req.decoded._id) {
+        if (friend._id == req.decoded.payload._id) {
           return res.status(200)
             .send({ message: 'You cannot search for yourself' });
         }
@@ -182,7 +183,7 @@ const searchFriend = (req, res) => {
         if (!friend) {
           return res.status(200).send({ message: 'No friends found' });
         }
-        if (friend._id == req.decoded._id) {
+        if (friend._id == req.decoded.payload._id) {
           return res.status(200)
             .send({ message: 'You cannot search for yourself' });
         }
@@ -196,6 +197,7 @@ const searchFriend = (req, res) => {
 };
 
 const inviteUserByEmail = (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
   const mailOptions = {
     from: 'nazgul-cfh',
     to: req.body.emailOfUserToBeInvited,
@@ -217,7 +219,6 @@ const inviteUserByEmail = (req, res) => {
 
   transporter.sendMail(mailOptions, (err, info) => {
     if (err) {
-      console.log(err);
       return res.status(500).send({ error: 'an error occurred' });
     }
     return res.status(200).send({

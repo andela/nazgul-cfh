@@ -32,10 +32,11 @@
       </div>
     </div>
     <div>
-      <div id="myModal" class="modal animated rollIn modal-fixed-footer" style="z-index: 1000; margin-top: -220px; height: 320px; max-height: 320px;">
-        <div>     
+      <div id="myModal" class="modal animated rollIn modal-fixed-footer" style="z-index: 1000; margin-top: -220px; height: 240px; max-height: 240px;">
+        <div>
           <!-- Modal content-->
           <div class="modal-content animated rollIn" style="height:280px">
+              <div style="float: right; color: #2E112D; font-weight: bold; font-size: 28px;margin-top: -20px" ng-click="closeSearchModal()">&times;</div>
             <div class="modal-header">
               <h4 class="modal-title center-align" style="color: #2E112D; font-family: Allerta Stencil">Invite Friends</h4>
             </div>
@@ -62,16 +63,13 @@
                   <div class="col-xs-8" ng-show="foundUser">
                     <p class="panel-body" style="font-family: 'Nova Flat'; color: #540032">{{searchResult}}</p>
                   </div>
-                  <div class="col-xs-6" ng-show="userDetails.email !== undefined">
+                  <div class="col-xs-6" ng-show="userDetails.email !== undefined && !isInvitingUser">
                     <button class="btn btn-default" style="background-color: #540032;" ng-click="inviteUser()">invite</button>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="modal-footer" style="height: 50px">
-          <button type="button" class="btn btn-default closemyModal" data-dismiss="modal" style="background-color: #540032; font-family: Allerta Stencil; margin-right: 20px" ng-click="closeSearchModal()">DONE</button>
         </div>
       </div>
       <div id="game-already-started-modal" class="modal animated rollIn" style="z-index: 1000; margin-top: -5%; height: 280px">
