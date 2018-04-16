@@ -110,10 +110,8 @@ angular.module('mean.system')
             0
           );
         };
-    
         angular.element(document).ready(() => {
           if (localStorage.getItem('tour-taken')) return;
-    
           const interval = setInterval(() => {
             if (document.getElementById('startGame') != null) {
               $scope.startTour();
@@ -318,13 +316,14 @@ angular.module('mean.system')
           if (game.gameID && game.state === 'awaiting players') {
             if (!$scope.isCustomGame() && $location.search().game) {
               // If the player didn't successfully enter the request room,
-              // reset the URL so they don't think they're in the requested room.
+              // reset the URL so they don't think
+              // they're in the requested room.
               $location.search({});
             } else if ($scope.isCustomGame() && !$location.search().game) {
               // Once the game ID is set,
               // update the URL if this is a game with friends,
               // where the link is meant to be shared.
-              $location.search({game: game.gameID});
+              $location.search({ game: game.gameID });
             }
           }
         });
