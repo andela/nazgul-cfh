@@ -9,7 +9,6 @@ if (window.location.hash === '#_=_') window.location.hash = '#!';
 // $(document).ready(function() {
 //     //Fixing facebook bug with redirect
 
-
 //     //Then init the app
 //     window.init();
 // });
