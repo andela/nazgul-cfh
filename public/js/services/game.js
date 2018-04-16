@@ -1,6 +1,7 @@
 angular.module('mean.system')
-  .factory('game', ['socket', '$timeout', '$http',
-    function (socket, $timeout, $http) {
+  .factory('game', ['socket', '$timeout', '$http','$rootScope', 
+     function (socket, $timeout, $rootScope) {
+       
   var game = {
     id: null, // This player's socket ID, so we know who this player is
     gameID: null,
@@ -12,7 +13,7 @@ angular.module('mean.system')
     table: [],
     czar: null,
     playerMinLimit: 3,
-    playerMaxLimit: 6,
+    playerMaxLimit: 12,
     pointLimit: null,
     state: null,
     round: 0,
@@ -27,6 +28,10 @@ angular.module('mean.system')
   var timeout = false;
   var self = this;
   var joinOverrideTimeout = 0;
+
+    socket.on('maxPlayersReached', () => {
+      $rootScope.$emit('maxPlayersReached');
+    });
 
   var addToNotificationQueue = function(msg) {
     notificationQueue.push(msg);
