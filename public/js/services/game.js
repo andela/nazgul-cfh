@@ -1,6 +1,6 @@
 angular.module('mean.system')
   .factory('game', ['socket', '$timeout', '$http',
-  function (socket, $timeout, $http) {
+    function (socket, $timeout, $http) {
   var game = {
     id: null, // This player's socket ID, so we know who this player is
     gameID: null,
@@ -76,7 +76,7 @@ angular.module('mean.system')
         // check if game has ended and then
         // send to the url 
         if (game.state === 'game ended') {
-          let gameLog = {};
+          const gameLog = {};
           gameLog.gameId = game.gameID,
           gameLog.players = game.players,
           gameLog.rounds = game.round,
@@ -91,7 +91,7 @@ angular.module('mean.system')
                 'x-access-token': localStorage.getItem('userData')
               },
             }
-            }).then(null, null);
+          }).then(null, null);
         }
 
     game.joinOverride = false;
