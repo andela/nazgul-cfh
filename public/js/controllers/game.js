@@ -1,3 +1,4 @@
+/* global document angular hopscotch localStorage $ */
 angular.module('mean.system')
   .controller(
     'GameController',
@@ -12,6 +13,7 @@ angular.module('mean.system')
         $scope.showTable = false;
         $scope.modalShown = false;
         $scope.game = game;
+        $scope.hopscotch = hopscotch;
         $scope.pickedCards = [];
         let makeAWishFacts = MakeAWishFactsService.getMakeAWishFacts();
         $scope.makeAWishFact = makeAWishFacts.pop();
@@ -38,6 +40,87 @@ angular.module('mean.system')
         $rootScope.$on('maxPlayersReached', () => {
           document.getElementById('game-already-started-modal').style.display =
           'block';
+        });
+
+        $scope.startTour = () => {
+          $scope.hopscotch.startTour(
+            {
+              id: 'hello-hopscotch',
+              steps: [
+                {
+                  title: 'Welcome to Card for Humanity',
+                  content:
+                    'Card for Humanity is a an online version of popular card game, Card Against Humanity. That gives you the opportunity to donate to children in need.',
+                  target: document.getElementById('startGame'),
+                  placement: 'bottom',
+                  width: 500
+                },
+                {
+                  title: 'How to Play',
+                  content:
+                    'Each player begin with 10 white answer cards Everyone else answers the black question card by clicking on the answer.',
+                  target: document.getElementById('startGame'),
+                  placement: 'bottom',
+                  width: 500
+                },
+                {
+                  title: 'How to Play',
+                  content: 'The players in the game and their scores appear here',
+                  target: document.getElementById('social-bar-container'),
+                  placement: 'left'
+                },
+                {
+                  title: 'How to Play',
+                  content:
+                    'Each round has a count down timer to answer the black question and for card czar to pick the right answer',
+                  target: document.getElementById('inner-timer-container'),
+                  placement: 'right'
+                },
+                {
+                  title: 'How to Play',
+                  content:
+                    'The Card Czar will be picked randomly to decide the appropriate answer to the black question and whoever played that card wins the round.',
+                  target: document.getElementById('startGame'),
+                  placement: 'bottom',
+                  xOffset: 200,
+                  width: 350
+                },
+                {
+                  title: 'How to Play',
+                  content: 'You will be notified when you are the card czar',
+                  target: document.getElementById('info-container'),
+                  placement: 'top',
+                  xOffset: 400
+                },
+                {
+                  title: 'How to Play',
+                  content: 'Any player can decide to leave the game at any time.',
+                  target: document.querySelector('.taketour'),
+                  placement: 'left',
+                  xOffset: 100
+                },
+                {
+                  title: 'How to Play',
+                  content: 'You can click this button any time to take tour again.',
+                  target: document.querySelector('.taketour'),
+                  placement: 'left'
+                }
+              ]
+            },
+            0
+          );
+        };
+    
+        angular.element(document).ready(() => {
+          if (localStorage.getItem('tour-taken')) return;
+    
+          const interval = setInterval(() => {
+            if (document.getElementById('startGame') != null) {
+              $scope.startTour();
+              localStorage.setItem('tour-taken', true);
+              clearInterval(interval);
+            }
+          }, 1000);
         });
 
         $scope.searchUser = () => {
@@ -124,8 +207,10 @@ angular.module('mean.system')
         };
 
         $scope.pointerCursorStyle = () => {
-          if ($scope.isCzar() &&
-          $scope.game.state === 'waiting for czar to decide') {
+          if (
+            $scope.isCzar() &&
+            $scope.game.state === 'waiting for czar to decide'
+          ) {
             return { cursor: 'pointer' };
           }
           return {};
@@ -172,14 +257,14 @@ angular.module('mean.system')
 
         $scope.isCzar = () => game.czar === game.playerIndex;
 
-        $scope.isPlayer = ($index => $index === game.playerIndex);
+        $scope.isPlayer = $index => $index === game.playerIndex;
 
         $scope.isCustomGame = () =>
-          !(/^\d+$/).test(game.gameID) && game.state === 'awaiting players';
+          !/^\d+$/.test(game.gameID) && game.state === 'awaiting players';
 
-        $scope.isPremium = ($index => game.players[$index].premium);
+        $scope.isPremium = $index => game.players[$index].premium;
 
-        $scope.currentCzar = ($index => $index === game.czar);
+        $scope.currentCzar = $index => $index === game.czar;
 
         $scope.winningColor = ($index) => {
           if (game.winningCardPlayer !== -1 && $index === game.winningCard) {
@@ -198,12 +283,7 @@ angular.module('mean.system')
         $scope.winnerPicked = () => game.winningCard !== -1;
 
         $scope.startGame = () => {
-          if (game.players.length < 3) {
-            document.getElementById('cannot-start-game-modal').style.display =
-            'block';
-          } else {
-            game.startGame();
-          }
+          game.startGame();
         };
 
         $scope.abandonGame = () => {
@@ -211,47 +291,51 @@ angular.module('mean.system')
           $location.path('/');
         };
 
-    // Catches changes to round to update when no players pick card
-    // (because game.state remains the same)
-    $scope.$watch('game.round', function() {
-      $scope.hasPickedCards = false;
-      $scope.showTable = false;
-      $scope.winningCardPicked = false;
-      $scope.makeAWishFact = makeAWishFacts.pop();
-      if (!makeAWishFacts.length) {
-        makeAWishFacts = MakeAWishFactsService.getMakeAWishFacts();
-      }
-      $scope.pickedCards = [];
-    });
+        // Catches changes to round to update when no players pick card
+        // (because game.state remains the same)
+        $scope.$watch('game.round', () => {
+          $scope.hasPickedCards = false;
+          $scope.showTable = false;
+          $scope.winningCardPicked = false;
+          $scope.makeAWishFact = makeAWishFacts.pop();
+          if (!makeAWishFacts.length) {
+            makeAWishFacts = MakeAWishFactsService.getMakeAWishFacts();
+          }
+          $scope.pickedCards = [];
+        });
 
-    // In case player doesn't pick a card in time, show the table
-    $scope.$watch('game.state', function() {
-      if (game.state === 'waiting for czar to decide' && $scope.showTable === false) {
-        $scope.showTable = true;
-      }
-    });
+        // In case player doesn't pick a card in time, show the table
+        $scope.$watch('game.state', () => {
+          if (
+            game.state === 'waiting for czar to decide' &&
+            $scope.showTable === false
+          ) {
+            $scope.showTable = true;
+          }
+        });
 
-    $scope.$watch('game.gameID', function() {
-      if (game.gameID && game.state === 'awaiting players') {
-        if (!$scope.isCustomGame() && $location.search().game) {
-          // If the player didn't successfully enter the request room,
-          // reset the URL so they don't think they're in the requested room.
-          $location.search({});
-        } else if ($scope.isCustomGame() && !$location.search().game) {
-          // Once the game ID is set, update the URL if this is a game with friends,
-          // where the link is meant to be shared.
-          $location.search({game: game.gameID});
+        $scope.$watch('game.gameID', () => {
+          if (game.gameID && game.state === 'awaiting players') {
+            if (!$scope.isCustomGame() && $location.search().game) {
+              // If the player didn't successfully enter the request room,
+              // reset the URL so they don't think they're in the requested room.
+              $location.search({});
+            } else if ($scope.isCustomGame() && !$location.search().game) {
+              // Once the game ID is set,
+              // update the URL if this is a game with friends,
+              // where the link is meant to be shared.
+              $location.search({game: game.gameID});
+            }
+          }
+        });
+
+        if ($location.search().game && !/^\d+$/.test($location.search().game)) {
+          game.joinGame('joinGame', $location.search().game);
+        } else if ($location.search().custom) {
+          game.joinGame('joinGame', null, true);
+        } else {
+          game.joinGame();
         }
       }
-    });
-
-    if ($location.search().game && !(/^\d+$/).test($location.search().game)) {
-      console.log('joining custom game');
-      game.joinGame('joinGame',$location.search().game);
-    } else if ($location.search().custom) {
-      game.joinGame('joinGame',null,true);
-    } else {
-      game.joinGame();
-    }
-
-}]);
+    ]
+  );
