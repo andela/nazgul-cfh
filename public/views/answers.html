@@ -1,4 +1,4 @@
-<div ng-cloak id="cards-container" ng-hide="game.state === 'game ended' || game.state ==='game dissolved'">
+<!-- <div ng-cloak id="cards-container" ng-hide="game.state === 'game ended' || game.state ==='game dissolved'">
   <div id="social-bar-container">
     <player></player>
   </div>
@@ -22,20 +22,32 @@
         </div>
     </span>
   </div>
-</div>
+</div> -->
 
 <div id="info-container" ng-show="game.state === 'awaiting players'">
-  <div id="inner-info">
-    <div id="lobby-how-to-play">How To Play</div>
-    <ol id="oh-el">
-      <li>Each player begins with, and will always have, 10 white answer cards.</li>
-      <li>For each round, one player is randomly chosen as the Card Czar.</li>
-      <li>Everyone else answers the black question card by clicking on the answer card they want to use.</li>
-      <li>The Card Czar then picks a favorite answer, and whoever played that answer wins the round.</li>
-      <li>*Want to adorn your avatar with a glorious crown? Donate to charity after the game!</li>
-    </ol>
-  </div>
+  <div class="card-panel minHeight dark-pink">
+      <h4 class="center white-text">How to play</h4>
+      <hr>
+      <ol class="padHtp">
+        <li class="white-text padLB">
+          Each player begins with, and will always have, 10 white answer cards.
+        </li>
+        <li class="white-text padLB">
+          For each round, one player is randomly chosen as the Card Czar.
+        </li>
+        <li class="white-text padLB">
+          Everyone else answers the black question card by clicking on the answer card they want to use.
+        </li>
+        <li class="white-text padLB">
+          The Card Czar then picks a favorite answer, and whoever played that answer wins the round.
+        </li>
+        <li class="white-text padLB">
+          Want to adorn your avatar with a glorious crown? Donate to charity after the game!
+        </li>
+      </ol>
+    </div>
 </div>
+
 <div id="game-end-container" ng-show="game.state === 'game ended' || game.state ==='game dissolved'">
   <div id="inner-info-exit">
     <div class="game-end-answer-text" ng-show="game.state ==='game dissolved' && game.gameWinner === -1">

@@ -1,4 +1,4 @@
-<div id="player-container" ng-repeat="player in game.players" style="background-color:{{colors[player.color]}}">
+<!-- <div id="player-container" ng-repeat="player in game.players" style="background-color:{{colors[player.color]}}">
   <div id ="above-czar-container">
     <div id="avatar_">
       <span ng-show="isPremium($index)">
@@ -17,5 +17,19 @@
   <div id="czar-container" ng-show="currentCzar($index)">
     <span id='the-czar'>CZAR</span>
   </div>
-</div>
+</div> -->
+<div class="card-panel relative pad15" ng-repeat="player in game.players" style="background-color:{{colors[player.color]}}">
+    <div class="czar absolute" ng-show="currentCzar($index)">CZAR</div>
+    <div class="row">
+        <div class="col s4">
+            <img src="../img/avatars/avatar-user-man-3bd018541bc00d39-64x64.png">
+        </div>
+        <div class="col s8">
+            <div class="no-margin">
+                <h5 class="dark-pink-text no-margin">{{player.username | upperFirstLetter}}</h5>
+                <h5 class=" no-margin">{{player.points}}/{{game.pointLimit}}</h5>
+            </div>
+        </div>
+    </div>
+  </div>
 

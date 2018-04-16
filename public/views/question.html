@@ -1,6 +1,5 @@
-<div id="question-container-inner">
-  <div class="card longBlack">
-    <span ng-bind-html-unsafe="game.curQuestion.text" ng-hide="game.state === 'game ended' || game.state ==='game dissolved' || game.state === 'awaiting players'"></span>
+<div id="">
+    <!-- <span ng-bind-html-unsafe="game.curQuestion.text" ng-hide="game.state === 'game ended' || game.state ==='game dissolved' || game.state === 'awaiting players'"></span>
 
     <div id="notifications" ng-if="game.notification" ng-animate="{enter:'animated fadeInLeft', leave:'animated fadeOut'}">{{game.notification}}</div>
 
@@ -19,7 +18,6 @@
         </div>
 
 
-        <!-- Modal -->
         <div class="modal fade" id="preGameModal" tabindex="-1" role="dialog" aria-labelledby="preGameModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -39,10 +37,10 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <!-- Modal -->
-        <div class="modal " id="preGameModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- <div class="modal " id="preGameModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -60,13 +58,11 @@
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+        </div> -->
     <!-- End of preGameModal -->
     
     <!-- Modal -->
-    <div class="modal fade" id="startGameModal"  tabindex="-1" role="dialog" aria-labelledby="startGameModalLabel"  aria-hidden="true">
+    <!-- <div class="modal fade" id="startGameModal"  tabindex="-1" role="dialog" aria-labelledby="startGameModalLabel"  aria-hidden="true">
       <div class="modal-dialog" role="document" >
         <div class="modal-content" style="background-color: black">
           <div class="modal-header">
@@ -88,8 +84,45 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- End of startGameModal -->
+    <div class="card-panel minHeight" >
+      <!-- <div ng-bind-html-unsafe="game.curQuestion.text" ng-hide="game.state === 'game ended' || game.state ==='game dissolved' || game.state === 'awaiting players'">
+        <div class="left">
+          <h5>
+            Manchester United can win the ___________________
+          </h5>
+        </div>
+      </div> -->
+      <div ng-show="game.state === 'awaiting players'">
+        <h3 class="center dark-pink-text">Finding Players</h3>
+        <div class="progress">
+          <div class="indeterminate"></div>
+        </div>
+        <div >
+          <h4 class="center dark-pink-text">{{game.players.length}} / 6 Players</h4>
+        </div>
+        <div>
+          <div class="row pad20 no-margin">
+            <div class="col s12 l6 block" id="start-game-container" ng-click="startGame()" ng-show="(game.playerIndex === 0 || game.joinOverride) && game.players.length >= game.playerMinLimit" >
+              <!-- ng-click="startGame()" ng-show="(game.playerIndex === 0 || game.joinOverride) && game.players.length >= game.playerMinLimit"> -->
+              <div ng-show="game.players.length >= game.playerMinLimit">
+                <div class="col s12" >
+                  <button id="start-game-button" class="btn dark-pink left margT10" id="start-game-container" ng-click="startGame()" ng-show="(game.playerIndex === 0 || game.joinOverride) && game.players.length >= game.playerMinLimit">Start Game</button>
+                </div>
+                <div class="col s12">
+                  <h6>with {{game.players.length}} players</h6>
+                </div>
+              </div>
+            </div>
+            <div class="col s12 l6">
+              <h6 class="dark-pink-text right" ng-if="game.notification" ng-animate="{enter:'animated fadeInLeft', leave:'animated fadeOut'}">{{game.notification}}</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
     <!-- Game Over Stuff -->
     <div id="game-end-info">
@@ -105,6 +138,8 @@
         That makes you a loser, unfortunately.
       </div>
     </div>
-  </div>
 </div>
+
+
+
 

@@ -58,12 +58,18 @@ angular.module('mean.directives', [])
       templateUrl: '/views/question.html',
       link: function(scope, elem, attr) {}
     };
-  }).directive('timer', function(){
+  }).directive('scoreboard', function(){
     return{
       restrict: 'EA',
-      templateUrl: '/views/timer.html',
+      templateUrl: '/views/scoreboard.html',
       link: function(scope, elem, attr){}
     };
+  }).directive('timer', function(){
+      return{
+        restrict: 'EA',
+        templateUrl: '/views/timer.html',
+        link: function(scope, elem, attr){}
+      };
   }).directive('landing', function() {
     return {
       restrict: 'EA',
