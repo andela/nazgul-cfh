@@ -9,4 +9,5 @@ dist
 .env
 coverage/
 .nyc_output
+testdb
 .idea
