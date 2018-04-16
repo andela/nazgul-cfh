@@ -1,6 +1,6 @@
 angular.module('mean.system')
-  .factory('game', ['socket', '$timeout', '$http', function (socket, $timeout, $http) {
-
+  .factory('game', ['socket', '$timeout', '$http',
+  function (socket, $timeout, $http) {
   var game = {
     id: null, // This player's socket ID, so we know who this player is
     gameID: null,
@@ -86,7 +86,7 @@ angular.module('mean.system')
           method: 'POST',
           url: `/api/games/${game.gameID}/start`,
           data: {
-            gameLog: gameLog,
+            gameLog,
             headers: {
               'x-access-token': localStorage.getItem('userData')
             },
