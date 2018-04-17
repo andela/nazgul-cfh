@@ -24,6 +24,7 @@ angular.module('mean.system')
         $scope.userDetails = {};
         const authToken = JSON.parse(localStorage.getItem('userData')).token;
         $http.defaults.headers.common.Authorization = authToken;
+
         $scope.openSearchModal = () => {
           document.getElementById('myModal').style.display = 'block';
         };
@@ -38,8 +39,7 @@ angular.module('mean.system')
         };
 
         $rootScope.$on('maxPlayersReached', () => {
-          document.getElementById('game-already-started-modal').style.display =
-          'block';
+          document.getElementById('game-already-started-modal').style.display = 'block';
         });
 
         $scope.startTour = () => {
@@ -281,7 +281,11 @@ angular.module('mean.system')
         $scope.winnerPicked = () => game.winningCard !== -1;
 
         $scope.startGame = () => {
-          game.startGame();
+          if (game.players.length < 3) {
+            document.getElementById('cannot-start-game-modal').style.display = 'block';
+          } else {
+            game.startGame();
+          }
         };
 
         $scope.abandonGame = () => {

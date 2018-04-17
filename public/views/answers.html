@@ -1,52 +1,53 @@
-<!-- <div ng-cloak id="cards-container" ng-hide="game.state === 'game ended' || game.state ==='game dissolved'">
-  <div id="social-bar-container">
-    <player></player>
-  </div>
-  <div id="cards" class='hand'>
+<div ng-cloak id="cards-container" class="card-panel dark-pink" ng-hide="game.state === 'game ended' || game.state ==='game dissolved'">
 
-    <span ng-show="winnerPicked()"></span>
-
-    <div ng-style="{'cursor':'pointer'}" class="card smallest" id='answers' ng-click="pickCard(card)" ng-hide="showTable || isCzar()"
-    ng-repeat="card in game.players[game.playerIndex].hand" ng-animate="{enter:'animated fadeInUp', leave: 'animated fadeInOut'}">
-        <span ng-bind-html-unsafe="card.text"></span>
-        <span id='selection-number' ng-show="showFirst(card)"> 1 </span>
-        <span id='selection-number' ng-show="showSecond(card)"> 2 </span>
-    </div>
-
-    <span ng-repeat="answer in game.table">
-        <div class="card smallest" ng-style="pointerCursorStyle()" id='table' ng-click="pickWinning(answer)" ng-show="showTable || isCzar()"
-        ng-repeat="card in answer.card" ng-animate="{enter:'animated bounceInLeft'}" style="background-color:{{winningColor($parent.$index)}}">
-            <span ng-bind-html-unsafe="card.text"></span>
-            <span id='selection-number' ng-show="firstAnswer($index)"> 1 </span>
-            <span id='selection-number' ng-show="secondAnswer($index)"> 2 </span>
+  <span ng-show="winnerPicked()"></span>
+  <div class="row par hand">
+    <div ng-style="{'cursor':'pointer'}" id='answers' ng-click="pickCard(card)" ng-hide="showTable || isCzar()" ng-repeat="card in game.players[game.playerIndex].hand" ng-animate="{enter:'animated fadeInUp', leave: 'animated fadeInOut'}">
+      <div class="col s12 l5">
+        <div class="card-panel white minH">
+          <span ng-bind-html-unsafe="card.text" class="dark-pink-text">yup</span>
+          <span id='selection-number' ng-show="showFirst(card)"> 1 </span>
+          <span id='selection-number' ng-show="showSecond(card)"> 2 </span> 
         </div>
-    </span>
-  </div>
-</div> -->
-
-<div id="info-container" ng-show="game.state === 'awaiting players'">
-  <div class="card-panel minHeight dark-pink">
-      <h4 class="center white-text">How to play</h4>
-      <hr>
-      <ol class="padHtp">
-        <li class="white-text padLB">
-          Each player begins with, and will always have, 10 white answer cards.
-        </li>
-        <li class="white-text padLB">
-          For each round, one player is randomly chosen as the Card Czar.
-        </li>
-        <li class="white-text padLB">
-          Everyone else answers the black question card by clicking on the answer card they want to use.
-        </li>
-        <li class="white-text padLB">
-          The Card Czar then picks a favorite answer, and whoever played that answer wins the round.
-        </li>
-        <li class="white-text padLB">
-          Want to adorn your avatar with a glorious crown? Donate to charity after the game!
-        </li>
-      </ol>
+      </div>
     </div>
-</div>
+  </div>
+  <div class="row par hand">
+    <div ng-style="pointerCursorStyle()" id='table' ng-click="pickWinning(answer)" ng-show="showTable || isCzar()" 
+        ng-repeat="card in answer.card" ng-animate="{enter:'animated bounceInLeft'}" style="background-color:{{winningColor($parent.$index)}}">
+      <div class="col s12 l5">
+        <div class="card-panel white minH dark-text-pink">
+          <span ng-bind-html-unsafe="card.text" class="dark-pink-text">nope</span>
+          <span id='selection-number' ng-show="firstAnswer($index)"> 1 </span>
+          <span id='selection-number' ng-show="secondAnswer($index)"> 2 </span>
+        </div>
+      </div>
+    </div>
+  </div></div>
+  <!-- </div> -->
+  <div id="info-container" ng-show="game.state === 'awaiting players'">
+    <div class="card-panel minHeight dark-pink">
+        <h4 class="center white-text">How to play</h4>
+        <hr>
+        <ol class="padHtp">
+          <li class="white-text padLB">
+            Each player begins with, and will always have, 10 white answer cards.
+          </li>
+          <li class="white-text padLB">
+            For each round, one player is randomly chosen as the Card Czar.
+          </li>
+          <li class="white-text padLB">
+            Everyone else answers the black question card by clicking on the answer card they want to use.
+          </li>
+          <li class="white-text padLB">
+            The Card Czar then picks a favorite answer, and whoever played that answer wins the round.
+          </li>
+          <li class="white-text padLB">
+            Want to adorn your avatar with a glorious crown? Donate to charity after the game!
+          </li>
+        </ol>
+      </div>
+  </div>
 
 <div id="game-end-container" ng-show="game.state === 'game ended' || game.state ==='game dissolved'">
   <div id="inner-info-exit">
@@ -97,4 +98,4 @@
     </div>
 
   </div>
-</div>
+</div></div>

@@ -240,6 +240,7 @@ Game.prototype.getQuestions = function(cb) {
 
 Game.prototype.getAnswers = function(cb) {
   answers.allAnswersForGame(function(data){
+    console.log('@@@@@@@@@', data);
     cb(null,data);
   });
 };

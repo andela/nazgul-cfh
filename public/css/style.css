@@ -57,6 +57,15 @@ p {
   .container-card{
     width: 100% !important;
   }
+  .l5{
+    max-width: 100% !important;
+    position: relative;
+    display: inline-block;
+  }
+
+  .padHtp{
+    padding: 20px 0px !important;
+  }
 }
 
 .icon-block {
@@ -412,7 +421,9 @@ input.valid:not([type]), input.valid:not([type]):focus, input[type=text].valid:n
 }
 
 .l5{
-  width: 24%;
+  max-width: 20%;
+  position: relative;
+  display: inline-block;
 }
 .par {
   width: calc(100%-5px);

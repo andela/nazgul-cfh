@@ -87,32 +87,32 @@
     </div> -->
     <!-- End of startGameModal -->
     <div class="card-panel minHeight" >
-      <!-- <div ng-bind-html-unsafe="game.curQuestion.text" ng-hide="game.state === 'game ended' || game.state ==='game dissolved' || game.state === 'awaiting players'">
-        <div class="left">
+      <div ng-bind-html-unsafe="game.curQuestion.text" class="left" ng-hide="game.state === 'game ended' || game.state ==='game dissolved' || game.state === 'awaiting players'">
+        <!-- <div class="left">
           <h5>
             Manchester United can win the ___________________
           </h5>
-        </div>
-      </div> -->
+        </div> -->
+      </div>
       <div ng-show="game.state === 'awaiting players'">
         <h3 class="center dark-pink-text">Finding Players</h3>
         <div class="progress">
           <div class="indeterminate"></div>
         </div>
         <div >
-          <h4 class="center dark-pink-text">{{game.players.length}} / 6 Players</h4>
+          <h4 class="center dark-pink-text">{{game.players.length}} / 12 Players</h4>
         </div>
         <div>
           <div class="row pad20 no-margin">
-            <div class="col s12 l6 block" id="start-game-container" ng-click="startGame()" ng-show="(game.playerIndex === 0 || game.joinOverride) && game.players.length >= game.playerMinLimit" >
+            <div class="col s12 l6 block" id="start-game-container" ng-click="startGame()" ng-show="(game.playerIndex === 0)" >
               <!-- ng-click="startGame()" ng-show="(game.playerIndex === 0 || game.joinOverride) && game.players.length >= game.playerMinLimit"> -->
-              <div ng-show="game.players.length >= game.playerMinLimit">
+              <div>
                 <div class="col s12" >
-                  <button id="start-game-button" class="btn dark-pink left margT10" id="start-game-container" ng-click="startGame()" ng-show="(game.playerIndex === 0 || game.joinOverride) && game.players.length >= game.playerMinLimit">Start Game</button>
+                  <button id="start-game-button" class="btn dark-pink left margT10" id="start-game-container" ng-click="startGame()" ng-show="(game.playerIndex === 0)">Start Game</button>
                 </div>
-                <div class="col s12">
+                <!-- <div class="col s12">
                   <h6>with {{game.players.length}} players</h6>
-                </div>
+                </div> -->
               </div>
             </div>
             <div class="col s12 l6">
