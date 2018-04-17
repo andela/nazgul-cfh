@@ -66,12 +66,12 @@
               </div>
               </span>
           </div>
-          <div class="card-content">
+          <div class="card-content" ng-controller="IndexController">
             <span class="or"></span>
-            <div class="lighten-2 red-text center" ng-show="showError() === 'invalid'">
+            <div class="lighten-2 red-text center" ng-show="showError">
               {{errorMessage}}
             </div>
-            <div class="container" ng-controller="IndexController">
+            <div class="container">
               <div class="row">
                 <form method="post" ng-submit="signup()" class="col s12 animated fadeIn">
                   <div class="row">
