@@ -65,11 +65,9 @@ angular.module('mean.system')
         }, ({ data }) => {
           $scope.errorMessage = data.error;
           $scope.showError = true;
-          console.log($scope.showError, $scope.errorMessage)
           setTimeout(() => {
             $scope.errorMessage = '';
             $scope.showError = false;
-            console.log($scope.showError, $scope.errorMessage)
           }, 10000);
         });
     };
