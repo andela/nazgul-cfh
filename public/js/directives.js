@@ -63,23 +63,21 @@ angular.module('mean.directives', [])
     restrict: 'EA',
     templateUrl: '/views/scoreboard.html',
     link: () => {}
-  })).directive('timer', function(){
-    return{
-      restrict: 'EA',
-      templateUrl: '/views/timer.html',
-      link: function(scope, elem, attr){}
-    };
-  }).directive('landing', function() {
-    return {
-      restrict: 'EA',
-      link: (scope) => {
+  }))
+  .directive('timer', () => ({
+    restrict: 'EA',
+    templateUrl: '/views/timer.html',
+    link: () => {}
+  }))
+  .directive('landing', () => ({
+    restrict: 'EA',
+    link: (scope) => {
+      scope.showOptions = true;
+      if (window.localStorage.userData) {
+        scope.showOptions = false;
+      } else {
         scope.showOptions = true;
-        if (window.localStorage.userData) {
-          scope.showOptions = false;
-        } else {
-          scope.showOptions = true;
-        }
       }
-    };
-  });
-  
+    }
+  }));
+
