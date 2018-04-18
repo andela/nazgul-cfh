@@ -136,7 +136,7 @@ module.exports = function(io) {
           game.prepareGame();
         }
       } else {
-       socket.emit('maxPlayersReached');
+        socket.emit('maxPlayersReached');
       }
     } else {
       // Put players into the general queue
