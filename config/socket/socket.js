@@ -121,9 +121,6 @@ module.exports = function(io) {
       // no one is in this custom room.
       if (game.state === 'awaiting players' && (!game.players.length ||
         game.players[0].socket.id !== socket.id) && game.players.length < game.playerMaxLimit) {
-          console.log("maxxxxx", game.playerMaxLimit)
-          console.log("mixxxxx", game.players.length)
-
         // Put player into the requested game
         console.log('Allowing player to join',requestedGameId);
         allPlayers[socket.id] = true;
@@ -136,7 +133,7 @@ module.exports = function(io) {
         game.sendNotification(player.username+' has joined the game!');
         if (game.players.length === game.playerMaxLimit) {
           gamesNeedingPlayers.shift();
-          socket.emit('startGame');
+          game.prepareGame();
         }
       } else {
         socket.emit('maxPlayersReached');
