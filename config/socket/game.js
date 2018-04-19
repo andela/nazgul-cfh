@@ -127,7 +127,6 @@ Game.prototype.prepareGame = function() {
       }
       self.questions = results[0];
       self.answers = results[1];
-
       self.startGame();
     });
 };
@@ -157,7 +156,7 @@ Game.prototype.stateChoosing = function(self) {
     });
   }
   self.round++;
-  self.dealAnswers(this);
+  self.dealAnswers();
   // Rotate card czar
   if (self.czar >= self.players.length - 1) {
     self.czar = 0;
@@ -260,6 +259,7 @@ Game.prototype.shuffleCards = function(cards) {
 };
 
 Game.prototype.dealAnswers = function(maxAnswers) {
+  console.log(this);
   maxAnswers = maxAnswers || 10;
   var storeAnswers = function(err, data) {
     this.answers = data;
