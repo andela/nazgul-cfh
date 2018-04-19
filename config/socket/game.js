@@ -127,7 +127,6 @@ Game.prototype.prepareGame = function() {
       }
       self.questions = results[0];
       self.answers = results[1];
-
       self.startGame();
     });
 };
@@ -260,6 +259,7 @@ Game.prototype.shuffleCards = function(cards) {
 };
 
 Game.prototype.dealAnswers = function(maxAnswers) {
+  console.log(this);
   maxAnswers = maxAnswers || 10;
   var storeAnswers = function(err, data) {
     this.answers = data;
