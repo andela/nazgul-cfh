@@ -1,3 +1,8 @@
+<!-- <script>
+   $(document).ready(function(){
+      $('.modal').modal();
+    });
+</script> -->
 <div id="">
   <div class="card-panel minHeight" >
     <div ng-bind-html-unsafe="game.curQuestion.text" class="left fsize" ng-hide="game.state === 'game ended' || game.state ==='game dissolved' || game.state === 'awaiting players'">
@@ -11,8 +16,27 @@
         <h4 class="center dark-pink-text">{{game.players.length}} / 12 Players</h4>
       </div>
       <div>
+        <!-- Modal Trigger -->
+        <!-- <button data-target="modal1" class="btn modal-trigger dark-pink left margT10">
+            PLEASE CLICK HERE TO BEGIN
+        </button> -->
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal " >
+          <div class="modal-content">
+            <h4>Would you like to start the game?</h4>
+            <p></p>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="modal-action modal-close waves-effect waves-green btn dark-pink left margT10" ng-click="newGameModal()">No, Thanks</button>
+
+              <button type="button" ng-click="startGame()" class="modal-action waves-effect waves-green btn dark-pink  margT10" >Yes!, START GAME</button>
+            
+          </div>
+        </div>
+      </div>
+      <div>
         <div class="row pad20 no-margin">
-          <div class="col s12 l6 block" id="start-game-container" ng-click="startGame()" ng-show="(game.playerIndex === 0)" >
+          <!-- <div class="col s12 l6 block" id="start-game-container" ng-click="startGame()" ng-show="(game.playerIndex === 0)" > -->
             <div>
               <div class="col s12" >
                 <button id="start-game-button" class="btn dark-pink left margT10" id="start-game-container" ng-click="startGame()">Start Game</button>
