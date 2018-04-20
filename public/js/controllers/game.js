@@ -26,21 +26,26 @@ angular.module('mean.system')
         $http.defaults.headers.common.Authorization = authToken;
 
         $scope.openSearchModal = () => {
-          document.getElementById('myModal').style.display = 'block';
+          $('#myModal').modal('open');
         };
 
         $scope.closeSearchModal = () => {
-          document.getElementById('myModal').style.display = 'none';
+          $('#myModal').modal('close');
         };
 
         $scope.closeCannotStartGameModal = () => {
-          document.getElementById('cannot-start-game-modal').style.display =
-          'none';
+          $('#cannot-start-game-modal').modal('close');
+        };
+        $scope.newGameModal = () => {
+          $('#promptModal').modal('close');
+          game.startGame();
+        };
+        $scope.newGameModal1 = () => {
+          $('#promptModal').modal('close');
         };
 
         $rootScope.$on('maxPlayersReached', () => {
-          document.getElementById('game-already-started-modal').style.display =
-          'block';
+          $('#game-already-started-modal').modal('open');
         });
 
         $scope.startTour = () => {
@@ -283,9 +288,9 @@ angular.module('mean.system')
 
         $scope.startGame = () => {
           if (game.players.length < 3) {
-            document.getElementById('cannot-start-game-modal').style.display = 'block';
+            $('#cannot-start-game-modal').modal('open');
           } else {
-            game.startGame();
+            $('#promptModal').modal('open');
           }
         };
 

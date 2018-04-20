@@ -1,73 +1,49 @@
-<!-- <script>
-   $(document).ready(function(){
-      $('.modal').modal();
-    });
-</script> -->
 <div id="">
-  <div class="card-panel minHeight" >
-    <div ng-bind-html-unsafe="game.curQuestion.text" class="left fsize" ng-hide="game.state === 'game ended' || game.state ==='game dissolved' || game.state === 'awaiting players'">
-    </div>
-    <div ng-show="game.state === 'awaiting players'">
-      <h3 class="center dark-pink-text">Finding Players</h3>
-      <div class="progress">
-        <div class="indeterminate"></div>
+    <div class="card-panel minHeight" >
+      <div ng-bind-html-unsafe="game.curQuestion.text" class="left fsize" ng-hide="game.state === 'game ended' || game.state ==='game dissolved' || game.state === 'awaiting players'">
       </div>
-      <div >
-        <h4 class="center dark-pink-text">{{game.players.length}} / 12 Players</h4>
-      </div>
-      <div>
-        <!-- Modal Trigger -->
-        <!-- <button data-target="modal1" class="btn modal-trigger dark-pink left margT10">
-            PLEASE CLICK HERE TO BEGIN
-        </button> -->
-        <!-- Modal Structure -->
-        <div id="modal1" class="modal " >
-          <div class="modal-content">
-            <h4>Would you like to start the game?</h4>
-            <p></p>
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="modal-action modal-close waves-effect waves-green btn dark-pink left margT10" ng-click="newGameModal()">No, Thanks</button>
-
-              <button type="button" ng-click="startGame()" class="modal-action waves-effect waves-green btn dark-pink  margT10" >Yes!, START GAME</button>
-            
-          </div>
+      <div ng-show="game.state === 'awaiting players'">
+        <h3 class="center dark-pink-text">Finding Players</h3>
+        <div class="progress">
+          <div class="indeterminate"></div>
         </div>
-      </div>
-      <div>
-        <div class="row pad20 no-margin">
-          <!-- <div class="col s12 l6 block" id="start-game-container" ng-click="startGame()" ng-show="(game.playerIndex === 0)" > -->
-            <div>
-              <div class="col s12" >
-                <button id="start-game-button" class="btn dark-pink left margT10" id="start-game-container" ng-click="startGame()">Start Game</button>
+        <div >
+          <h4 class="center dark-pink-text">{{game.players.length}} / 12 Players</h4>
+        </div>
+        <div>
+          <div class="row pad20 no-margin">
+            <div class="col s12 l6 block" id="start-game-container" ng-click="startGame()" ng-show="(game.playerIndex === 0)" >
+              <div>
+                <div class="col s12" >
+                  <button id="start-game-button" class="btn dark-pink left margT10" id="start-game-container" ng-click="startGame()">Start Game</button>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col s12 l6">
-            <h6 class="dark-pink-text right" ng-if="game.notification" ng-animate="{enter:'animated fadeInLeft', leave:'animated fadeOut'}">{{game.notification}}</h6>
+            <div class="col s12 l6">
+              <h6 class="dark-pink-text right" ng-if="game.notification" ng-animate="{enter:'animated fadeInLeft', leave:'animated fadeOut'}">{{game.notification}}</h6>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-
-  <!-- Game Over Stuff -->
-    <div id="game-end-info">
-      <div id="people-left-game-top" ng-show="game.state ==='game dissolved' && game.gameWinner === -1">
-        <div class="game-end-headline dark-pink-text fsize">What the!? The game ended because too many people left! </div>
-        Our sincere apologies.
-      </div>
-      <div ng-show="game.state === 'game ended' && game.gameWinner === game.playerIndex">
-        <div class="game-end-headline dark-pink-text fsize">Congratulations! You won the game, {{game.players[game.playerIndex].username | upperFirstLetter}}!</div>We hope you feel special. If you'd like to share that special feeling with the world, consider donating to charity. Or just horde it all for youself.
-      </div>
-      <div ng-show="game.state === 'game ended' && game.gameWinner !== game.playerIndex">
-        <div class="game-end-headline dark-pink-text fsize">Aw, shucks! {{game.players[game.gameWinner].username | upperFirstLetter }} won the game!</div>
-        That makes you a loser, unfortunately.
+  
+    <!-- Game Over Stuff -->
+      <div id="game-end-info">
+        <div id="people-left-game-top" ng-show="game.state ==='game dissolved' && game.gameWinner === -1">
+          <div class="game-end-headline dark-pink-text fsize">What the!? The game ended because too many people left! </div>
+          Our sincere apologies.
+        </div>
+        <div ng-show="game.state === 'game ended' && game.gameWinner === game.playerIndex">
+          <div class="game-end-headline dark-pink-text fsize">Congratulations! You won the game, {{game.players[game.playerIndex].username | upperFirstLetter}}!</div>We hope you feel special. If you'd like to share that special feeling with the world, consider donating to charity. Or just horde it all for youself.
+        </div>
+        <div ng-show="game.state === 'game ended' && game.gameWinner !== game.playerIndex">
+          <div class="game-end-headline dark-pink-text fsize">Aw, shucks! {{game.players[game.gameWinner].username | upperFirstLetter }} won the game!</div>
+          That makes you a loser, unfortunately.
+        </div>
       </div>
     </div>
   </div>
-</div>
-
-
-
-
-
+  
+  
+  
+  
+  
