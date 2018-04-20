@@ -51,7 +51,6 @@ module.exports = function(io) {
     socket.on('startGame', function() {
       if (allGames[socket.gameID]) {
         var thisGame = allGames[socket.gameID];
-        console.log('comparing',thisGame.players[0].socket.id,'with',socket.id);
         if (thisGame.players.length >= thisGame.playerMinLimit) {
           // Remove this game from gamesNeedingPlayers so new players can't join it.
           gamesNeedingPlayers.forEach(function(game,index) {
@@ -120,7 +119,7 @@ module.exports = function(io) {
       // Also checking the number of players, so node doesn't crash when
       // no one is in this custom room.
       if (game.state === 'awaiting players' && (!game.players.length ||
-        game.players[0].socket.id !== socket.id) && game.players.length < game.playerMaxLimit) {
+        game.players[0].socket.id !== socket.id)) {
         // Put player into the requested game
         console.log('Allowing player to join',requestedGameId);
         allPlayers[socket.id] = true;
