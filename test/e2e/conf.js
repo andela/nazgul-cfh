@@ -1,6 +1,7 @@
 // An example configuration file.
 exports.config = {
   directConnect: true,
+  seleniumAddress: 'http://localhost:4444/wd/hub',
 
   // Capabilities to be passed to the webdriver instance.
   capabilities: {
@@ -15,9 +16,9 @@ exports.config = {
   specs: [
     'landing.spec.js',
     'signin.spec.js',
-    'signup.spec.js'
+    'signup.spec.js',
+    'game.spec.js'
   ],
-
   // Options to be passed to Jasmine.
   jasmineNodeOpts: {
     defaultTimeoutInterval: 30000

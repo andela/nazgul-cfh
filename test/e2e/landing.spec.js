@@ -1,4 +1,6 @@
 /* global browser, expect, by, element */
+
+
 describe('Nazgul front-end UI', () => {
   // Initialize required variables
   const root = 'http://localhost:3001/#!/';

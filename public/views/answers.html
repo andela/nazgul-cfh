@@ -25,6 +25,23 @@
     </div>
   </span>
   </div>
+  <div  class="card-panel dark-pink" id="czar-blank-container" ng-show="isCzar() && game.table.length===0 && game.state !== 'game dissolved' && game.state !== 'awaiting players'">
+    <div id="czar-blank-inner" class="white-text fsize center"><strong>
+    You are the Card Czar.</strong><br>
+    <small id="smaller-text center white-text" class="pad20">Players are choosing their answers. Prepare to select a winner.</small>
+  </div>
+  <div id='charity-fact-container' class="white center pad20 marg20">
+    <div id='charity-fact-tagline' class="dark-pink-text padLB">Did you know?</div>
+
+    <div id='charity-fact' class="dark-pink-text">
+      {{ makeAWishFact }}
+    </div>
+
+    <div id='charity-logo-container'>
+      <img src='/img/make-a-wish-logo.png'/>
+    </div>
+  </div>
+</div>
 
   <div id="info-container" class="card-panel dark-pink" ng-show="game.state === 'awaiting players'">
     <div class="card-panel minHeight dark-pink">
@@ -48,7 +65,7 @@
         </li>
       </ol>
     </div>
-  </div>
+  </div></div>
 
   <div id="game-end-container" class="card-panel dark-pink" ng-show="game.state === 'game ended' || game.state ==='game dissolved'">
     <div id="inner-info-exit" ng-show="game.state === 'game ended' || game.state ==='game dissolved'">
@@ -79,21 +96,4 @@
       <script type="text/javascript" class="center" src="https://www.crowdrise.com/widgets/donate/fundraiser/121142/?callback=userDonationCb"></script>
     </div>
   </div>
-
-  <div  class="card-panel dark-pink" id="czar-blank-container" ng-show="isCzar() && game.table.length===0 && game.state !== 'game dissolved' && game.state !== 'awaiting players'">
-      <div id="czar-blank-inner" class="white-text fsize center"><strong>
-      You are the Card Czar.</strong><br>
-      <small id="smaller-text center white-text" class="pad20">Players are choosing their answers. Prepare to select a winner.</small>
-    </div>
-    <div id='charity-fact-container' class="white center pad20 marg20">
-      <div id='charity-fact-tagline' class="dark-pink-text padLB">Did you know?</div>
-
-      <div id='charity-fact' class="dark-pink-text">
-        {{ makeAWishFact }}
-      </div>
-
-      <div id='charity-logo-container'>
-        <img src='/img/make-a-wish-logo.png'/>
-      </div>
-    </div>
-  </div></div>
+</div>
