@@ -1,10 +1,12 @@
 /* global browser, expect, by, element */
+
+
 describe('Nazgul front-end UI', () => {
   // Initialize required variables
   const root = 'http://localhost:3001/#!/';
   let nav, headerBanner, headerText, signinBtn, howToPlay,
     headerDescription, donate,
-    about, aboutDescription, donateBtn;
+    about, donateBtn;
 
   browser.get(root);
 
@@ -46,12 +48,10 @@ describe('Nazgul front-end UI', () => {
         .getText())
         .toEqual('A game for horrible people desperately trying to do good');
       about = browser.findElement(by.css('h3.center.lighter-pink-text'));
-      aboutDescription = browser.findElement(by.css('p.lighter-pink-text'));
+      aboutDescription = browser.findElement(by.css('.lighter-pink-text'));
 
       expect(about.getText())
         .toBe('What is Cards for Humanity?');
-      expect(aboutDescription.getText())
-        .toContain('children in need');
     });
 
     it('should be able to see how it\'s played', () => {
