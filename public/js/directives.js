@@ -79,5 +79,10 @@ angular.module('mean.directives', [])
         scope.showOptions = true;
       }
     }
+  }))
+  .directive('chat', () => ({
+    restrict: 'EA',
+    templateUrl: '/views/chat-box.html',
+    link: () => {}
   }));
 
