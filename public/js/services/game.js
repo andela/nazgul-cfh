@@ -1,5 +1,5 @@
 angular.module('mean.system')
-  .factory('game', ['socket', '$timeout', '$rootScope', function (socket, $timeout, $rootScope) {
+  .factory('game', ['socket', '$timeout', '$http', '$rootScope', function (socket, $timeout, $http, $rootScope) {
     const game = {
       id: null, // This player's socket ID, so we know who this player is
       gameID: null,
@@ -27,9 +27,9 @@ angular.module('mean.system')
   var self = this;
   var joinOverrideTimeout = 0;
 
-  socket.on('maxPlayersReached', () => {
-    $rootScope.$emit('maxPlayersReached');
-  });
+    socket.on('maxPlayersReached', () => {
+      $rootScope.$emit('maxPlayersReached');
+    });
 
   var addToNotificationQueue = function(msg) {
     notificationQueue.push(msg);
@@ -75,6 +75,28 @@ angular.module('mean.system')
     // That way, we don't trigger the $scope.$watch too often
     if (game.gameID !== data.gameID) {
       game.gameID = data.gameID;
+    }
+
+
+    // check if game has ended and then
+    // send to the url
+    if (data.state === 'game ended') {
+      const gameLog = {};
+      gameLog.gameId = data.gameID,
+      gameLog.players = data.players,
+      gameLog.rounds = data.round,
+      gameLog.gameWinner = data.players[data.gameWinner];
+
+      $http({
+        method: 'POST',
+        url: `/api/games/${game.gameID}/start`,
+        data: {
+          gameLog,
+          headers: {
+            'x-access-token': localStorage.getItem('userData')
+          },
+        }
+      }).then(null, null);
     }
 
     game.joinOverride = false;

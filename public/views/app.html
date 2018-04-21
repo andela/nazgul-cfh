@@ -1,5 +1,6 @@
  <script>
   $('.sidenav').sidenav();
+  $('.modal').modal();
 </script>
 <div id="app-container" ng-controller="GameController">
   <div id="app-container" ng-controller="GameController">
@@ -48,7 +49,20 @@
                     </div>
                   </div>
                   <div>
-                    <div id="myModal" class="modal animated rollIn modal-fixed-footer" style="z-index: 1000; margin-top: -220px; height: 240px; max-height: 240px;">
+                    <!-- Modal Structure for prompting user if they wanted to start game -->
+                      <div id="promptModal" class="modal" >
+                        <div class="modal-content">
+                          <h4>Would you like to start the game?</h4>
+                          <p></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="modal-action waves-effect waves-green btn dark-pink margT10" ng-click="newGameModal()">Yes!, START GAME</button>
+                      
+                            <button type="button" ng-click="newGameModal1()" class="modal-action waves-effect waves-green btn dark-pink  margT10" >No, Thanks</button>
+                        </div>
+                      </div><!-- END Modal Structure  -->
+
+                    <div id="myModal" class="modal animated rollIn modal-fixed-footer" style="z-index: 1000; margin-top: 0px; height: 240px; max-height: 240px;">
                       <div>
                         <!-- Modal content-->
                         <div class="modal-content animated rollIn" style="height:280px">
@@ -87,8 +101,8 @@
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div id="game-already-started-modal" class="modal animated rollIn" style="z-index: 1000; margin-top: 0px; height: 280px">
+                    </div>                
+                     <div id="game-already-started-modal" class="modal animated rollIn" style="z-index: 1000; margin-top: 0px; height: 300px">
                       <div class="modal-dialog modal-sm">     
                         <!-- Modal content-->
                         <div class="modal-content animated rollIn" style="background-color: white;">
@@ -103,7 +117,7 @@
                           </div>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn waves-effect waves-green" data-dismiss="modal" style="background-color: #540032; font-family: Allerta Stencil" ng-click="abandonGame()">no, THANKS</button>
+                          <button type="button" class="btn waves-effect" data-dismiss="modal" style="background-color: #540032; font-family: Allerta Stencil" ng-click="abandonGame()">no, THANKS</button>
                         </div>
                       </div>
                     </div>

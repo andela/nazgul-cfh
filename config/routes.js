@@ -1,3 +1,5 @@
+import Game from '../app/controllers/game';
+
 const users = require('../app/controllers/users');
 const answers = require('../app/controllers/answers');
 const questions = require('../app/controllers/questions');
@@ -16,6 +18,8 @@ module.exports = (app, passport) => {
   app.post('/api/auth/signup', users.signUp);
   app.post('/api/auth/login', users.login);
   app.post('/users/avatars', users.avatars);
+  app.post('/api/invite/users', users.verifyToken, users.inviteUserByEmail);
+  app.post('/api/search/users', users.verifyToken, users.searchFriend);
 
   // Donation Routes
   app.post('/donations', users.addDonation);
@@ -90,4 +94,7 @@ module.exports = (app, passport) => {
   // Home route
   app.get('/play', index.play);
   app.get('/', index.render);
+
+  // Game history route
+  app.post('/api/games/:id/start', Game.gameHistory);
 };
