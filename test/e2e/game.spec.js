@@ -1,9 +1,8 @@
-/* global browser, expect, element, by, fdescribe, before, $, xdescribe */
-
-// const appRoot = 'http://localhost:3001/#!/app';
+/* global browser, expect, element, by, before, */
 
 let timerCount, timerdesc, questSect, startGameBtn, endGameInfo,
-  showAnsCards, showHowToPlay, showCzar, showCharityWidget, gameEndInfo, showScoreboard, showCurrentPlayer, showCzarMarker;
+  showAnsCards, showHowToPlay, showCzar, showCharityWidget,
+  gameEndInfo, showScoreboard, showCurrentPlayer, showCzarMarker;
 
 describe('Gaming Screen Page', () => {
   beforeEach(() => {
@@ -86,9 +85,9 @@ describe('Gaming Screen Page', () => {
     });
   });
 
-  it('should show "How To Play" section"', () => {
+  it('should show "" section"', () => {
     browser.sleep(10).then(() => {
-      gameEndInfo = element(by.id('info-container'));
+      gameEndInfo = element(by.id('game-end-container'));
       expect(browser.isElementPresent(gameEndInfo))
         .toBe(true);
     });

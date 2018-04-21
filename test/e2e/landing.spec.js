@@ -48,8 +48,6 @@ describe('Nazgul front-end UI', () => {
         .getText())
         .toEqual('A game for horrible people desperately trying to do good');
       about = browser.findElement(by.css('h3.center.lighter-pink-text'));
-      aboutDescription = browser.findElement(by.css('.lighter-pink-text'));
-
       expect(about.getText())
         .toBe('What is Cards for Humanity?');
     });
