@@ -9,7 +9,7 @@ angular.module('mean.system')
     var makeAWishFacts = MakeAWishFactsService.getMakeAWishFacts();
     $scope.makeAWishFact = makeAWishFacts.pop();
 
-    $scope.pickCard = function(card) {
+    $scope.pickCard = function (card) {
       if (!$scope.hasPickedCards) {
         if ($scope.pickedCards.indexOf(card.id) < 0) {
           $scope.pickedCards.push(card.id);

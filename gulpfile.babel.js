@@ -58,7 +58,10 @@ gulp.task('dist-dep', [
   'mv-jquery',
   'mv-underscore',
   'mv-angularUtils',
-  'mv-angular-bootstrap'
+  'mv-angular-bootstrap',
+  'emojioneCSS',
+  'emojioneJS',
+  'emojionearea'
 ]);
 
 gulp.task('test', () => {
@@ -93,6 +96,21 @@ gulp.task('mv-angularUtils', () =>
     'bower_components/angular-ui-utils/modules/route/route.js',
     './dist/public/lib/angular-ui-utils/modules'
   ));
+
+gulp.task('emojioneCSS', () => {
+  gulp.src('bower_components/emojione/extras/css/emojione.css')
+    .pipe(gulp.dest('./dist/public/lib/emojionearea'));
+});
+
+gulp.task('emojioneJS', () => {
+  gulp.src('bower_components/emojione/lib/js/emojione.js')
+    .pipe(gulp.dest('./dist/public/lib/emojionearea'));
+});
+
+gulp.task('emojionearea', () => {
+  gulp.src('bower_components/emojionearea/dist/*')
+    .pipe(gulp.dest('./dist/public/lib/emojionearea'));
+});
 
 gulp.task('mv-angular-bootstrap', () =>
   move(

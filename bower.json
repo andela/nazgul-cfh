@@ -6,7 +6,8 @@
     "angular-bootstrap": "~0.4.0",
     "angular-ui-utils": "0.0.4",
     "jquery": "~3.3.1",
-    "underscore": "~1.5.2"
+    "underscore": "~1.5.2",
+    "emojionearea": "^3.0.0"
   },
   "exportsOverride": {
     "bootstrap": {
@@ -18,5 +19,4 @@
       "modules": "modules/route/route.js"
     }
   }
-  
 }
