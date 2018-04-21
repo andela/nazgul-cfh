@@ -202,7 +202,7 @@ const inviteUserByEmail = (req, res) => {
     from: 'nazgul-cfh',
     to: req.body.emailOfUserToBeInvited,
     subject: 'Invite to nazgul cfh game',
-    text: `Hey!!,You have been invited to join this current 
+    text: `Hey!!,You have been invited to join this current
     game \n ${req.body.link} \n please login before using the link,
     login here ${process.env.LOGIN_URL}`,
   };
