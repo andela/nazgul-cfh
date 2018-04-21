@@ -1,6 +1,4 @@
-/* global browser, expect, element, by, fdescribe, before, $, xdescribe */
-
-// const appRoot = 'http://localhost:3001/#!/app';
+/* global browser, expect, element, by, before, */
 
 let timerCount, timerdesc, questSect, startGameBtn, endGameInfo,
   showAnsCards, showHowToPlay, showCzar, showCharityWidget, gameEndInfo, showScoreboard, showCurrentPlayer, showCzarMarker;
