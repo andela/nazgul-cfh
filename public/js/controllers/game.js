@@ -1,4 +1,5 @@
-/* eslint-disable object-curly-newline, no-undef, array-callback-return */
+/* eslint-disable object-curly-newline, no-console,
+ no-undef, array-callback-return, func-names */
 angular.module('mean.system')
   .controller(
     'GameController',
@@ -11,7 +12,7 @@ angular.module('mean.system')
         $scope.modalShown = false;
         $scope.game = game;
         $scope.pickedCards = [];
-        var makeAWishFacts = MakeAWishFactsService.getMakeAWishFacts();
+        let makeAWishFacts = MakeAWishFactsService.getMakeAWishFacts();
         $scope.makeAWishFact = makeAWishFacts.pop();
 
         $scope.pickCard = function (card) {
@@ -34,11 +35,11 @@ angular.module('mean.system')
         };
 
         $scope.pointerCursorStyle = function () {
-          if ($scope.isCzar() && $scope.game.state === 'waiting for czar to decide') {
+          if ($scope.isCzar()
+            && $scope.game.state === 'waiting for czar to decide') {
             return { cursor: 'pointer' };
-          } else {
-            return {};
           }
+          return {};
         };
 
         $scope.sendPickedCards = function () {
@@ -49,41 +50,33 @@ angular.module('mean.system')
         $scope.cardIsFirstSelected = function (card) {
           if (game.curQuestion.numAnswers > 1) {
             return card === $scope.pickedCards[0];
-          } else {
-            return false;
           }
+          return false;
         };
 
         $scope.cardIsSecondSelected = function (card) {
           if (game.curQuestion.numAnswers > 1) {
             return card === $scope.pickedCards[1];
-          } else {
-            return false;
           }
+          return false;
         };
 
         $scope.firstAnswer = function ($index) {
-          if ($index % 2 === 0 && game.curQuestion.numAnswers > 1) {
-            return true;
-          } else {
-            return false;
-          }
+          return $index % 2 === 0 && game.curQuestion.numAnswers > 1;
         };
 
         $scope.secondAnswer = function ($index) {
-          if ($index % 2 === 1 && game.curQuestion.numAnswers > 1) {
-            return true;
-          } else {
-            return false;
-          }
+          return $index % 2 === 1 && game.curQuestion.numAnswers > 1;
         };
 
         $scope.showFirst = function (card) {
-          return game.curQuestion.numAnswers > 1 && $scope.pickedCards[0] === card.id;
+          return game.curQuestion.numAnswers > 1
+            && $scope.pickedCards[0] === card.id;
         };
 
         $scope.showSecond = function (card) {
-          return game.curQuestion.numAnswers > 1 && $scope.pickedCards[1] === card.id;
+          return game.curQuestion.numAnswers > 1
+            && $scope.pickedCards[1] === card.id;
         };
 
         $scope.isCzar = function () {
@@ -95,7 +88,8 @@ angular.module('mean.system')
         };
 
         $scope.isCustomGame = function () {
-          return !(/^\d+$/).test(game.gameID) && game.state === 'awaiting players';
+          return !(/^\d+$/).test(game.gameID)
+            && game.state === 'awaiting players';
         };
 
         $scope.isPremium = function ($index) {
@@ -109,9 +103,8 @@ angular.module('mean.system')
         $scope.winningColor = function ($index) {
           if (game.winningCardPlayer !== -1 && $index === game.winningCard) {
             return $scope.colors[game.players[game.winningCardPlayer].color];
-          } else {
-            return '#f9f9f9';
           }
+          return '#f9f9f9';
         };
 
         $scope.pickWinning = function (winningSet) {
@@ -136,7 +129,7 @@ angular.module('mean.system')
 
         // Catches changes to round to update when no players pick card
         // (because game.state remains the same)
-        $scope.$watch('game.round', function () {
+        $scope.$watch('game.round', () => {
           $scope.hasPickedCards = false;
           $scope.showTable = false;
           $scope.winningCardPicked = false;
@@ -148,32 +141,36 @@ angular.module('mean.system')
         });
 
         // In case player doesn't pick a card in time, show the table
-        $scope.$watch('game.state', function () {
-          if (game.state === 'waiting for czar to decide' && $scope.showTable === false) {
+        $scope.$watch('game.state', () => {
+          if (game.state === 'waiting for czar to decide'
+            && $scope.showTable === false) {
             $scope.showTable = true;
           }
         });
 
-        $scope.$watch('game.gameID', function () {
+        $scope.$watch('game.gameID', () => {
           if (game.gameID && game.state === 'awaiting players') {
             if (!$scope.isCustomGame() && $location.search().game) {
               // If the player didn't successfully enter the request room,
-              // reset the URL so they don't think they're in the requested room.
+              // reset the URL so they don't think
+              // they're in the requested room.
               $location.search({});
             } else if ($scope.isCustomGame() && !$location.search().game) {
-              // Once the game ID is set, update the URL if this is a game with friends,
+              // Once the game ID is set, update
+              // the URL if this is a game with friends,
               // where the link is meant to be shared.
-              $location.search({game: game.gameID});
+              $location.search({ game: game.gameID });
               if (!$scope.modalShown) {
-                setTimeout(function () {
-                  var link = document.URL;
-                  var txt = 'Give the following link to your friends so they can join your game: ';
+                setTimeout(() => {
+                  const link = document.URL;
+                  const txt = 'Give the following link to your' +
+                    ' friends so they can join your game: ';
                   $('#lobby-how-to-play').text(txt);
                   $('#oh-el').css({
                     'text-align': 'center',
                     'font-size': '22px',
-                    'background': 'white',
-                    'color': 'black'
+                    background: 'white',
+                    color: 'black'
                   }).text(link);
                 }, 200);
                 $scope.modalShown = true;
@@ -182,7 +179,8 @@ angular.module('mean.system')
           }
         });
 
-        if ($location.search().game && !(/^\d+$/).test($location.search().game)) {
+        if ($location.search().game
+          && !(/^\d+$/).test($location.search().game)) {
           console.log('joining custom game');
           game.joinGame('joinGame', $location.search().game);
         } else if ($location.search().custom) {
