@@ -35,20 +35,18 @@ gulp.task('nodemon', () =>
 
 gulp.task('build', ['babel', 'sass', 'dist-dep', 'dist-base']);
 gulp.task('babel', () => {
-  gulp
-    .src([
-      './**/*.js',
-      '!dist/**',
-      '!node_modules/**',
-      '!gulpfile.babel.js',
-      '!bower_components/**/*'
-    ])
+  gulp.src([
+    './**/*.js',
+    '!dist/**',
+    '!node_modules/**',
+    '!gulpfile.babel.js',
+    '!bower_components/**/*'
+  ])
     .pipe(babel())
     .pipe(gulp.dest('./dist'));
 });
 gulp.task('sass', () => {
-  gulp
-    .src('public/css/common.scss')
+  gulp.src('public/css/common.scss')
     .pipe(sass())
     .pipe(gulp.dest('public/css/'));
 });
@@ -65,8 +63,7 @@ gulp.task('dist-dep', [
 ]);
 
 gulp.task('test', () => {
-  gulp
-    .src(['test/**/*.js'])
+  gulp.src(['test/**/*.js'])
     .pipe(mocha({
       reporter: 'spec',
       exit: true,
@@ -126,8 +123,7 @@ gulp.task('mv-public', () =>
   move(['public/**/*', '!public/js/**'], './dist/public'));
 
 gulp.task('test', () => {
-  gulp
-    .src(['test/**/*.js'])
+  gulp.src(['test/**/*.js'])
     .pipe(mocha({
       reporter: 'spec',
       exit: true,

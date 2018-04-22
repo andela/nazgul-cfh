@@ -1,4 +1,9 @@
-angular.module('mean', ['ngCookies', 'ngResource', 'ngRoute', 'ui.bootstrap', 'ui.route', 'mean.system', 'mean.directives', 'firebase'])
+/* eslint-disable object-curly-newline, no-undef, array-callback-return */
+
+angular.module('mean',
+  ['ngCookies', 'ngResource', 'ngRoute', 'ui.bootstrap',
+    'ui.route', 'mean.system', 'mean.directives', 'firebase']
+)
   .config(['$routeProvider',
       function($routeProvider) {
           $routeProvider.
