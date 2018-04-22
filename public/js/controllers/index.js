@@ -77,4 +77,16 @@ angular.module('mean.system')
       $cookies.userData = '';
       $window.location = '/';
     };
+
+    $scope.custom = false;
+
+    $scope.openModal = (custom) => {
+      $scope.custom = custom;
+      $('#region').modal('open');
+    };
+
+    $scope.next = () => {
+      const regionId = $window.document.getElementById('regionId').value;
+      $window.location = `/play?custom=${$scope.custom}&region=${regionId}`;
+    };
   }]);

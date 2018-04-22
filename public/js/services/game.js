@@ -1,5 +1,5 @@
 angular.module('mean.system')
-  .factory('game', ['socket', '$timeout', '$http', '$rootScope', function (socket, $timeout, $http, $rootScope) {
+  .factory('game', ['socket', '$timeout', '$window', '$http', '$rootScope', function (socket, $timeout, $window, $http, $rootScope) {
     const game = {
       id: null, // This player's socket ID, so we know who this player is
       gameID: null,
@@ -206,12 +206,22 @@ angular.module('mean.system')
     addToNotificationQueue(data.notification);
   });
 
-  game.joinGame = function(mode,room,createPrivate) {
+  // game.joinGame = function(mode,room,createPrivate) {
+  //   mode = mode || 'joinGame';
+  //   room = room || '';
+  //   createPrivate = createPrivate || false;
+  //   var userID = !!window.user ? user._id : 'unauthenticated';
+  //   socket.emit(mode,{userID: userID, room: room, createPrivate: createPrivate});
+  // };
+  game.joinGame = function(region, mode, room, createPrivate) {
+    game.region = region;
     mode = mode || 'joinGame';
     room = room || '';
     createPrivate = createPrivate || false;
-    var userID = !!window.user ? user._id : 'unauthenticated';
-    socket.emit(mode,{userID: userID, room: room, createPrivate: createPrivate});
+    let token = 'unauthenticated';
+    var userData = JSON.parse($window.localStorage.getItem('userData'))
+    if (userData) token = userData.token;
+    socket.emit(mode,{token: token, region: region, room: room, createPrivate: createPrivate});
   };
 
   game.startGame = function() {

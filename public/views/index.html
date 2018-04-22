@@ -7,6 +7,8 @@
             .remove();
         }
       });
+    $('.modal').modal();
+	  $('select').material_select();
   </script>
   <nav class="lighter-pink wow fadeIn" role="navigation">
     <div class="nav-wrapper container">
@@ -70,10 +72,25 @@
             </a>
             <a id="signinBtn" href="#!/signin" class="btn-large waves-effect dark-pink white-text hvr-pulse lighten-1">Sign in</a>
           </div>
-          <div class="col s12 center wow fadeInRight marg20" ng-hide="showOptions">
-            <a href="/play?custom" class="btn-large waves-effect dark-pink white-text marg25 hvr-pulse lighten-1">Play Game with Friends</a>
-            <a href="/play" class="btn-large waves-effect dark-pink white-text hvr-pulse lighten-1">Play Game with Strangers
-            </a>
+          <div class="col s12 center wow fadeInRight marg20" ng-hide="showOptions" ng-controller="IndexController">
+            <a ng-click="openModal(true)" class="btn-large waves-effect dark-pink white-text marg25 hvr-pulse lighten-1">Play Game with Friends</a>
+            <a ng-click="openModal(false)" class="btn-large waves-effect dark-pink white-text hvr-pulse lighten-1">Play Game with Strangers</a>
+            <div id="region" class="modal">
+              <div class="modal-content">
+                <h4>Choose your region</h4>
+                <div class="row">
+                  <div class="col offset-s3 s6">
+                    <select id="regionId">
+                        <option name="africa" value="africa">Africa</option>
+                        <option name="asia" value="asia">Asia</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <a ng-click="next()" class="modal-action modal-close waves-effect waves-green btn-flat">Next</a>
+              </div>
+            </div>
           </div>
         </div>
         <br>

@@ -17,7 +17,8 @@ var guestNames = [
   "The Joker"
 ];
 
-function Game(gameID, io) {
+function Game(gameID, io, region) {
+  this.region = region;
   this.io = io;
   this.gameID = gameID;
   this.players = []; // Contains array of player models
@@ -49,6 +50,17 @@ function Game(gameID, io) {
   this.judgingTimeout = 0;
   this.resultsTimeout = 0;
   this.guestNames = guestNames.slice();
+  this.getQuestions = function(cb) {
+    return questions.allQuestionsForGame(region, (questions) => {
+      cb(null, questions)
+    });
+  };
+
+  this.getAnswers = function(cb) {
+    answers.allAnswersForGame(region, (answers) => {
+      cb(null, answers);
+    });
+  };
 }
 
 Game.prototype.payload = function() {
@@ -231,18 +243,6 @@ Game.prototype.stateEndGame = function(winner) {
 Game.prototype.stateDissolveGame = function() {
   this.state = "game dissolved";
   this.sendUpdate();
-};
-
-Game.prototype.getQuestions = function(cb) {
-  questions.allQuestionsForGame(function(data){
-    cb(null,data);
-  });
-};
-
-Game.prototype.getAnswers = function(cb) {
-  answers.allAnswersForGame(function(data){
-    cb(null,data);
-  });
 };
 
 Game.prototype.shuffleCards = function(cards) {

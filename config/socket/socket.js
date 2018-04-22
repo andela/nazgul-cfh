@@ -3,6 +3,8 @@ var Player = require('./player');
 require("console-stamp")(console, "m/dd HH:MM:ss");
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 var avatars = require(__dirname + '/../../app/controllers/avatars.js').all();
 // Valid characters to use to generate random private game IDs
@@ -77,10 +79,10 @@ module.exports = function(io) {
   var joinGame = function(socket,data) {
     var player = new Player(socket);
     data = data || {};
-    player.userID = data.userID || 'unauthenticated';
-    if (data.userID !== 'unauthenticated') {
+    if (data.token !== 'unauthenticated') {
+      var payload = jwt.decode(data.token, process.env.SECRET);
       User.findOne({
-        _id: data.userID
+        _id: payload._id
       }).exec(function(err, user) {
         if (err) {
           console.log('err',err);
@@ -91,22 +93,22 @@ module.exports = function(io) {
           player.username = 'Guest';
           player.avatar = avatars[Math.floor(Math.random()*4)+12];
         } else {
-          player.username = user.name;
+          player.username = user.username || user.name
           player.redirectToNewGame = false;
           player.premium = user.premium || 0;
           player.avatar = user.avatar || avatars[Math.floor(Math.random()*4)+12];
         }
-        getGame(player,socket,data.room,data.createPrivate);
+        getGame(player,socket,data.region,data.room,data.createPrivate);
       });
     } else {
       // If the user isn't authenticated (guest)
       player.username = 'Guest';
       player.avatar = avatars[Math.floor(Math.random()*4)+12];
-      getGame(player,socket,data.room,data.createPrivate);
+      getGame(player,socket,data.region,data.room,data.createPrivate);
     }
   };
 
-  var getGame = function(player,socket,requestedGameId,createPrivate) {
+  var getGame = function(player,socket,region,requestedGameId,createPrivate) {
     requestedGameId = requestedGameId || '';
     createPrivate = createPrivate || false;
     console.log(socket.id,'is requesting room',requestedGameId);
@@ -141,19 +143,28 @@ module.exports = function(io) {
       // Put players into the general queue
       console.log('Redirecting player',socket.id,'to general queue');
       if (createPrivate) {
-        createGameWithFriends(player,socket);
+        createGameWithFriends(player,socket,region);
       } else {
-        fireGame(player,socket);
+        fireGame(player,socket,region);
       }
     }
   };
 
-  var fireGame = function(player,socket) {
-    var game;
-    if (gamesNeedingPlayers.length <= 0) {
+  var fireGame = function(player,socket,region) {
+    let game = undefined;
+    let index = 0;
+    gamesNeedingPlayers.map((thisGame, thisGameIndex) => {
+      if (thisGame.region === region) {
+        if(!game) {
+          game = thisGame;
+          index = thisGameIndex;
+        }
+      }
+    })
+    if (!game) {
       gameID += 1;
       var gameIDStr = gameID.toString();
-      game = new Game(gameIDStr, io);
+      game = new Game(gameIDStr, io, region);
       allPlayers[socket.id] = true;
       game.players.push(player);
       allGames[gameID] = game;
@@ -165,7 +176,6 @@ module.exports = function(io) {
       game.assignGuestNames();
       game.sendUpdate();
     } else {
-      game = gamesNeedingPlayers[0];
       allPlayers[socket.id] = true;
       game.players.push(player);
       console.log(socket.id,'has joined game',game.gameID);
@@ -176,13 +186,13 @@ module.exports = function(io) {
       game.sendUpdate();
       game.sendNotification(player.username+' has joined the game!');
       if (game.players.length >= game.playerMaxLimit) {
-        gamesNeedingPlayers.shift();
+        gamesNeedingPlayers.splice(index, 1);
         game.prepareGame();
       }
     }
   };
 
-  var createGameWithFriends = function(player,socket) {
+  var createGameWithFriends = function(player,socket, region) {
     var isUniqueRoom = false;
     var uniqueRoom = '';
     // Generate a random 6-character game ID
@@ -196,7 +206,7 @@ module.exports = function(io) {
       }
     }
     console.log(socket.id,'has created unique game',uniqueRoom);
-    var game = new Game(uniqueRoom,io);
+    var game = new Game(uniqueRoom,io, region);
     allPlayers[socket.id] = true;
     game.players.push(player);
     allGames[uniqueRoom] = game;
