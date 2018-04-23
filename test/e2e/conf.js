@@ -1,4 +1,5 @@
 /* global */
+/* global browser by */
 exports.config = {
   directConnect: true,
   seleniumAddress: 'http://localhost:4444/wd/hub',
