@@ -5,10 +5,10 @@ var answers = require(__dirname + '/../../app/controllers/answers.js');
 var guestNames = [
   'Lanky Idrees',
   'Shitty Faith',
-  "Freaking Felix",
+  'Freaking Felix',
   'Weird Efosa',
   'Tiny Taiwo',
-  "Nazgul",
+  'Nazgul',
   'Ringwraithes',
   'Raging Mark',
   'Buhari Out',
