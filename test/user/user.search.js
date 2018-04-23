@@ -4,7 +4,7 @@ const { expect } = require('chai');
 
 describe('POST /api/search/users', () => {
   const searchQuery = {
-    emailOrUsernameOfFriend: 'efosaokpugie@gmail.com',
+    emailOrUsernameOfFriend: 'efosaokpugie@gmail.com'
   };
   it('performs a retrieval if email is passed', (done) => {
     request(app)
@@ -12,7 +12,7 @@ describe('POST /api/search/users', () => {
       .send(searchQuery)
       .expect(200, done)
       .expect((res) => {
-        expect(res.body.user.email).to.equal('efosaokpugie@gmail.com')
+        expect(res.body.user.email).to.equal('efosaokpugie@gmail.com');
       });
   });
   it('performs a retrieval if username is sent', (done) => {
@@ -22,7 +22,7 @@ describe('POST /api/search/users', () => {
       .send(searchQuery)
       .expect(200, done)
       .expect((res) => {
-        expect(res.body.user.email).to.equal('efosaokpugie@gmail.com')
+        expect(res.body.user.email).to.equal('efosaokpugie@gmail.com');
       });
   });
 });

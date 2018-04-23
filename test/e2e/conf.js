@@ -1,4 +1,3 @@
-
 // An example configuration file.
 exports.config = {
   directConnect: true,
@@ -18,7 +17,7 @@ exports.config = {
     'landing.spec.js',
     'signin.spec.js',
     'signup.spec.js',
-    'game.spec.js',
+    'game.spec.js'
   ],
   // Options to be passed to Jasmine.
   jasmineNodeOpts: {
