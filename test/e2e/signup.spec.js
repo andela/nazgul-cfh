@@ -1,4 +1,4 @@
-/* global browser, expect, by, afterAll */
+/* global browser, expect, by */
 describe('Nazgul front-end UI', () => {
   // Initialize required variables
   let authForm, socialFacebook, socialTwitter, socialGoogle, socialGithub,
@@ -6,10 +6,6 @@ describe('Nazgul front-end UI', () => {
 
   beforeEach(() => {
     browser.waitForAngularEnabled(false);
-  });
-
-  afterAll(() => {
-    browser.get('http://localhost:3001/#!/app');
   });
 
   describe('sign up page', () => {

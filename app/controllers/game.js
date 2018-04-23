@@ -23,7 +23,6 @@ class Game {
         errors: 'No data supplied'
       });
     }
-
     const GameLog = new GameHistory({
       gameID: gameLog.gameId,
       gamePlayers: gameLog.players,
