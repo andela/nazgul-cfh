@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable import/extensions, import/no-unresolved */
 import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
