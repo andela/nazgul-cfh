@@ -183,7 +183,7 @@ const searchFriend = (req, res) => {
         if (!friend) {
           return res.status(200).send({ message: 'No friends found' });
         }
-        if (friend._id == req.decoded._id) {
+        if (friend._id == req.decoded.payload._id) {
           return res.status(200)
             .send({ message: 'You cannot search for yourself' });
         }
@@ -219,7 +219,7 @@ const inviteUserByEmail = (req, res) => {
 
   transporter.sendMail(mailOptions, (err, info) => {
     if (err) {
-      return res.status(500).send({ error: err });
+      return res.status(500).send({ error: 'an error occured' });
     }
     return res.status(200).send({
       message: 'invite successfully sent',
