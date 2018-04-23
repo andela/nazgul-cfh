@@ -86,7 +86,7 @@ describe('Gaming Screen Page', () => {
     });
   });
 
-  it('should show "How To Play" section"', () => {
+  it('should show "" section"', () => {
     browser.sleep(10).then(() => {
       gameEndInfo = element(by.id('info-container'));
       expect(browser.isElementPresent(gameEndInfo)).toBe(true);
