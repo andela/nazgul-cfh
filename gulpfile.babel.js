@@ -59,7 +59,7 @@ gulp.task('dist-dep', [
   'mv-underscore',
   'mv-angularUtils',
   'mv-angular-bootstrap',
-  'mv-hopscotch',
+  'mv-hopscotch'
 ]);
 
 gulp.task('test', () => {
@@ -91,7 +91,6 @@ gulp.task('mv-underscore', () =>
 
 gulp.task('mv-hopscotch', () =>
   move('bower_components/hopscotch/**/*', './dist/public/lib/hopscotch'));
-
 gulp.task('mv-angularUtils', () =>
   move(
     'bower_components/angular-ui-utils/modules/route/route.js',

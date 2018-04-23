@@ -6,11 +6,11 @@ describe('Protractor test for onboarding user', () => {
   it('Bubble start when in gaming page', () => {
     browser.waitForAngularEnabled(false);
     browser.get('http://localhost:3000/#!/app');
-    browser.sleep(1000).then(() => {
+    browser.sleep(3000).then(() => {
       element(by.css('.hopscotch-content'))
         .getText()
         .then((text) => {
-          expect(text).toEqual('Card for Humanity is a an online version of popular card game, Card Against Humanity. That gives you the opportunity to donate to children in need.');
+          expect(text).toEqual('Welcome to Card for Humanity Game Screen!\nHere is a quick tour to get you started.');
         });
     });
   });
@@ -22,7 +22,7 @@ describe('Protractor test for onboarding user', () => {
       element(by.css('.hopscotch-content'))
         .getText()
         .then((text) => {
-          expect(text).toEqual('Each player begin with 10 white answer cards Everyone else answers the black question card by clicking on the answer.');
+          expect(text).toEqual('This is the user’s pane. It contains the player’s name and score for this gaming session.');
         });
     });
 
@@ -32,7 +32,7 @@ describe('Protractor test for onboarding user', () => {
       element(by.css('.hopscotch-content'))
         .getText()
         .then((text) => {
-          expect(text).toEqual('The players in the game and their scores appear here');
+          expect(text).toEqual('You can click on Start Game here when more than two players have joined the game.');
         });
     });
   });
