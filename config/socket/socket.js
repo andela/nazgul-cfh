@@ -51,7 +51,6 @@ module.exports = function(io) {
     socket.on('startGame', function() {
       if (allGames[socket.gameID]) {
         var thisGame = allGames[socket.gameID];
-        console.log('comparing',thisGame.players[0].socket.id,'with',socket.id);
         if (thisGame.players.length >= thisGame.playerMinLimit) {
           // Remove this game from gamesNeedingPlayers so new players can't join it.
           gamesNeedingPlayers.forEach(function(game,index) {
@@ -93,6 +92,7 @@ module.exports = function(io) {
           player.avatar = avatars[Math.floor(Math.random()*4)+12];
         } else {
           player.username = user.name;
+          player.redirectToNewGame = false;
           player.premium = user.premium || 0;
           player.avatar = user.avatar || avatars[Math.floor(Math.random()*4)+12];
         }
@@ -130,12 +130,12 @@ module.exports = function(io) {
         game.assignGuestNames();
         game.sendUpdate();
         game.sendNotification(player.username+' has joined the game!');
-        if (game.players.length >= game.playerMaxLimit) {
+        if (game.players.length === game.playerMaxLimit) {
           gamesNeedingPlayers.shift();
           game.prepareGame();
         }
       } else {
-        // TODO: Send an error message back to this user saying the game has already started
+        socket.emit('maxPlayersReached');
       }
     } else {
       // Put players into the general queue
@@ -146,7 +146,6 @@ module.exports = function(io) {
         fireGame(player,socket);
       }
     }
-
   };
 
   var fireGame = function(player,socket) {
@@ -228,5 +227,4 @@ module.exports = function(io) {
     }
     socket.leave(socket.gameID);
   };
-
 };

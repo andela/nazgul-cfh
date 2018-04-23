@@ -1,6 +1,6 @@
 {
     "port": 3001,
-	"db": "process.env.MONGOHQ_URL,
+	"db": "process.env.MONGOHQ_URL",
     "app": {
         "name": "Cards for Humanity - Test on travis"
     },
