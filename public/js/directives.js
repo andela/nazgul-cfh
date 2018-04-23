@@ -46,8 +46,8 @@ angular.module('mean.directives', [])
                 }
               }
             } else {
-              const winningCardScope = scope.game.table[scope.game.winningCard].card[0].text;
-              curQ.text += ` ${startStyle+ winningCardScope + endStyle}`;
+              const winningCardScope = scope.game.table[scope.game.winningCard].card[0].text; /* eslint-disable-line */
+              curQ.text += ` ${startStyle + winningCardScope + endStyle}`;
             }
           }
         });
