@@ -9,6 +9,7 @@ after((done) => {
   mongoose.connection.db.dropDatabase(done);
 });
 
+
 describe('POST api/auth/signup', () => {
   it('should not allow a user to sign up with no name', (done) => {
     request
@@ -74,40 +75,6 @@ describe('POST api/auth/signup', () => {
       .end((err, res) => {
         expect(res.status).to.equal(201);
         expect(res.body).to.be.an('object');
-        done();
-      });
-  });
-});
-
-describe('POST /api/search/users', () => {
-  const searchQuery = {
-    emailOrUsernameOfFriend: 'tester@test.com',
-  };
-  it('returns an error message if user is not authenticated', (done) => {
-    request
-      .post('/api/search/users')
-      .set('Content-Type', 'application/json')
-      .send(searchQuery)
-      .end((err, res) => {
-        expect(res.status).to.equal(403);
-        expect(res.body.error).to.equal('You have to login First');
-        done();
-      });
-  });
-});
-describe('POST /api/invite/users', () => {
-  const searchQuery = {
-    emailOrUsernameOfFriend: 'tester@test.com',
-    link: 'localhost:3000/#!/app?game=83747mdbbf',
-  };
-  it('returns an error message if user is not authenticated', (done) => {
-    request
-      .post('/api/invite/users')
-      .set('Content-Type', 'application/json')
-      .send(searchQuery)
-      .end((err, res) => {
-        expect(res.status).to.equal(403);
-        expect(res.body.error).to.equal('You have to login First');
         done();
       });
   });
