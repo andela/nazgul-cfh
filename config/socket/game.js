@@ -108,7 +108,6 @@ Game.prototype.assignGuestNames = function() {
 
 Game.prototype.prepareGame = function() {
   this.state = "game in progress";
-  console.log('this.playerMaxLimit =>>>>', this.playerMaxLimit);
 
   this.io.sockets.in(this.gameID).emit('prepareGame',
     {
@@ -261,11 +260,9 @@ Game.prototype.shuffleCards = function(cards) {
 
 Game.prototype.dealAnswers = function(maxAnswers) {
   maxAnswers = maxAnswers || 10;
-  let _this = this;
-  var storeAnswers = (err, data) => {
-    _this.answers = data;
+  const storeAnswers = (err, data) => {
+    this.answers = data;
   };
-  console.log(this.players.length);
   for (var i = 0; i < this.players.length; i++) {
     while (this.players[i].hand.length < maxAnswers) {
       this.players[i].hand.push(this.answers.pop());
