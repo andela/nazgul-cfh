@@ -341,12 +341,12 @@ angular.module('mean.system')
           }
         });
         const regions = ['africa', 'asia'];
-        let region = $location.search().region;
-        let custom = $location.search().custom === 'true';
+        let { region } = $location.search();
+        const custom = $location.search().custom === 'true';
         if (!region) region = regions[Math.floor(Math.random() * 2)];
-        if ($location.search().game && !(/^\d+$/).test($location.search().game)) {
-          console.log('joining custom game');
-          game.joinGame(region,'joinGame', $location.search().game);
+        if ($location.search().game &&
+          !(/^\d+$/).test($location.search().game)) {
+          game.joinGame(region, 'joinGame', $location.search().game);
         } else if (custom) {
           game.joinGame(region, 'joinGame', null, true);
         } else {

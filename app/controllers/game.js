@@ -23,8 +23,6 @@ class Game {
         errors: 'No data supplied'
       });
     }
-    console.log('the game history from server>>>>', gameLog)
-
     const GameLog = new GameHistory({
       gameID: gameLog.gameId,
       gamePlayers: gameLog.players,

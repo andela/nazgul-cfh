@@ -332,6 +332,11 @@ input.valid:not([type]), input.valid:not([type]):focus, input[type=text].valid:n
   text-transform: uppercase; font-size: 19px;
 }
 
+.modal.modal-fixed-footer{
+  height: 240px;
+  max-height: 240px;
+}
+
 .dropdown-content li>a, .dropdown-content li>span{
   color: var(--main-bg-color);
 }
