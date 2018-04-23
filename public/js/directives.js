@@ -4,7 +4,7 @@ angular.module('mean.directives', [])
       restrict: 'EA',
       templateUrl: '/views/player.html',
       link: function(scope, elem, attr){
-        scope.colors = ['#7CE4E8', '#FFFFa5', '#FC575E', '#F2ADFF', '#398EC4', '#8CFF95'];
+        scope.colors = ['#7CE4E8', '#d90404', '#256994', '#04ae11', '#b81287', '#F7775E', '#0645f2', '#7c575e', '#f2adff', '#f0950a', '#fdd733', '#8d9241'];
       }
     };
   }).directive('answers', function() {
@@ -46,7 +46,8 @@ angular.module('mean.directives', [])
                 }
               }
             } else {
-              curQ.text += ' '+startStyle+scope.game.table[scope.game.winningCard].card[0].text+endStyle;
+              const winningCardScope = scope.game.table[scope.game.winningCard].card[0].text; /* eslint-disable-line */
+              curQ.text += ` ${startStyle + winningCardScope + endStyle}`;
             }
           }
         });
@@ -58,23 +59,26 @@ angular.module('mean.directives', [])
       templateUrl: '/views/question.html',
       link: function(scope, elem, attr) {}
     };
-  }).directive('timer', function(){
-    return{
-      restrict: 'EA',
-      templateUrl: '/views/timer.html',
-      link: function(scope, elem, attr){}
-    };
-  }).directive('landing', function() {
-    return {
-      restrict: 'EA',
-      link: (scope) => {
+  })
+  .directive('scoreboard', () => ({
+    restrict: 'EA',
+    templateUrl: '/views/scoreboard.html',
+    link: () => {}
+  }))
+  .directive('timer', () => ({
+    restrict: 'EA',
+    templateUrl: '/views/timer.html',
+    link: () => {}
+  }))
+  .directive('landing', () => ({
+    restrict: 'EA',
+    link: (scope) => {
+      scope.showOptions = true;
+      if (window.localStorage.userData) {
+        scope.showOptions = false;
+      } else {
         scope.showOptions = true;
-        if (window.localStorage.userData) {
-          scope.showOptions = false;
-        } else {
-          scope.showOptions = true;
-        }
       }
-    };
-  });
-  
+    }
+  }));
+

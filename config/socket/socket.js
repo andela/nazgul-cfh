@@ -51,7 +51,6 @@ module.exports = function(io) {
     socket.on('startGame', function() {
       if (allGames[socket.gameID]) {
         var thisGame = allGames[socket.gameID];
-        console.log('comparing',thisGame.players[0].socket.id,'with',socket.id);
         if (thisGame.players.length >= thisGame.playerMinLimit) {
           // Remove this game from gamesNeedingPlayers so new players can't join it.
           gamesNeedingPlayers.forEach(function(game,index) {
@@ -131,12 +130,12 @@ module.exports = function(io) {
         game.assignGuestNames();
         game.sendUpdate();
         game.sendNotification(player.username+' has joined the game!');
-        if (game.players.length >= game.playerMaxLimit) {
+        if (game.players.length === game.playerMaxLimit) {
           gamesNeedingPlayers.shift();
           game.prepareGame();
         }
       } else {
-       socket.emit('maxPlayersReached');
+        socket.emit('maxPlayersReached');
       }
     } else {
       // Put players into the general queue
