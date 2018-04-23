@@ -57,6 +57,20 @@ p {
   .container-card{
     width: 100% !important;
   }
+
+  .l5{
+    max-width: 100% !important;
+    position: relative;
+    display: inline-block;
+  }
+
+  .padHtp{
+    padding: 20px 0px !important;
+  }
+
+  .fsize{
+    font-size: 15px
+  }
 }
 
 .icon-block {
@@ -316,4 +330,113 @@ input.valid:not([type]), input.valid:not([type]):focus, input[type=text].valid:n
   transform: translateX(-50%);
   text-align: justify; padding: 17px;
   text-transform: uppercase; font-size: 19px;
+}
+
+.progress{
+  background-color: rgba(44, 16, 43, 0.405);
+}
+
+.progress .indeterminate{
+  background-color: #2e112d;
+}
+
+.marg25{
+  margin-right: 25px;
+}
+
+.marg5{
+  margin: 0 5em;
+}
+
+.timedesc{
+  padding: .1em 0;
+  border-radius: 5px;
+  background-color: #2e112d
+}
+
+.flex {
+  display: flex;
+  width: calc(100%-5px)
+  /* flex-wrap: wrap; */
+}
+
+.timer{
+  font-size: 7em;
+}
+
+.minHeight{
+  min-height: 300px;
+}
+
+.avatarMinHeight{
+  min-height: 600px;
+}
+
+.marg20{
+  margin-top: 20px;
+}
+
+.pad15{
+  padding: 15px;
+}
+
+.pad20{
+  padding-top: 20px;
+}
+
+.pad25{
+  padding: 25px 0;
+}
+
+.padHtp{
+  padding: 20px 50px;
+}
+
+.padLB{
+  padding: 0 0 10px 10px;
+}
+
+.avatar-name{
+  padding-left: 20px;
+}
+
+.no-margin{
+  margin: 0;
+}
+
+.relative{
+  position: relative;
+}
+
+.absolute{
+  position: absolute;
+}
+
+.czar{
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(44, 16, 43, 0.705);
+  color: #FFF;
+  text-align: center;
+}
+
+.minH{
+  min-height: 250px;
+}
+
+.l5{
+  max-width: 20%;
+  position: relative;
+  display: inline-block;
+}
+.par {
+  width: calc(100%-5px);
+}
+
+.fsize{
+  font-size: 25px
+}
+.just{
+  justify-content: center;
 }
