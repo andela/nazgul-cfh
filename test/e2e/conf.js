@@ -18,6 +18,7 @@ exports.config = {
     'signin.spec.js',
     'signup.spec.js',
     'game.spec.js',
+    'chat.spec.js'
   ],
   // Options to be passed to Jasmine.
   jasmineNodeOpts: {

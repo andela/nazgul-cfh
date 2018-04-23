@@ -39,7 +39,7 @@ describe('Gaming Screen Page', () => {
 
   it('should have question section"', () => {
     browser.sleep(10).then(() => {
-      questSect = element(by.binding('game.curQuestion.text'));
+      questSect = element(by.css('.left.fsize'));
       expect(browser.isElementPresent(questSect))
         .toBe(true);
     });
