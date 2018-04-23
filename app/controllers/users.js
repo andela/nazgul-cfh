@@ -20,9 +20,12 @@ exports.authCallback = (req, res) => {
   const payload = {
     _id: req.user._id
   };
-  const token = jwt.sign({
-    payload,
-  }, process.env.SECRET);
+  const token = jwt.sign(
+    {
+      payload
+    },
+    process.env.SECRET
+  );
   const userData = {
     token,
     username: req.user.username
@@ -92,14 +95,13 @@ exports.checkAvatar = (req, res) => {
   if (req.user && req.user._id) {
     User.findOne({
       _id: req.user._id
-    })
-      .exec((err, user) => {
-        if (user.avatar !== undefined) {
-          res.redirect('/#!/');
-        } else {
-          res.redirect('/#!/choose-avatar');
-        }
-      });
+    }).exec((err, user) => {
+      if (user.avatar !== undefined) {
+        res.redirect('/#!/');
+      } else {
+        res.redirect('/#!/choose-avatar');
+      }
+    });
   } else {
     // If user doesn't even exist, redirect to /
     res.redirect('/');
@@ -128,7 +130,7 @@ exports.create = (req, res, next) => {
           if (err) {
             return res.render('/#!/signup?error=unknown', {
               errors: err.errors,
-              user,
+              user
             });
           }
           req.logIn(user, (err) => {
@@ -154,42 +156,40 @@ const searchFriend = (req, res) => {
     return false;
   };
   const searchByEmail = () =>
-    (
-      User.findOne({
-        email: req.body.search
-      }).exec((err, friend) => {
-        if (err) {
-          return res.status(500).send({ error: 'An error occured' });
-        }
-        if (!friend) {
-          return res.status(200).send({ message: 'No friends found' });
-        }
-        if (friend._id == req.decoded._id) {
-          return res.status(200)
-            .send({ message: 'You cannot search for yourself' });
-        }
-        res.status(200).send({ message: 'success', user: friend });
-      })
-    );
+    User.findOne({
+      email: req.body.search
+    }).exec((err, friend) => {
+      if (err) {
+        return res.status(500).send({ error: 'An error occured' });
+      }
+      if (!friend) {
+        return res.status(200).send({ message: 'No friends found' });
+      }
+      if (friend._id == req.decoded._id) {
+        return res
+          .status(200)
+          .send({ message: 'You cannot search for yourself' });
+      }
+      res.status(200).send({ message: 'success', user: friend });
+    });
 
   const searchByUsername = () =>
-    (
-      User.findOne({
-        username: req.body.search
-      }).exec((err, friend) => {
-        if (err) {
-          return res.status(500).send({ error: 'An error occured' });
-        }
-        if (!friend) {
-          return res.status(200).send({ message: 'No friends found' });
-        }
-        if (friend._id == req.decoded._id) {
-          return res.status(200)
-            .send({ message: 'You cannot search for yourself' });
-        }
-        return res.status(200).send({ message: 'success', user: friend });
-      })
-    );
+    User.findOne({
+      username: req.body.search
+    }).exec((err, friend) => {
+      if (err) {
+        return res.status(500).send({ error: 'An error occured' });
+      }
+      if (!friend) {
+        return res.status(200).send({ message: 'No friends found' });
+      }
+      if (friend._id == req.decoded._id) {
+        return res
+          .status(200)
+          .send({ message: 'You cannot search for yourself' });
+      }
+      return res.status(200).send({ message: 'success', user: friend });
+    });
   if (isEmail(req.body.search)) {
     return searchByEmail();
   }
@@ -204,13 +204,13 @@ const inviteUserByEmail = (req, res) => {
     subject: 'Invite to nazgul cfh game',
     text: `Hey!!,You have been invited to join this current
     game \n ${req.body.link} \n please login before using the link,
-    login here ${process.env.LOGIN_URL}`,
+    login here ${process.env.LOGIN_URL}`
   };
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
       user: process.env.EMAIL,
-      pass: process.env.EMAIL_PASSWORD,
+      pass: process.env.EMAIL_PASSWORD
     },
     tls: {
       rejectUnauthorized: false
@@ -241,9 +241,7 @@ exports.signUp = (req, res) => {
   } = req.body;
   if (name && password && email && username) {
     User.findOne({
-      $or: [
-        { email }, { username }
-      ]
+      $or: [{ email }, { username }]
     }).exec((err, existingUser) => {
       if (err) {
         return res.status(500).json({
@@ -270,8 +268,9 @@ exports.signUp = (req, res) => {
         };
         const token = jwt.sign(
           {
-            payload,
-          }, process.env.SECRET,
+            payload
+          },
+          process.env.SECRET,
           { expiresIn: '10h' }
         );
         return res.status(201).json({
@@ -300,7 +299,7 @@ exports.login = (req, res) => {
     return res.status(400).json({ error: 'All fields are required' });
   }
   User.findOne({
-    email,
+    email
   }).exec((err, user) => {
     if (err) {
       return res.json.status(500).json({ error: 'Internal server error' });
@@ -313,9 +312,10 @@ exports.login = (req, res) => {
     }
     const token = jwt.sign(
       {
-        _id: user._id,
-      }, process.env.SECRET,
-      { expiresIn: '10h' },
+        _id: user._id
+      },
+      process.env.SECRET,
+      { expiresIn: '10h' }
     );
     res.status(200).json({
       token,
@@ -337,7 +337,8 @@ exports.verifyToken = (req, res, next) => {
   if (token) {
     jwt.verify(token, process.env.SECRET, (err, decoded) => {
       if (err) {
-        return res.status(400)
+        return res
+          .status(400)
           .send({ error: 'Oops, An error occured please log in again' });
       }
       req.decoded = decoded;
@@ -348,7 +349,6 @@ exports.verifyToken = (req, res, next) => {
   }
 };
 
-
 /**
  * Assign avatar to user
  *
@@ -358,15 +358,19 @@ exports.verifyToken = (req, res, next) => {
  */
 exports.avatars = (req, res) => {
   // Update the current user's profile to include the avatar choice they've made
-  if (req.user && req.user._id && req.body.avatar !== undefined &&
-    /\d/.test(req.body.avatar) && avatars[req.body.avatar]) {
+  if (
+    req.user &&
+    req.user._id &&
+    req.body.avatar !== undefined &&
+    /\d/.test(req.body.avatar) &&
+    avatars[req.body.avatar]
+  ) {
     User.findOne({
       _id: req.user._id
-    })
-      .exec((err, user) => {
-        user.avatar = avatars[req.body.avatar];
-        user.save();
-      });
+    }).exec((err, user) => {
+      user.avatar = avatars[req.body.avatar];
+      user.save();
+    });
   }
   return res.redirect('/#!/app');
 };
@@ -380,28 +384,30 @@ exports.avatars = (req, res) => {
 exports.addDonation = (req, res) => {
   if (req.body && req.user && req.user._id) {
     // Verify that the object contains crowdrise data
-    if (req.body.amount &&
+    if (
+      req.body.amount &&
       req.body.crowdrise_donation_id &&
-      req.body.donor_name) {
+      req.body.donor_name
+    ) {
       User.findOne({
         _id: req.user._id
-      })
-        .exec((err, user) => {
-          // Confirm that this object hasn't already been entered
-          let duplicate = false;
-          for (let i = 0; i < user.donations.length; i += 1) {
-            if (user.donations[i].crowdrise_donation_id ===
-              req.body.crowdrise_donation_id) {
-              duplicate = true;
-            }
+      }).exec((err, user) => {
+        // Confirm that this object hasn't already been entered
+        let duplicate = false;
+        for (let i = 0; i < user.donations.length; i += 1) {
+          if (
+            user.donations[i].crowdrise_donation_id ===
+            req.body.crowdrise_donation_id
+          ) {
+            duplicate = true;
           }
-          if (!duplicate) {
-            console.log('Validated donation');
-            user.donations.push(req.body);
-            user.premium = 1;
-            user.save();
-          }
-        });
+        }
+        if (!duplicate) {
+          user.donations.push(req.body);
+          user.premium = 1;
+          user.save();
+        }
+      });
     }
   }
   res.send();
@@ -443,16 +449,14 @@ exports.me = (req, res) => {
  * @returns {void}
  */
 exports.user = (req, res, next, id) => {
-  User
-    .findOne({
-      _id: id
-    })
-    .exec((err, user) => {
-      if (err) return next(err);
-      if (!user) return next(new Error(`Failed to load User ${id}`));
-      req.profile = user;
-      next();
-    });
+  User.findOne({
+    _id: id
+  }).exec((err, user) => {
+    if (err) return next(err);
+    if (!user) return next(new Error(`Failed to load User ${id}`));
+    req.profile = user;
+    next();
+  });
 };
 
 exports.searchFriend = searchFriend;
