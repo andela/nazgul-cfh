@@ -1,7 +1,6 @@
 // /**
 //  * Module dependencies.
 //  */
-/* eslint-disable */
 // var should = require('should'),
 //     app = require('../../server'),
 //     mongoose = require('mongoose'),

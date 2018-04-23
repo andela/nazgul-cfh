@@ -57,13 +57,16 @@ gulp.task('dist-dep', [
   'mv-underscore',
   'mv-angularUtils',
   'mv-angular-bootstrap',
+  'mv-hopscotch',
+  'mv-angular-bootstrap',
   'emojioneCSS',
   'emojioneJS',
   'emojionearea'
 ]);
 
 gulp.task('test', () => {
-  gulp.src(['test/**/*.js'])
+  gulp
+    .src(['test/user/*.js'])
     .pipe(mocha({
       reporter: 'spec',
       exit: true,
@@ -87,6 +90,9 @@ gulp.task('mv-jquery', () =>
 
 gulp.task('mv-underscore', () =>
   move('bower_components/underscore/**/*', './dist/public/lib/underscore'));
+
+gulp.task('mv-hopscotch', () =>
+  move('bower_components/hopscotch/**/*', './dist/public/lib/hopscotch'));
 
 gulp.task('mv-angularUtils', () =>
   move(

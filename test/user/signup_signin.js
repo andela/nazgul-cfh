@@ -1,15 +1,14 @@
-
 import supertest from 'supertest';
 import { expect } from 'chai';
 import mongoose from 'mongoose';
 import app from '../../dist/server';
 
 const request = supertest.agent(app);
-
 // mongoose.connection.db.dropDatabase();
 after((done) => {
   mongoose.connection.db.dropDatabase(done);
 });
+
 
 describe('POST api/auth/signup', () => {
   it('should not allow a user to sign up with no name', (done) => {
@@ -159,4 +158,3 @@ describe('POST api/auth/login', () => {
       });
   });
 });
-
