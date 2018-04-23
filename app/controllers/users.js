@@ -202,7 +202,7 @@ const inviteUserByEmail = (req, res) => {
     from: 'nazgul-cfh',
     to: req.body.emailOfUserToBeInvited,
     subject: 'Invite to nazgul cfh game',
-    text: `Hey!!,You have been invited to join this current 
+    text: `Hey!!,You have been invited to join this current
     game \n ${req.body.link} \n please login before using the link,
     login here ${process.env.LOGIN_URL}`,
   };
@@ -219,7 +219,7 @@ const inviteUserByEmail = (req, res) => {
 
   transporter.sendMail(mailOptions, (err, info) => {
     if (err) {
-      return res.status(500).send({ error: 'an error occurred' });
+      return res.status(500).send({ error: 'an error occured' });
     }
     return res.status(200).send({
       message: 'invite successfully sent',
@@ -344,7 +344,7 @@ exports.verifyToken = (req, res, next) => {
       next();
     });
   } else {
-    return res.status(403).send({ error: 'You have to login First' });
+    return res.status(401).send({ error: 'You have to login First' });
   }
 };
 

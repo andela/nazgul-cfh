@@ -3,18 +3,18 @@ var _ = require('underscore');
 var questions = require(__dirname + '/../../app/controllers/questions.js');
 var answers = require(__dirname + '/../../app/controllers/answers.js');
 var guestNames = [
-  "Disco Potato",
-  "Silver Blister",
-  "Insulated Mustard",
-  "Funeral Flapjack",
-  "Toenail",
-  "Urgent Drip",
-  "Raging Bagel",
-  "Aggressive Pie",
-  "Loving Spoon",
-  "Swollen Node",
-  "The Spleen",
-  "Dingle Dangle"
+  'Lanky Idrees',
+  'Shitty Faith',
+  'Freaking Felix',
+  'Weird Efosa',
+  'Tiny Taiwo',
+  'Nazgul',
+  'Ringwraithes',
+  'Raging Mark',
+  'Buhari Out',
+  'Bloated Segun',
+  'The Spleen',
+  'The Joker'
 ];
 
 function Game(gameID, io) {
@@ -64,6 +64,7 @@ Game.prototype.payload = function() {
       color: player.color
     });
   });
+
   return {
     gameID: this.gameID,
     players: players,
@@ -81,7 +82,7 @@ Game.prototype.payload = function() {
 };
 
 Game.prototype.sendNotification = function(msg) {
-  this.io.sockets.in(this.gameID).emit('notification', {notification: msg});
+  this.io.sockets.in(this.gameID).emit('notification', { notification: msg });
 };
 
 // Currently called on each joinGame event from socket.js
@@ -133,7 +134,6 @@ Game.prototype.prepareGame = function() {
 };
 
 Game.prototype.startGame = function() {
-  console.log(this.gameID,this.state);
   this.shuffleCards(this.questions);
   this.shuffleCards(this.answers);
   this.stateChoosing(this);
@@ -157,7 +157,7 @@ Game.prototype.stateChoosing = function(self) {
     });
   }
   self.round++;
-  self.dealAnswers(this);
+  self.dealAnswers();
   // Rotate card czar
   if (self.czar >= self.players.length - 1) {
     self.czar = 0;
@@ -255,13 +255,12 @@ Game.prototype.shuffleCards = function(cards) {
     cards[randNum] = cards[shuffleIndex];
     cards[shuffleIndex] = temp;
   }
-
   return cards;
 };
 
 Game.prototype.dealAnswers = function(maxAnswers) {
   maxAnswers = maxAnswers || 10;
-  var storeAnswers = function(err, data) {
+  const storeAnswers = (err, data) => {
     this.answers = data;
   };
   for (var i = 0; i < this.players.length; i++) {
