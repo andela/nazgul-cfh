@@ -32,7 +32,7 @@ describe('Gaming Screen Page', () => {
 
   it('should have a timer countdown"', () => {
     browser.sleep(10).then(() => {
-      timerCount = element(by.binding('game.time'));
+      timerCount = element(by.id('time'));
       expect(browser.isElementPresent(timerCount)).toBe(true);
     });
   });
@@ -46,7 +46,7 @@ describe('Gaming Screen Page', () => {
 
   it('should have question section"', () => {
     browser.sleep(10).then(() => {
-      questSect = element(by.binding('game.curQuestion.text'));
+      questSect = element(by.id('quest-ion'));
       expect(browser.isElementPresent(questSect)).toBe(true);
     });
   });
