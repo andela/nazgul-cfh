@@ -121,7 +121,7 @@ module.exports = function(io) {
       // Also checking the number of players, so node doesn't crash when
       // no one is in this custom room.
       if (game.state === 'awaiting players' && (!game.players.length ||
-        game.players[0].socket.id !== socket.id)) {
+        game.players[0].socket.id !== socket.id) && game.players.length < game.playerMaxLimit) {
         // Put player into the requested game
         console.log('Allowing player to join',requestedGameId);
         allPlayers[socket.id] = true;
