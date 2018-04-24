@@ -8,7 +8,7 @@
         }
       });
     $('.modal').modal();
-	  $('select').material_select();
+    $('select').material_select();
   </script>
   <nav class="lighter-pink wow fadeIn" role="navigation">
     <div class="nav-wrapper container">
@@ -41,14 +41,28 @@
         </span>
       </ul>
       <ul id="slide-out" class="sidenav white-text">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">How to play</a></li>
-        <li><a href="#">Charity</a></li>
-        <li><a href="#">About us</a></li>
-        <li ng-show="showOptions"><a href="#!/signin">Sign in</a></li>
-        <li ng-show="showOptions"><a href="#!/signup">Sign up</a></li>
+        <li>
+          <a href="#">Home</a>
+        </li>
+        <li>
+          <a href="#">How to play</a>
+        </li>
+        <li>
+          <a href="#">Charity</a>
+        </li>
+        <li>
+          <a href="#">About us</a>
+        </li>
+        <li ng-show="showOptions">
+          <a href="#!/signin">Sign in</a>
+        </li>
+        <li ng-show="showOptions">
+          <a href="#!/signup">Sign up</a>
+        </li>
         <span ng-hide="showOptions" ng-controller="IndexController">
-          <li><a ng-click="signout()">Sign out</a></li>
+          <li>
+            <a ng-click="signout()">Sign out</a>
+          </li>
         </span>
       </ul>
       <a href="#" data-target="slide-out" class="sidenav-trigger">
@@ -81,14 +95,14 @@
                 <div class="row">
                   <div class="col offset-s3 s6">
                     <select id="regionId">
-                        <option name="africa" value="africa">Africa</option>
-                        <option name="asia" value="asia">Asia</option>
+                      <option name="africa" value="africa">Africa</option>
+                      <option name="asia" value="asia">Asia</option>
                     </select>
                   </div>
                 </div>
               </div>
               <div class="modal-footer">
-                <a ng-click="next()" class="modal-action modal-close waves-effect waves-green btn-flat">Next</a>
+                <a ng-click="next()" class="modal-action modal-close waves-effect btn-flat">Next</a>
               </div>
             </div>
           </div>
