@@ -1,13 +1,12 @@
 const Game = require('./game');
 const Player = require('./player');
+const jwt = require('jsonwebtoken');
 require('console-stamp')(console, 'm/dd HH:MM:ss');
 const mongoose = require('mongoose');
+require('dotenv').config();
+const avatars = require('../../app/controllers/avatars').all();
 
 const User = mongoose.model('User');
-const jwt = require('jsonwebtoken');
-require('dotenv').config();
-
-const avatars = require(`${__dirname}/../../app/controllers/avatars.js`).all();
 const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
 
 module.exports = function (io) {
@@ -26,6 +25,7 @@ module.exports = function (io) {
           index = thisGameIndex;
         }
       }
+      return null;
     });
     if (!game) {
       gameID += 1;
@@ -117,14 +117,10 @@ module.exports = function (io) {
       } else {
         socket.emit('maxPlayersReached');
       }
+    } else if (createPrivate) {
+      createGameWithFriends(player, socket, region);
     } else {
-      // Put players into the general queue
-      console.log('Redirecting player', socket.id, 'to general queue');
-      if (createPrivate) {
-        createGameWithFriends(player, socket, region);
-      } else {
-        fireGame(player, socket, region);
-      }
+      fireGame(player, socket, region);
     }
   };
 

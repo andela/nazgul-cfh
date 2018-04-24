@@ -1,8 +1,8 @@
 const async = require('async');
 const _ = require('underscore');
+const questions = require('../../app/controllers/questions');
+const answers = require('../../app/controllers/answers');
 
-const questions = require(`${__dirname}/../../app/controllers/questions.js`);
-const answers = require(`${__dirname}/../../app/controllers/answers.js`);
 const guestNames = [
   'Lanky Idrees',
   'Shitty Faith',
@@ -305,7 +305,8 @@ Game.prototype.pickCards = function (thisCardArray, thisPlayer) {
             }
           }
           if (cardIndex !== null) {
-            tableCard.push(this.players[playerIndex].hand.splice(cardIndex, 1)[0]);
+            tableCard
+              .push(this.players[playerIndex].hand.splice(cardIndex, 1)[0]);
           }
         }
         if (tableCard.length === this.curQuestion.numAnswers) {
@@ -394,8 +395,10 @@ Game.prototype.pickWinning = function (thisCard, thisPlayer, autopicked) {
     });
     if (cardIndex !== -1) {
       this.winningCard = cardIndex;
-      const winnerIndex = this._findPlayerIndexBySocket(this.table[cardIndex].player);
-      this.sendNotification(`${this.players[winnerIndex].username} has won the round!`);
+      const winnerIndex = this._findPlayerIndexBySocket(this
+        .table[cardIndex].player);
+      this.sendNotification(`${this.players[winnerIndex]
+        .username} has won the round!`);
       this.winningCardPlayer = winnerIndex;
       this.players[winnerIndex].points += 1;
       clearTimeout(this.judgingTimeout);

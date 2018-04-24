@@ -1,3 +1,4 @@
+/* global _, angular */
 angular.module('mean.system').factory('game', [
   'socket',
   '$timeout',
@@ -29,7 +30,6 @@ angular.module('mean.system').factory('game', [
 
     const notificationQueue = [];
     let timeout = false;
-    let joinOverrideTimeout = 0;
 
     socket.on('maxPlayersReached', () => {
       $rootScope.$emit('maxPlayersReached');
@@ -206,10 +206,6 @@ angular.module('mean.system').factory('game', [
         game.curQuestion.text.indexOf('<u></u>') > -1
       ) {
         game.curQuestion = data.curQuestion;
-      } else if (data.state === 'awaiting players') {
-        joinOverrideTimeout = $timeout(() => {
-          game.joinOverride = true;
-        }, 15000);
       } else if (
         data.state === 'game dissolved' ||
         data.state === 'game ended'
