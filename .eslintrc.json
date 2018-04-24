@@ -21,6 +21,7 @@
       "eqeqeq": 0,
       "func-names": 0,
       "curly": ["error", "multi-line"],
+      "import/extensions": "off",
       "import/no-unresolved": [2, { "commonjs": true }],
       "no-shadow": ["error", { "allow": ["req", "res", "err"] }],
       "valid-jsdoc": ["error", {
