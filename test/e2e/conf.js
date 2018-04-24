@@ -7,12 +7,9 @@ exports.config = {
   capabilities: {
     browserName: 'chrome'
   },
+
+  // Framework to use. Jasmine is recommended.
   framework: 'jasmine',
-  // onPrepare: () => {
-  //   /* eslint-disable */
-  //   require('babel-register');
-  //   require('babel-core/register')({ presets: ['es2015'] });
-  //   /* eslint-enable */
 
   // Spec patterns are relative to the current working directory when
   // protractor is called.
@@ -20,9 +17,9 @@ exports.config = {
     'landing.spec.js',
     'signin.spec.js',
     'signup.spec.js',
-    'game.spec.js',
-    'onboarding.spec.js'
+    'game.spec.js'
   ],
+  // Options to be passed to Jasmine.
   jasmineNodeOpts: {
     defaultTimeoutInterval: 30000
   }
