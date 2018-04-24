@@ -29,7 +29,6 @@ angular.module('mean.system').factory('game', [
 
     const notificationQueue = [];
     let timeout = false;
-    // const self = this;
     let joinOverrideTimeout = 0;
 
     socket.on('maxPlayersReached', () => {
