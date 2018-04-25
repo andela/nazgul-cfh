@@ -1,8 +1,18 @@
 /* global browser, expect, element, by, before, */
 
-let timerCount, timerdesc, questSect, startGameBtn, endGameInfo,
-  showAnsCards, showHowToPlay, showCzar, showCharityWidget,
-  gameEndInfo, showScoreboard, showCurrentPlayer, showCzarMarker;
+let timerCount,
+  timerdesc,
+  questSect,
+  startGameBtn,
+  endGameInfo,
+  showAnsCards,
+  showHowToPlay,
+  showCzar,
+  showCharityWidget,
+  gameEndInfo,
+  showScoreboard,
+  showCurrentPlayer,
+  showCzarMarker;
 
 describe('Gaming Screen Page', () => {
   beforeEach(() => {

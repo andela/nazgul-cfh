@@ -97,5 +97,6 @@ module.exports = (app, passport) => {
   app.get('/play', index.play);
   app.get('/', index.render);
 
+  // Game history route
   app.post('/api/games/:id/start', Game.gameHistory);
 };
