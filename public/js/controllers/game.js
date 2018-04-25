@@ -27,7 +27,8 @@ angular.module('mean.system')
         const authToken = JSON.parse(localStorage.getItem('userData')).token;
         $http.defaults.headers.common.Authorization = authToken;
 
-        $scope.openSearchModal = () => {
+        $scope.openSearchModal = (e) => {
+          e.preventDefault();
           document.getElementById('myModal').style.display = 'block';
         };
 
