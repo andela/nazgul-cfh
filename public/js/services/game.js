@@ -224,10 +224,11 @@ angular.module('mean.system').factory('game', [
       room = room || '';
       createPrivate = createPrivate || false;
       const userData = JSON.parse($window.localStorage.getItem('userData'));
-      let token = 'unauthenticated';
+      let status = 'unauthenticated';
       if (userData) {
-        token = userData.token;
+        status = userData.token;
       }
+      const token = status;
       socket.emit(mode, {
         token,
         region,
