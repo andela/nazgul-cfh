@@ -43,4 +43,3 @@ describe('POST /api/games/:id/start', () => {
       });
   });
 });
-

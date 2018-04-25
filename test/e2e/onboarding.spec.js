@@ -1,6 +1,5 @@
-/* global expect */
+/* global browser, expect, element, by */
 
-import { browser, element, by } from 'protractor';
 
 describe('Protractor test for onboarding user', () => {
   it('Bubble start when in gaming page', () => {
