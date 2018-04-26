@@ -22,25 +22,33 @@ angular.module('mean.system')
         $scope.foundUser = false;
         $scope.invitedUser = false;
         $scope.userDetails = {};
-        const authToken = JSON.parse(localStorage.getItem('userData')).token;
-        $http.defaults.headers.common.Authorization = authToken;
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        if (userData) {
+          const authToken = JSON.parse(localStorage.getItem('userData')).token;
+          $http.defaults.headers.common.Authorization = authToken;
+        }
 
         $scope.openSearchModal = () => {
-          document.getElementById('myModal').style.display = 'block';
+          $('#myModal').modal('open');
         };
 
         $scope.closeSearchModal = () => {
-          document.getElementById('myModal').style.display = 'none';
+          $('#myModal').modal('close');
         };
 
         $scope.closeCannotStartGameModal = () => {
-          document.getElementById('cannot-start-game-modal').style.display =
-          'none';
+          $('#cannot-start-game-modal').modal('close');
+        };
+        $scope.newGameModal = () => {
+          $('#promptModal').modal('close');
+          game.startGame();
+        };
+        $scope.newGameModal1 = () => {
+          $('#promptModal').modal('close');
         };
 
         $rootScope.$on('maxPlayersReached', () => {
-          document.getElementById('game-already-started-modal').style.display =
-          'block';
+          $('#game-already-started-modal').modal('open');
         });
 
         $scope.startTour = () => {
@@ -283,9 +291,9 @@ angular.module('mean.system')
 
         $scope.startGame = () => {
           if (game.players.length < 3) {
-            document.getElementById('cannot-start-game-modal').style.display = 'block';
+            $('#cannot-start-game-modal').modal('open');
           } else {
-            game.startGame();
+            $('#promptModal').modal('open');
           }
         };
 
@@ -332,13 +340,17 @@ angular.module('mean.system')
             }
           }
         });
-
-        if ($location.search().game && !/^\d+$/.test($location.search().game)) {
-          game.joinGame('joinGame', $location.search().game);
-        } else if ($location.search().custom) {
-          game.joinGame('joinGame', null, true);
+        const regions = ['africa', 'asia'];
+        let { region } = $location.search();
+        const custom = $location.search().custom === 'true';
+        if (!region) region = regions[Math.floor(Math.random() * 2)];
+        if ($location.search().game &&
+          !(/^\d+$/).test($location.search().game)) {
+          game.joinGame(region, 'joinGame', $location.search().game);
+        } else if (custom) {
+          game.joinGame(region, 'joinGame', null, true);
         } else {
-          game.joinGame();
+          game.joinGame(region);
         }
       }
     ]

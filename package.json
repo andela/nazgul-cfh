@@ -15,14 +15,14 @@
   "scripts": {
     "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "cover:test": "nyc --reporter=lcov --reporter=text-lcov",
-    "bower": "node node_modules/gulp-cli/bin/gulp install",
     "start:dev": "node node_modules/gulp-cli/bin/gulp build && node node_modules/gulp-cli/bin/gulp",
     "build": "node node_modules/gulp-cli/bin/gulp build ",
     "start": "npm run build && node dist/server.js",
     "test": "NODE_ENV=test && node node_modules/gulp-cli/bin/gulp test --exit",
     "postinstall": "node node_modules/gulp-cli/bin/gulp install",
     "test:karma": "node_modules/.bin/karma start karma.conf.js",
-    "test:protractor": "protractor ./test/e2e/conf.js"
+    "test:protractor": "protractor ./test/e2e/conf.js",
+    "webdriver-manager": "webdriver-manager update"
   },
   "dependencies": {
     "async": "~0.2.9",
@@ -60,7 +60,6 @@
     "passport-google-oauth": "~0.1.5",
     "passport-local": "~0.1.6",
     "passport-twitter": "~1.0.2",
-    "protractor": "^5.3.1",
     "sinon": "~1.7.3",
     "socket.io": "~0.9.16",
     "socket.io-client": "~0.9.16",
@@ -106,7 +105,6 @@
     "mocha": "^5.0.5",
     "mocha-lcov-reporter": "^1.3.0",
     "nyc": "^11.6.0",
-    "protractor": "^5.3.1",
     "should": "~1.3.0",
     "supertest": "~0.8.0"
   }
