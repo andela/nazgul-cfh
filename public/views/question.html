@@ -1,20 +1,20 @@
 <div id="">
-  <div class="card-panel minHeight" >
-    <div ng-bind-html-unsafe="game.curQuestion.text" class="left fsize" ng-hide="game.state === 'game ended' || game.state ==='game dissolved' || game.state === 'awaiting players'">
+  <div class="card-panel minHeight">
+    <div id="quest-ion" ng-bind-html="game.curQuestion.text" class="left fsize" ng-hide="game.state === 'game ended' || game.state ==='game dissolved' || game.state === 'awaiting players'">
     </div>
     <div ng-show="game.state === 'awaiting players'">
       <h3 class="center dark-pink-text">Finding Players</h3>
       <div class="progress">
         <div class="indeterminate"></div>
       </div>
-      <div >
+      <div>
         <h4 class="center dark-pink-text">{{game.players.length}} / 12 Players</h4>
       </div>
       <div>
         <div class="row pad20 no-margin">
-          <div class="col s12 l6 block" id="start-game-container" ng-click="startGame()" ng-show="(game.playerIndex === 0)" >
+          <div class="col s12 l6 block" id="start-game-container" ng-click="startGame()" ng-show="(game.playerIndex === 0)">
             <div>
-              <div class="col s12" >
+              <div class="col s12">
                 <button id="start-game-button" class="btn dark-pink left margT10" id="start-game-container" ng-click="startGame()">Start Game</button>
               </div>
             </div>
@@ -33,7 +33,9 @@
         Our sincere apologies.
       </div>
       <div ng-show="game.state === 'game ended' && game.gameWinner === game.playerIndex">
-        <div class="game-end-headline dark-pink-text fsize">Congratulations! You won the game, {{game.players[game.playerIndex].username | upperFirstLetter}}!</div>We hope you feel special. If you'd like to share that special feeling with the world, consider donating to charity. Or just horde it all for youself.
+        <div class="game-end-headline dark-pink-text fsize">Congratulations! You won the game, {{game.players[game.playerIndex].username | upperFirstLetter}}!</div>We hope you
+        feel special. If you'd like to share that special feeling with the world, consider donating to charity. Or just horde
+        it all for youself.
       </div>
       <div ng-show="game.state === 'game ended' && game.gameWinner !== game.playerIndex">
         <div class="game-end-headline dark-pink-text fsize">Aw, shucks! {{game.players[game.gameWinner].username | upperFirstLetter }} won the game!</div>
@@ -42,8 +44,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-

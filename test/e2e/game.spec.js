@@ -1,8 +1,18 @@
 /* global browser, expect, element, by, before, */
 
-let timerCount, timerdesc, questSect, startGameBtn, endGameInfo,
-  showAnsCards, showHowToPlay, showCzar, showCharityWidget,
-  gameEndInfo, showScoreboard, showCurrentPlayer, showCzarMarker;
+let timerCount,
+  timerdesc,
+  questSect,
+  startGameBtn,
+  endGameInfo,
+  showAnsCards,
+  showHowToPlay,
+  showCzar,
+  showCharityWidget,
+  gameEndInfo,
+  showScoreboard,
+  showCurrentPlayer,
+  showCzarMarker;
 
 describe('Gaming Screen Page', () => {
   beforeEach(() => {
@@ -23,9 +33,8 @@ describe('Gaming Screen Page', () => {
 
   it('should have a timer countdown"', () => {
     browser.sleep(10).then(() => {
-      timerCount = element(by.binding('game.time'));
-      expect(browser.isElementPresent(timerCount))
-        .toBe(true);
+      timerCount = element(by.id('time'));
+      expect(browser.isElementPresent(timerCount)).toBe(true);
     });
   });
 
@@ -39,9 +48,8 @@ describe('Gaming Screen Page', () => {
 
   it('should have question section"', () => {
     browser.sleep(10).then(() => {
-      questSect = element(by.binding('game.curQuestion.text'));
-      expect(browser.isElementPresent(questSect))
-        .toBe(true);
+      questSect = element(by.id('quest-ion'));
+      expect(browser.isElementPresent(questSect)).toBe(true);
     });
   });
 

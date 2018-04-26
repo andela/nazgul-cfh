@@ -1,5 +1,6 @@
  <script>
   $('.sidenav').sidenav();
+  $('.modal').modal();
 </script>
 <div id="app-container" ng-controller="GameController">
   <div>
@@ -7,23 +8,23 @@
       <div class="nav-wrapper container">
         <a id="logo-container" href="/" class="brand-logo white-text">CFH</a>
         <ul class="right hide-on-med-and-down" id="menu-container" >
-          <li id = 'abandon-game-button' ng-click="openSearchModal()" >
-            <a href="/#mtt" class="white-text">Invite Friends</a>
+          <li id = 'abandon-game-button' ng-click="openSearchModal($event)" >
+            <a href="#" class="white-text">Invite Friends</a>
           </li>
-          <li id = 'abandon-game-button' class="taketour" ng-click="startTour()">
-            <a href="/#mtt" class="white-text">Take Tour</a>
+          <li id = 'abandon-game-button' class="taketour" ng-click="startTour($event)">
+            <a href="#" class="white-text">Take Tour</a>
           </li>
-          <li id = 'abandon-game-button' ng-click="abandonGame()"><a class="white-text" href="/#mtt">Abandon Game</a></li>
+          <li id = 'abandon-game-button' ng-click="abandonGame()"><a class="white-text" href="#">Abandon Game</a></li>
         </ul>
         <ul id="slide-out" class="sidenav white-text">
-          <li id = 'abandon-game-button' ng-click="openSearchModal()" >
-            <a href="/#mtt">Invite Friends</a>
+          <li id = 'abandon-game-button' ng-click="openSearchModal($event)" >
+            <a href="#">Invite Friends</a>
           </li>
-          <li id = 'abandon-game-button' class="taketour" ng-click="startTour()">
-            <a href="/#mtt">Take Tour</a>
+          <li id = 'abandon-game-button' class="taketour" ng-click="startTour($event)">
+            <a href="#">Take Tour</a>
           </li>
           <li id = 'abandon-game-button' ng-click="abandonGame()">
-            <a href="/#mtt">Abandon Game</a>
+            <a href="#">Abandon Game</a>
           </li>
           <li><div class="divider"></div></li>
         </ul>
@@ -48,6 +49,19 @@
                     </div>
                   </div>
                   <div>
+                    <!-- Modal Structure for prompting user if they wanted to start game -->
+                      <div id="promptModal" class="modal" >
+                        <div class="modal-content">
+                          <h4>Would you like to start the game?</h4>
+                          <p></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="modal-action waves-effect btn dark-pink margT10" ng-click="newGameModal()">Yes!, START GAME</button>
+                      
+                            <button type="button" ng-click="newGameModal1()" class="modal-action waves-effect  btn dark-pink  margT10" >No, Thanks</button>
+                        </div>
+                      </div><!-- END Modal Structure  -->
+
                     <div id="myModal" class="modal animated rollIn modal-fixed-footer" style="z-index: 1000; margin-top: 0px; height: 240px; max-height: 240px;">
                       <div>
                         <!-- Modal content-->
@@ -99,7 +113,7 @@
                             <p style="font-family: 'Nova Flat'; font-size: 1.2em;">Hi!, The game You want to join has reached it's maximum player<br>limit,but you can still join the general game,<br>click join if you want to do just that</p>
                           </div>
                           <div class="center-align">
-                            <a class="btn waves-effect waves-green" style="background-color: #540032; font-family: 'Nova Flat'" href="/play">JOIN</a>
+                            <a class="btn waves-effect" style="background-color: #540032; font-family: 'Nova Flat'" href="/play">JOIN</a>
                           </div>
                         </div>
                         <div class="modal-footer">
@@ -118,7 +132,7 @@
                             <p style="font-family: 'Nova Flat'; font-size: 1.2em;">Hi!, The game cannot start now because<br>the number of players is not yet up to<br>three, Please wait or invite Friends</p>
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn waves-effect waves-green" data-dismiss="modal" style="background-color: #540032; font-family: Allerta Stencil" ng-click="closeCannotStartGameModal()">ok, THANKS</button>
+                            <button type="button" class="btn waves-effect" data-dismiss="modal" style="background-color: #540032; font-family: Allerta Stencil" ng-click="closeCannotStartGameModal()">ok, THANKS</button>
                           </div>
                         </div>
                       </div>
@@ -138,4 +152,5 @@
       </div>
     </div>
   </div>
+  <chat></chat>
 </div>
