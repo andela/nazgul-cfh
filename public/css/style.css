@@ -377,7 +377,16 @@ textarea.materialize-textarea.valid:focus,
   font-size: 19px;
 }
 
-.progress {
+.modal.modal-fixed-footer{
+  height: 240px;
+  max-height: 240px;
+}
+
+.dropdown-content li>a, .dropdown-content li>span{
+  color: var(--main-bg-color);
+}
+
+.progress{
   background-color: rgba(44, 16, 43, 0.405);
 }
 
