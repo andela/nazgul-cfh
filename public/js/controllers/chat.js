@@ -7,6 +7,7 @@ angular.module('mean.system')
       ($scope, $sce, game, $firebaseArray) => {
         $('#chat-input').emojioneArea();
         const chatBox = document.querySelector('#chatbox');
+        const muteBtn = document.querySelector('.mute-btn');
         const audio = new Audio('/audio/beep.mp3');
         audio.load();
 
@@ -16,6 +17,7 @@ angular.module('mean.system')
           openChatBox.style.right = '-230px';
           openChatBox.style.display = 'none';
           chatBox.style.display = 'block';
+          $scope.newChatLength = 0;
         };
 
         $scope.closeChat = (e) => {
@@ -24,6 +26,16 @@ angular.module('mean.system')
           openChatBox.style.display = 'block';
           openChatBox.style.right = '0px';
           chatBox.style.display = 'none';
+        };
+
+        $scope.muteAudio = (e) => {
+          e.preventDefault();
+          audio.muted = !audio.muted;
+          if (audio.muted) {
+            muteBtn.innerHTML = '<i class="material-icons">&#xE04F;</i>';
+          } else {
+            muteBtn.innerHTML = '<i class="material-icons">&#xE050;</i>';
+          }
         };
 
         // watch chat response from firebase real-time database

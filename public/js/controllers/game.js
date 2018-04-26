@@ -51,7 +51,8 @@ angular.module('mean.system')
           $('#game-already-started-modal').modal('open');
         });
 
-        $scope.startTour = () => {
+        $scope.startTour = (e) => {
+          e.preventDefault();
           $scope.hopscotch.startTour(
             {
               id: 'hello-hopscotch',

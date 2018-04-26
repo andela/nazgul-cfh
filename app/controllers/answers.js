@@ -14,6 +14,7 @@ exports.answer = function(req, res, next, id) {
     Answer.load(id, function(err, answer) {
         if (err) return next(err);
         if (!answer) return next(new Error('Failed to load answer ' + id));
+        console.log('gab', answer);
         req.answer = answer;
         next();
     });

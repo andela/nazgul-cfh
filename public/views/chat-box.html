@@ -1,10 +1,14 @@
 <div class="fixed-action-btn horizontal" ng-controller="ChatController">
   <div id="chatbox">
-    <div class="close-btn" ng-click="closeChat($event)">
-      <i class="material-icons">close</i>
-    </div>
-    <p>{{username}}'s chat room</p>
     <div id="chatview" class="p1">
+      <div class="mute-btn" ng-click="muteAudio($event)">
+        <i class="material-icons">&#xE050;</i>
+      </div>
+
+      <div class="close-btn" ng-click="closeChat($event)">
+        <i class="material-icons">close</i>
+      </div>
+
       <div id="chat-messages">
 
         <div class="animated fadeInUp message {{(chat.align === 'right') ? chat.align : '';}}" ng-repeat="chat in chats">

@@ -563,7 +563,6 @@ div.message.right .corner{
   opacity: .7;
 }
 #chatview, #sendmessage {
-  /*overflow:hidden;*/
   border-radius:6px;
 }
 .close-btn{
@@ -572,6 +571,15 @@ div.message.right .corner{
   right: 0;
   padding: 10px;
   z-index: 1;
+  cursor: pointer;
+}
+.mute-btn{
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  color: black;
+  z-index: 10;
   cursor: pointer;
 }
 

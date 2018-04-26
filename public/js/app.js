@@ -6,8 +6,9 @@ angular.module(
   ['ngCookies', 'ngResource', 'ngRoute', 'ui.bootstrap',
     'ui.route', 'mean.system', 'mean.directives', 'firebase']
 )
-  .config(['$routeProvider',
-    function ($routeProvider) {
+  .config(['$routeProvider', '$sceProvider',
+    function ($routeProvider, $sceProvider) {
+      $sceProvider.enabled(false);
       $routeProvider.when('/', {
         templateUrl: 'views/index.html'
       }).when('/app', {
