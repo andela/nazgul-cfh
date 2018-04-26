@@ -22,8 +22,11 @@ angular.module('mean.system')
         $scope.foundUser = false;
         $scope.invitedUser = false;
         $scope.userDetails = {};
-        const authToken = JSON.parse(localStorage.getItem('userData')).token;
-        $http.defaults.headers.common.Authorization = authToken;
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        if (userData) {
+          const authToken = JSON.parse(localStorage.getItem('userData')).token;
+          $http.defaults.headers.common.Authorization = authToken;
+        }
 
         $scope.openSearchModal = () => {
           $('#myModal').modal('open');
@@ -54,62 +57,80 @@ angular.module('mean.system')
               id: 'hello-hopscotch',
               steps: [
                 {
-                  title: 'Welcome to Card for Humanity',
                   content:
-                    'Card for Humanity is a an online version of popular card game, Card Against Humanity. That gives you the opportunity to donate to children in need.',
-                  target: document.getElementById('startGame'),
-                  placement: 'bottom',
-                  width: 500
+                    '<h3>Welcome to Card for Humanity Game Screen!</h3><p>Here is a <b>quick tour</b> to get you started.</p>',
+                  target: document.getElementById('cards-container'),
+                  placement: 'top',
+                  width: $(document).width() < 400 ? 250 : 300
                 },
                 {
-                  title: 'How to Play',
+                  title: 'User Pane',
                   content:
-                    'Each player begin with 10 white answer cards Everyone else answers the black question card by clicking on the answer.',
-                  target: document.getElementById('startGame'),
-                  placement: 'bottom',
-                  width: 500
+                    '<p>This is the <b>user’s pane</b>. It contains the player’s name and score for this gaming session.</p>',
+                  target: document.querySelector('#social-bar-container'),
+                  placement: $(document).width() < 400 ? 'top' : 'left',
+                  width: 300
                 },
                 {
-                  title: 'How to Play',
-                  content: 'The players in the game and their scores appear here',
-                  target: document.getElementById('social-bar-container'),
-                  placement: 'left'
-                },
-                {
-                  title: 'How to Play',
+                  title: 'Start Game',
                   content:
-                    'Each round has a count down timer to answer the black question and for card czar to pick the right answer',
-                  target: document.getElementById('inner-timer-container'),
-                  placement: 'right'
+                    '<p>You can click on <b>Start Game</b> here when more than two players have joined the game.</p>',
+                  target: document.querySelector('#question-container-outer'),
+                  placement: 'bottom'
                 },
                 {
-                  title: 'How to Play',
+                  title: 'Rounds Timer',
                   content:
-                    'The Card Czar will be picked randomly to decide the appropriate answer to the black question and whoever played that card wins the round.',
-                  target: document.getElementById('startGame'),
-                  placement: 'bottom',
-                  xOffset: 200,
-                  width: 350
+                    '<p>Each round takes <b>20 seconds</b>. This pane shows the countdown to each round.</p>',
+                  target: document.querySelector('timer'),
+                  placement: $(document).width() < 400 ? 'bottom' : 'right'
                 },
                 {
-                  title: 'How to Play',
-                  content: 'You will be notified when you are the card czar',
+                  title: 'The Card Czar',
+                  content:
+                    '<p>The <b>Card Czar</b> will be picked randomly to decide the appropriate answer to the blank question and whoever played that card wins the round.</p><p>You have to win more rounds to be the winner of this gaming session.</p>',
                   target: document.getElementById('info-container'),
                   placement: 'top',
-                  xOffset: 400
+                  xOffset: $(document).width() < 400 ? 0 : 200,
+                  width: $(document).width() < 400 ? 250 : 350
                 },
                 {
-                  title: 'How to Play',
-                  content: 'Any player can decide to leave the game at any time.',
-                  target: document.querySelector('.taketour'),
-                  placement: 'left',
-                  xOffset: 100
+                  title: 'Chat With Players',
+                  content:
+                    '<p>You can also chat with everybody in this gaming session<p><p>Just click this button.</p>',
+                  target: document.getElementById('info-container'),
+                  placement: 'top',
+                  xOffset: $(document).width() < 400 ? 0 : 400,
+                  width: $(document).width() < 400 ? 250 : 400
                 },
                 {
-                  title: 'How to Play',
-                  content: 'You can click this button any time to take tour again.',
-                  target: document.querySelector('.taketour'),
-                  placement: 'left'
+                  title: 'You are the Czar',
+                  content:
+                    '<p>You will be notified here when you have to be <b>the Card Czar</b></p>',
+                  target: document.getElementById('info-container'),
+                  placement: $(document).width() < 400 ? 'bottom' : 'right',
+                  width: 250
+                },
+                {
+                  title: 'Abandon Game',
+                  content:
+                    '<p>You can abandon this game session at any time by clicking this button.</p>',
+                  target: document.querySelector($(document).width() < 400 ? '.material-icons' : '.abandon-game'),
+                  placement: $(document).width() < 400 ? 'bottom' : 'left'
+                },
+                {
+                  title: 'Take Tour Any time',
+                  content:
+                    '<p>You can take this tour anytime by clicking this button</p>',
+                  target: document.querySelector($(document).width() < 400 ? '.material-icons' : '.taketour'),
+                  placement: $(document).width() < 400 ? 'bottom' : 'left'
+                },
+                {
+                  title: 'Have Fun',
+                  content: '<p>We hope you enjoy the game as we do.</p>',
+                  target: document.getElementById('info-container'),
+                  placement: 'top',
+                  width: 250
                 }
               ]
             },
@@ -119,7 +140,7 @@ angular.module('mean.system')
         angular.element(document).ready(() => {
           if (localStorage.getItem('tour-taken')) return;
           const interval = setInterval(() => {
-            if (document.getElementById('startGame') != null) {
+            if (document.getElementById('cards-container') != null) {
               $scope.startTour();
               localStorage.setItem('tour-taken', true);
               clearInterval(interval);
@@ -132,9 +153,9 @@ angular.module('mean.system')
           $http({
             method: 'POST',
             url: '/api/search/users',
-            data: { search: $scope.emailOrUsernameOfFriend },
-          })
-            .then((res) => {
+            data: { search: $scope.emailOrUsernameOfFriend }
+          }).then(
+            (res) => {
               if (res.data.message === 'You cannot search for yourself') {
                 $scope.foundUser = true;
                 $scope.isSearchingUser = false;
@@ -156,13 +177,15 @@ angular.module('mean.system')
               $scope.userDetails = res.data.user;
               $scope.searchResult = 'User is found';
               return $scope.searchResult;
-            }, () => {
+            },
+            () => {
               $scope.isSearchingUser = false;
               $scope.foundUser = false;
               $scope.searchResult = 'oops, an error occured,please try again';
               $scope.userDetails = {};
               return $scope.searchResult;
-            });
+            }
+          );
         };
 
         $scope.inviteUser = () => {
@@ -173,22 +196,24 @@ angular.module('mean.system')
             data: {
               emailOfUserToBeInvited: $scope.userDetails.email,
               link: document.URL
-            },
-          })
-            .then(() => {
+            }
+          }).then(
+            () => {
               $scope.isInvitingUser = false;
               $scope.invitedUser = true;
               $scope.searchResult = `${$scope.userDetails.name}
               has been invited to the game`;
               $scope.userDetails = {};
               return $scope.searchResult;
-            }, () => {
+            },
+            () => {
               $scope.isInvitingUser = false;
               $scope.invitedUser = true;
               $scope.searchResult = 'oops, an error occured,please try again';
               $scope.userDetails = {};
               return $scope.searchResult;
-            });
+            }
+          );
         };
 
         $scope.pickCard = (card) => {
@@ -198,8 +223,10 @@ angular.module('mean.system')
               if (game.curQuestion.numAnswers === 1) {
                 $scope.sendPickedCards();
                 $scope.hasPickedCards = true;
-              } else if (game.curQuestion.numAnswers === 2 &&
-                $scope.pickedCards.length === 2) {
+              } else if (
+                game.curQuestion.numAnswers === 2 &&
+                $scope.pickedCards.length === 2
+              ) {
                 //  delay and send
                 $scope.hasPickedCards = true;
                 $timeout($scope.sendPickedCards, 300);
@@ -311,7 +338,6 @@ angular.module('mean.system')
           }
           $scope.pickedCards = [];
         });
-
         // In case player doesn't pick a card in time, show the table
         $scope.$watch('game.state', () => {
           if (
@@ -337,13 +363,17 @@ angular.module('mean.system')
             }
           }
         });
-
-        if ($location.search().game && !/^\d+$/.test($location.search().game)) {
-          game.joinGame('joinGame', $location.search().game);
-        } else if ($location.search().custom) {
-          game.joinGame('joinGame', null, true);
+        const regions = ['africa', 'asia'];
+        let { region } = $location.search();
+        const custom = $location.search().custom === 'true';
+        if (!region) region = regions[Math.floor(Math.random() * 2)];
+        if ($location.search().game &&
+          !(/^\d+$/).test($location.search().game)) {
+          game.joinGame(region, 'joinGame', $location.search().game);
+        } else if (custom) {
+          game.joinGame(region, 'joinGame', null, true);
         } else {
-          game.joinGame();
+          game.joinGame(region);
         }
       }
     ]

@@ -17,7 +17,8 @@ exports.config = {
     'landing.spec.js',
     'signin.spec.js',
     'signup.spec.js',
-    'game.spec.js'
+    'game.spec.js',
+    'chooseRegion.spec.js'
   ],
   // Options to be passed to Jasmine.
   jasmineNodeOpts: {

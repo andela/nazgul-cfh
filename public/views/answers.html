@@ -1,4 +1,7 @@
-
+<script>
+  $('.modal').modal();
+  $('select').material_select();
+</script>
 <div ng-cloak id="cards-container" class="card-panel dark-pink" ng-hide="game.state === 'game ended' || game.state ==='game dissolved'">
   <span ng-show="winnerPicked()"></span>
   <div class="row par hand">
@@ -77,9 +80,25 @@
         <h4>What would you like to do now?</h4>
         Help yourself to another game or help a child in need? Donating will also place a lovely crown on your avatar's head.
       </div>
-      <div id='inner-text-container' class="center fsize marg20">
+      <div id='inner-text-container' class="center fsize marg20" ng-controller="IndexController">
+        <div id="region" class="modal">
+          <div class="modal-content">
+            <h4>Choose your region</h4>
+            <div class="row">
+              <div class="col offset-s3 s6">
+                <select id="regionId">
+                    <option name="africa" value="africa">Africa</option>
+                    <option name="asia" value="asia">Asia</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a ng-click="next()" class="modal-action modal-close waves-effect btn-flat">Next</a>
+          </div>
+        </div>
         <a href='/#!/app'>
-        <div id="join-new-game" ng-click="game.joinGame('joinNewGame')" class="white-text btn">
+        <div id="join-new-game" ng-click="openModal(false)" class="white-text btn">
           Join a New Game
         </div></a>
         <a href='/'>
