@@ -116,13 +116,14 @@
                             <a class="btn waves-effect waves-green" style="background-color: #540032; font-family: 'Nova Flat'" href="/play">JOIN</a>
                             <button type="button" class="btn waves-effect" data-dismiss="modal" style="background-color: #540032" ng-click="abandonGame()">no, THANKS</button>
                           </div>
+                        </div>
                       </div>
                     </div>
                     <div id="cannot-start-game-modal" class="modal animated rollIn" style="z-index: 1000; margin-top: 0px; height: 250px">
-                      <div class="modal-dialog modal-sm">     
+                      <div class="modal-dialog modal-sm">
                         <!-- Modal content-->
                         <div class="modal-content animated rollIn" style="background-color: white;">
-                            <div style="float: right; color: #2E112D; font-weight: bold; font-size: 28px;margin-top: -20px" ng-click="closeCannotStartGameModal()">&times;</div>
+                          <div style="float: right; color: #2E112D; font-weight: bold; font-size: 28px;margin-top: -20px" ng-click="closeCannotStartGameModal()">&times;</div>
                           <div class="modal-header">
                             <h4 class="modal-title center-align" style="color: #2E112D">NOT ENOUGH PLAYERS</h4>
                           </div>
@@ -132,14 +133,15 @@
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="col s12">
-                    <answers></answers>
+                    <div class="col s12">
+                      <answers></answers>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="col s12 l3 ">
-                <scoreboard></scoreboard>
+                <div class="col s12 l3 ">
+                  <scoreboard></scoreboard>
+                </div>
               </div>
             </div>
           </div>
@@ -147,4 +149,3 @@
       </div>
     </div>
   </div>
-</div>
