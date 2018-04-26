@@ -2,8 +2,7 @@ language: node_js
 node_js:
   - "node"
   - "8.9.4"
-ignore:
-  - gulpfile.babel.js
+
 after_success: npm run coverage
 
 after_failure: npm run coverage
