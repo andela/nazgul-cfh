@@ -1,9 +1,11 @@
+/* global _, angular */
 angular.module('mean.system').factory('game', [
   'socket',
   '$timeout',
+  '$window',
   '$http',
   '$rootScope',
-  function (socket, $timeout, $http, $rootScope) {
+  function (socket, $timeout, $window, $http, $rootScope) {
     const game = {
       id: null, // This player's socket ID, so we know who this player is
       gameID: null,
@@ -28,12 +30,21 @@ angular.module('mean.system').factory('game', [
 
     const notificationQueue = [];
     let timeout = false;
-    const self = this;
-    let joinOverrideTimeout = 0;
 
     socket.on('maxPlayersReached', () => {
       $rootScope.$emit('maxPlayersReached');
     });
+    const setNotification = function () {
+      if (notificationQueue.length === 0) {
+        // If notificationQueue is empty, stop
+        clearInterval(timeout);
+        timeout = false;
+        game.notification = '';
+      } else {
+        game.notification = notificationQueue.shift();
+        timeout = $timeout(setNotification, 1300);
+      }
+    };
 
     const addToNotificationQueue = function (msg) {
       notificationQueue.push(msg);
@@ -42,22 +53,11 @@ angular.module('mean.system').factory('game', [
         setNotification();
       }
     };
-    var setNotification = function () {
-      if (notificationQueue.length === 0) {
-        // If notificationQueue is empty, stop
-        clearInterval(timeout);
-        timeout = false;
-        game.notification = '';
-      } else {
-        game.notification = notificationQueue.shift(); // Show a notification and check again in a bit
-        timeout = $timeout(setNotification, 1300);
-      }
-    };
 
     let timeSetViaUpdate = false;
-    var decrementTime = function () {
+    const decrementTime = function () {
       if (game.time > 0 && !timeSetViaUpdate) {
-        game.time--;
+        game.time -= 1;
       } else {
         timeSetViaUpdate = false;
       }
@@ -81,15 +81,14 @@ angular.module('mean.system').factory('game', [
       if (game.gameID !== data.gameID) {
         game.gameID = data.gameID;
       }
-
       // check if game has ended and then
       // send to the url
-      if (data.state === 'game ended') {
+      if (game.state === 'game ended') {
         const gameLog = {};
-        (gameLog.gameId = data.gameID),
-        (gameLog.players = data.players),
-        (gameLog.rounds = data.round),
-        (gameLog.gameWinner = data.players[data.gameWinner]);
+        gameLog.gameId = game.gameID;
+        gameLog.players = game.players;
+        gameLog.rounds = game.round;
+        gameLog.gameWinner = game.players[game.gameWinner];
 
         $http({
           method: 'POST',
@@ -108,7 +107,7 @@ angular.module('mean.system').factory('game', [
 
       let i;
       // Cache the index of the player in the players array
-      for (i = 0; i < data.players.length; i++) {
+      for (i = 0; i < data.players.length; i += 1) {
         if (game.id === data.players[i].socketID) {
           game.playerIndex = i;
         }
@@ -153,15 +152,15 @@ angular.module('mean.system').factory('game', [
           _.pluck(game.table, 'player'),
           _.pluck(data.table, 'player')
         );
-        for (i = 0; i < added.length; i++) {
-          for (let j = 0; j < data.table.length; j++) {
+        for (i = 0; i < added.length; i += 1) {
+          for (let j = 0; j < data.table.length; j += 1) {
             if (added[i] === data.table[j].player) {
               game.table.push(data.table[j], 1);
             }
           }
         }
-        for (i = 0; i < removed.length; i++) {
-          for (let k = 0; k < game.table.length; k++) {
+        for (i = 0; i < removed.length; i += 1) {
+          for (let k = 0; k < game.table.length; k += 1) {
             if (removed[i] === game.table[k].player) {
               game.table.splice(k, 1);
             }
@@ -207,10 +206,6 @@ angular.module('mean.system').factory('game', [
         game.curQuestion.text.indexOf('<u></u>') > -1
       ) {
         game.curQuestion = data.curQuestion;
-      } else if (data.state === 'awaiting players') {
-        joinOverrideTimeout = $timeout(() => {
-          game.joinOverride = true;
-        }, 15000);
       } else if (
         data.state === 'game dissolved' ||
         data.state === 'game ended'
@@ -223,14 +218,20 @@ angular.module('mean.system').factory('game', [
     socket.on('notification', (data) => {
       addToNotificationQueue(data.notification);
     });
-
-    game.joinGame = function (mode, room, createPrivate) {
+    game.joinGame = function (region, mode, room, createPrivate) {
+      game.region = region;
       mode = mode || 'joinGame';
       room = room || '';
       createPrivate = createPrivate || false;
-      const userID = window.user ? user._id : 'unauthenticated';
+      const userData = JSON.parse($window.localStorage.getItem('userData'));
+      let status = 'unauthenticated';
+      if (userData) {
+        status = userData.token;
+      }
+      const token = status;
       socket.emit(mode, {
-        userID,
+        token,
+        region,
         room,
         createPrivate
       });

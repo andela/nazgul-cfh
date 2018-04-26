@@ -22,8 +22,11 @@ angular.module('mean.system')
         $scope.foundUser = false;
         $scope.invitedUser = false;
         $scope.userDetails = {};
-        const authToken = JSON.parse(localStorage.getItem('userData')).token;
-        $http.defaults.headers.common.Authorization = authToken;
+        const userData = JSON.parse(localStorage.getItem('userData'));
+        if (userData) {
+          const authToken = JSON.parse(localStorage.getItem('userData')).token;
+          $http.defaults.headers.common.Authorization = authToken;
+        }
 
         $scope.openSearchModal = () => {
           $('#myModal').modal('open');
@@ -337,13 +340,17 @@ angular.module('mean.system')
             }
           }
         });
-
-        if ($location.search().game && !/^\d+$/.test($location.search().game)) {
-          game.joinGame('joinGame', $location.search().game);
-        } else if ($location.search().custom) {
-          game.joinGame('joinGame', null, true);
+        const regions = ['africa', 'asia'];
+        let { region } = $location.search();
+        const custom = $location.search().custom === 'true';
+        if (!region) region = regions[Math.floor(Math.random() * 2)];
+        if ($location.search().game &&
+          !(/^\d+$/).test($location.search().game)) {
+          game.joinGame(region, 'joinGame', $location.search().game);
+        } else if (custom) {
+          game.joinGame(region, 'joinGame', null, true);
         } else {
-          game.joinGame();
+          game.joinGame(region);
         }
       }
     ]

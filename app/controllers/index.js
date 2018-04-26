@@ -8,16 +8,16 @@ var mongoose = require('mongoose'),
 /**
  * Redirect users to /#!/app (forcing Angular to reload the page)
  */
-exports.play = function(req, res) {
-  if (Object.keys(req.query)[0] === 'custom') {
-    res.redirect('/#!/app?custom');
-  } else {
-    res.redirect('/#!/app');
+exports.play = (req, res) => {
+  let { region, custom } = req.query;
+  if (custom !== 'true') custom = false;
+  if (!region) {
+    const regions = ['africa', 'asia'];
+    region = regions[Math.floor(Math.random() * 2)];
   }
+  res.redirect(`/#!/app?custom=${custom}&region=${region}`);
 };
 
 exports.render = function(req, res) {
-    res.render('index', {
-        user: req.user ? JSON.stringify(req.user) : "null"
-    });
+  res.render('index');
 };
