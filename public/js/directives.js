@@ -4,7 +4,8 @@ angular.module('mean.directives', [])
       restrict: 'EA',
       templateUrl: '/views/player.html',
       link: function(scope, elem, attr){
-        scope.colors = ['#7CE4E8', '#d90404', '#256994', '#04ae11', '#b81287', '#F7775E', '#0645f2', '#7c575e', '#f2adff', '#f0950a', '#fdd733', '#8d9241'];      }
+        scope.colors = ['#7CE4E8', '#d90404', '#256994', '#04ae11', '#b81287', '#F7775E', '#0645f2', '#7c575e', '#f2adff', '#f0950a', '#fdd733', '#8d9241'];
+      }
     };
   }).directive('answers', function() {
     return {
@@ -45,8 +46,8 @@ angular.module('mean.directives', [])
                 }
               }
             } else {
-              const winningCardScope = scope.game.table[scope.game.winningCard].card[0].text;
-              curQ.text += ` ${startStyle+ winningCardScope + endStyle}`;
+              const winningCardScope = scope.game.table[scope.game.winningCard].card[0].text; /* eslint-disable-line */
+              curQ.text += ` ${startStyle + winningCardScope + endStyle}`;
             }
           }
         });
