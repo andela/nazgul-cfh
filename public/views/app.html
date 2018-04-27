@@ -75,7 +75,7 @@
                         <div class="modal-content animated rollIn" style="height:280px">
                           <div style="float: right; color: #2E112D; font-weight: bold; font-size: 28px;margin-top: -20px" ng-click="closeSearchModal()">&times;</div>
                           <div class="modal-header">
-                            <h4 class="modal-title center-align" style="color: #2E112D; font-family: Allerta Stencil">Invite Friends</h4>
+                            <h4 class="modal-title center-align" style="color: #2E112D">Invite Friends</h4>
                           </div>
                           <div class="modal-body" style="text-align: center">
                             <form class="form-inline">
@@ -111,43 +111,33 @@
                         </div>
                       </div>
                     </div>
-                    <div id="game-already-started-modal" class="modal animated rollIn" style="z-index: 1000; margin-top: 0px; height: 300px">
+                     <div id="game-already-started-modal" class="modal animated rollIn" style="z-index: 1000; margin-top: 0px; height: 270px">
                       <div class="modal-dialog modal-sm">
                         <!-- Modal content-->
                         <div class="modal-content animated rollIn" style="background-color: white;">
                           <div class="modal-header">
-                            <h4 class="modal-title center-align" style="color: #2E112D; font-family: Allerta Stencil">MAXIMUM PLAYERS REACHED</h4>
+                            <h4 class="modal-title center-align" style="color: #2E112D">MAXIMUM PLAYERS REACHED</h4>
                           </div>
                           <div class="modal-body" style="text-align: center; margin-top: 10px" style="font-size: 1.8em; padding-left: 30px; padding-right: 20px;">
-                            <p style="font-family: 'Nova Flat'; font-size: 1.2em;">Hi!, The game You want to join has reached it's maximum player
-                              <br>limit,but you can still join the general game,
-                              <br>click join if you want to do just that</p>
+                            <p style="font-size: 1.2em;">Hi!, The game You want to join has reached it's maximum player<br>limit,but you can still join the general game,<br>click join if you want to do just that</p>
                           </div>
                           <div class="center-align">
-                            <a class="btn waves-effect" style="background-color: #540032; font-family: 'Nova Flat'" href="/play">JOIN</a>
+                            <a class="btn waves-effect waves-green" style="background-color: #540032; font-family: 'Nova Flat'" href="/play">JOIN</a>
+                            <button type="button" class="btn waves-effect" data-dismiss="modal" style="background-color: #540032" ng-click="abandonGame()">no, THANKS</button>
                           </div>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn waves-effect" data-dismiss="modal" style="background-color: #540032; font-family: Allerta Stencil"
-                            ng-click="abandonGame()">no, THANKS</button>
                         </div>
                       </div>
                     </div>
-                    <div id="cannot-start-game-modal" class="modal animated rollIn" style="z-index: 1000; margin-top: 0px; height: 280px">
+                    <div id="cannot-start-game-modal" class="modal animated rollIn" style="z-index: 1000; margin-top: 0px; height: 250px">
                       <div class="modal-dialog modal-sm">
                         <!-- Modal content-->
                         <div class="modal-content animated rollIn" style="background-color: white;">
+                          <div style="float: right; color: #2E112D; font-weight: bold; font-size: 28px;margin-top: -20px" ng-click="closeCannotStartGameModal()">&times;</div>
                           <div class="modal-header">
-                            <h4 class="modal-title center-align" style="color: #2E112D; font-family: Allerta Stencil">NOT ENOUGH PLAYERS</h4>
+                            <h4 class="modal-title center-align" style="color: #2E112D">NOT ENOUGH PLAYERS</h4>
                           </div>
                           <div class="modal-body" style="text-align: center; margin-top: 10px" style="font-size: 1.8em; padding-left: 30px; padding-right: 20px;">
-                            <p style="font-family: 'Nova Flat'; font-size: 1.2em;">Hi!, The game cannot start now because
-                              <br>the number of players is not yet up to
-                              <br>three, Please wait or invite Friends</p>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn waves-effect" data-dismiss="modal" style="background-color: #540032; font-family: Allerta Stencil"
-                              ng-click="closeCannotStartGameModal()">ok, THANKS</button>
+                            <p style=" font-size: 1.2em;">Hi!, The game cannot start now because<br>the number of players is not yet up to<br>three, Please wait or invite Friends</p>
                           </div>
                         </div>
                       </div>
@@ -167,5 +157,4 @@
       </div>
     </div>
   </div>
-  <chat></chat>
 </div>
