@@ -492,7 +492,7 @@ input.valid:not([type]), input.valid:not([type]):focus, input[type=text].valid:n
   background-color: #540032;
 }
 
-.game-already-started-modal {
+#game-already-started-modal {
   z-index: 1000;
   margin-top: 0px;
   height: 270px
@@ -514,6 +514,10 @@ input.valid:not([type]), input.valid:not([type]):focus, input[type=text].valid:n
   margin-top: 10px
 }
 
+.game-started-text {
+  font-size: 1.2em;
+}
+
 .join-link {
   background-color: #540032;
 }
@@ -526,7 +530,7 @@ input.valid:not([type]), input.valid:not([type]):focus, input[type=text].valid:n
   background-color: #540032;
 }
 
-.cannot-start-game-modal {
+#cannot-start-game-modal {
   z-index: 1000;
   margin-top: 0px;
   height: 250px
