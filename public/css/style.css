@@ -377,16 +377,17 @@ textarea.materialize-textarea.valid:focus,
   font-size: 19px;
 }
 
-.modal.modal-fixed-footer{
+.modal.modal-fixed-footer {
   height: 240px;
   max-height: 240px;
 }
 
-.dropdown-content li>a, .dropdown-content li>span{
+.dropdown-content li > a,
+.dropdown-content li > span {
   color: var(--main-bg-color);
 }
 
-.progress{
+.progress {
   background-color: rgba(44, 16, 43, 0.405);
 }
 
@@ -669,4 +670,9 @@ div.hopscotch-bubble .hopscotch-nav-button.next {
 }
 .hopscotch-bubble-container p {
   line-height: 14px;
+}
+
+#startH4 {
+  text-align: center;
+  margin-top: 50px;
 }
