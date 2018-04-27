@@ -62,19 +62,19 @@
                         </div>
                       </div><!-- END Modal Structure  -->
 
-                    <div id="myModal" class="modal animated rollIn modal-fixed-footer" style="z-index: 1000; margin-top: 0px; height: 240px; max-height: 240px;">
+                    <div id="myModal" class="modal animated rollIn modal-fixed-footer">
                       <div>
                         <!-- Modal content-->
-                        <div class="modal-content animated rollIn" style="height:280px">
-                            <div style="float: right; color: #2E112D; font-weight: bold; font-size: 28px;margin-top: -20px" ng-click="closeSearchModal()">&times;</div>
+                        <div class="modal-content mymodal-content animated rollIn">
+                            <div class="closeSearch" ng-click="closeSearchModal()">&times;</div>
                           <div class="modal-header">
-                            <h4 class="modal-title center-align" style="color: #2E112D">Invite Friends</h4>
+                            <h4 class="modal-title mymodal-title center-align">Invite Friends</h4>
                           </div>
-                          <div class="modal-body" style="text-align: center">
+                          <div class="modal-body mymodal-body">
                             <form class="form-inline">
                               <div class="form-group">
-                                <input class="form-control" type=text style="width: 80%;" id="email_inline" ng-model="emailOrUsernameOfFriend" placeholder="type email or username of friend">
-                                <button class="btn btn-success animated wobble" style="margin-top: 5px; background-color:  #2E112D" ng-click="searchUser()">SEARCH</button>
+                                <input class="form-control search-form" type=text id="email_inline" ng-model="emailOrUsernameOfFriend" placeholder="type email or username of friend">
+                                <button class="btn btn-success animated wobble search-btn" ng-click="searchUser()">SEARCH</button>
                               </div>
                             </form>
                             <div class="preloader-wrapper small active" ng-show="isSearchingUser || isInvitingUser">
@@ -91,10 +91,10 @@
                             <div class="panel panel-default" style="margin-top: 5px">
                               <div class="row" >
                                 <div class="col-xs-8" ng-show="foundUser">
-                                  <p class="panel-body" style="font-family: 'Nova Flat'; color: #540032">{{searchResult}}</p>
+                                  <p class="panel-body searchresults">{{searchResult}}</p>
                                 </div>
                                 <div class="col-xs-6" ng-show="userDetails.email !== undefined && !isInvitingUser">
-                                  <button class="btn btn-default" style="background-color: #540032;" ng-click="inviteUser()">invite</button>
+                                  <button class="btn btn-default invite-btn" ng-click="inviteUser()">invite</button>
                                 </div>
                               </div>
                             </div>
@@ -102,33 +102,33 @@
                         </div>
                       </div>
                     </div>                
-                     <div id="game-already-started-modal" class="modal animated rollIn" style="z-index: 1000; margin-top: 0px; height: 270px">
+                     <div id="game-already-started-modal" class="modal animated rollIn">
                       <div class="modal-dialog modal-sm">     
                         <!-- Modal content-->
-                        <div class="modal-content animated rollIn" style="background-color: white;">
+                        <div class="modal-content animated rollIn game-started-content">
                           <div class="modal-header">
-                            <h4 class="modal-title center-align" style="color: #2E112D">MAXIMUM PLAYERS REACHED</h4>
+                            <h4 class="modal-title center-align game-started-title">MAXIMUM PLAYERS REACHED</h4>
                           </div>
-                          <div class="modal-body" style="text-align: center; margin-top: 10px" style="font-size: 1.8em; padding-left: 30px; padding-right: 20px;">
+                          <div class="modal-body game-started-body">
                             <p style="font-size: 1.2em;">Hi!, The game You want to join has reached it's maximum player<br>limit,but you can still join the general game,<br>click join if you want to do just that</p>
                           </div>
                           <div class="center-align">
-                            <a class="btn waves-effect waves-green" style="background-color: #540032; font-family: 'Nova Flat'" href="/play">JOIN</a>
-                            <button type="button" class="btn waves-effect" data-dismiss="modal" style="background-color: #540032" ng-click="abandonGame()">no, THANKS</button>
+                            <a class="btn waves-effect join-link" href="/play">JOIN</a>
+                            <button type="button" class="btn waves-effect join-btn" data-dismiss="modal" ng-click="abandonGame()">no, THANKS</button>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div id="cannot-start-game-modal" class="modal animated rollIn" style="z-index: 1000; margin-top: 0px; height: 250px">
+                    <div id="cannot-start-game-modal" class="modal animated rollIn">
                       <div class="modal-dialog modal-sm">
                         <!-- Modal content-->
-                        <div class="modal-content animated rollIn" style="background-color: white;">
-                          <div style="float: right; color: #2E112D; font-weight: bold; font-size: 28px;margin-top: -20px" ng-click="closeCannotStartGameModal()">&times;</div>
+                        <div class="modal-content animated rollIn cannot-start-content">
+                          <div class="cannot-start-dismiss" ng-click="closeCannotStartGameModal()">&times;</div>
                           <div class="modal-header">
-                            <h4 class="modal-title center-align" style="color: #2E112D">NOT ENOUGH PLAYERS</h4>
+                            <h4 class="modal-title center-align cannot-start-title">NOT ENOUGH PLAYERS</h4>
                           </div>
-                          <div class="modal-body" style="text-align: center; margin-top: 10px" style="font-size: 1.8em; padding-left: 30px; padding-right: 20px;">
-                            <p style=" font-size: 1.2em;">Hi!, The game cannot start now because<br>the number of players is not yet up to<br>three, Please wait or invite Friends</p>
+                          <div class="modal-body cannot-start-body">
+                            <p class="cannot-start-text">Hi!, The game cannot start now because<br>the number of players is not yet up to<br>three, Please wait or invite Friends</p>
                           </div>
                         </div>
                       </div>

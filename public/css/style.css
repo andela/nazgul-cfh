@@ -430,7 +430,7 @@ input.valid:not([type]), input.valid:not([type]):focus, input[type=text].valid:n
   text-align: center;
 }
 
-.minH{
+.minH {
   min-height: 250px;
 }
 
@@ -448,4 +448,114 @@ input.valid:not([type]), input.valid:not([type]):focus, input[type=text].valid:n
 }
 .just{
   justify-content: center;
+}
+.closeSearch {
+  float: right;
+  color: #2E112D;
+  font-weight: bold;
+  font-size: 28px;
+  margin-top: -20px;
+}
+
+#mymodal {
+  z-index: 1000;
+  margin-top: 0px;
+  height: 240px;
+  max-height: 240px;
+}
+
+.mymodal-title {
+  color: #2E112D
+}
+
+.mymodal-content {
+  height:280px
+}
+
+.mymodal-body {
+  text-align: center
+}
+
+.search-form {
+  width: 80%;
+}
+
+.search-btn {
+  margin-top: 5px;
+  background-color: #2E112D
+}
+
+.searchresults {
+  color: #540032
+}
+.invite-btn {
+  background-color: #540032;
+}
+
+.game-already-started-modal {
+  z-index: 1000;
+  margin-top: 0px;
+  height: 270px
+}
+
+.game-started-content {
+  background-color: white;
+}
+
+.game-started-title {
+  color: #2E112D;
+}
+
+.game-started-body {
+  font-size: 1.8em;
+  padding-left: 30px;
+  padding-right: 20px;
+  text-align: center;
+  margin-top: 10px
+}
+
+.join-link {
+  background-color: #540032;
+}
+
+.join-btn {
+  background-color: #540032;
+}
+
+.join-btn:hover, .join-link:hover {
+  background-color: #540032;
+}
+
+.cannot-start-game-modal {
+  z-index: 1000;
+  margin-top: 0px;
+  height: 250px
+}
+
+.cannot-start-content {
+  background-color: white;
+}
+
+.cannot-start-dismiss {
+  float: right;
+  color: #2E112D;
+  font-weight: bold;
+  font-size: 28px;
+  margin-top: -20px
+}
+
+.cannot-start-title {
+  color: #2E112D
+}
+
+.cannot-start-body {
+  text-align: center;
+  margin-top: 10px;
+  font-size: 1.8em;
+  padding-left: 30px;
+  padding-right: 20px;
+}
+
+.cannot-start-text {
+  font-size: 1.2em;
 }
