@@ -1,4 +1,6 @@
 /* global document angular hopscotch localStorage $ */
+/* eslint-disable object-curly-newline, no-console,
+ no-undef, array-callback-return, func-names */
 angular.module('mean.system')
   .controller(
     'GameController',
@@ -98,9 +100,9 @@ angular.module('mean.system')
                   title: 'Chat With Players',
                   content:
                     '<p>You can also chat with everybody in this gaming session<p><p>Just click this button.</p>',
-                  target: document.getElementById('info-container'),
-                  placement: 'top',
-                  xOffset: $(document).width() < 400 ? 0 : 400,
+                  target: document.querySelector('.lighter-pink.white-text.btn-floating.btn-large'),
+                  placement: 'left',
+                  // xOffset: $(document).width() < 400 ? 0 : 400,
                   width: $(document).width() < 400 ? 250 : 400
                 },
                 {

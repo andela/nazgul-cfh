@@ -35,20 +35,18 @@ gulp.task('nodemon', () =>
 
 gulp.task('build', ['babel', 'sass', 'dist-dep', 'dist-base']);
 gulp.task('babel', () => {
-  gulp
-    .src([
-      './**/*.js',
-      '!dist/**',
-      '!node_modules/**',
-      '!gulpfile.babel.js',
-      '!bower_components/**/*'
-    ])
+  gulp.src([
+    './**/*.js',
+    '!dist/**',
+    '!node_modules/**',
+    '!gulpfile.babel.js',
+    '!bower_components/**/*'
+  ])
     .pipe(babel())
     .pipe(gulp.dest('./dist'));
 });
 gulp.task('sass', () => {
-  gulp
-    .src('public/css/common.scss')
+  gulp.src('public/css/common.scss')
     .pipe(sass())
     .pipe(gulp.dest('public/css/'));
 });
@@ -60,6 +58,10 @@ gulp.task('dist-dep', [
   'mv-angularUtils',
   'mv-angular-bootstrap',
   'mv-hopscotch',
+  'mv-angular-bootstrap',
+  'emojioneCSS',
+  'emojioneJS',
+  'emojionearea'
 ]);
 
 gulp.task('test', () => {
@@ -98,6 +100,21 @@ gulp.task('mv-angularUtils', () =>
     './dist/public/lib/angular-ui-utils/modules'
   ));
 
+gulp.task('emojioneCSS', () => {
+  gulp.src('bower_components/emojione/extras/css/emojione.css')
+    .pipe(gulp.dest('./dist/public/lib/emojionearea'));
+});
+
+gulp.task('emojioneJS', () => {
+  gulp.src('bower_components/emojione/lib/js/emojione.js')
+    .pipe(gulp.dest('./dist/public/lib/emojionearea'));
+});
+
+gulp.task('emojionearea', () => {
+  gulp.src('bower_components/emojionearea/dist/*')
+    .pipe(gulp.dest('./dist/public/lib/emojionearea'));
+});
+
 gulp.task('mv-angular-bootstrap', () =>
   move(
     'bower_components/angular-bootstrap/**/*',
@@ -110,3 +127,13 @@ gulp.task('mv-config', () => move('config/env/*.json', './dist/config/env'));
 
 gulp.task('mv-public', () =>
   move(['public/**/*', '!public/js/**'], './dist/public'));
+
+gulp.task('test', () => {
+  gulp.src(['test/**/*.js'])
+    .pipe(mocha({
+      reporter: 'spec',
+      exit: true,
+      compilers: 'babel-core/register'
+    }))
+    .pipe(exit());
+});

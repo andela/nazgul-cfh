@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Game from '../app/controllers/game';
 
 const users = require('../app/controllers/users');

@@ -1,10 +1,11 @@
+/* eslint-disable import/extensions, import/no-unresolved */
 import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
 /**
-* Game Schema
-*/
+ * Game Schema
+ */
 const gameSchema = new Schema(
   {
     gameID: String,
@@ -15,7 +16,9 @@ const gameSchema = new Schema(
       default: ''
     }
   },
-  { timestamps: true }
+  {
+    timestamps: true
+  }
 );
 
 mongoose.model('GameHistory', gameSchema);

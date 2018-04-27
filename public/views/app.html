@@ -9,24 +9,24 @@
         <a id="logo-container" href="/" class="brand-logo white-text">CFH</a>
         <ul class="right hide-on-med-and-down" id="menu-container">
           <li id='abandon-game-button' ng-click="openSearchModal()">
-            <a href="/#mtt" class="white-text">Invite Friends</a>
+            <a class="white-text">Invite Friends</a>
           </li>
           <li id='abandon-game-button' class="taketour" ng-click="startTour()">
-            <a href="/#mtt" class="white-text">Take Tour</a>
+            <a class="white-text">Take Tour</a>
           </li>
           <li id='abandon-game-button' ng-click="abandonGame()">
-            <a class="white-text" href="/#mtt">Abandon Game</a>
+            <a class="white-text">Abandon Game</a>
           </li>
         </ul>
         <ul id="slide-out" class="sidenav white-text">
           <li id='abandon-game-button' ng-click="openSearchModal()">
-            <a href="/#mtt">Invite Friends</a>
+            <a>Invite Friends</a>
           </li>
           <li id='abandon-game-button' class="taketour" ng-click="startTour()">
-            <a href="/#mtt">Take Tour</a>
+            <a>Take Tour</a>
           </li>
           <li id='abandon-game-button' ng-click="abandonGame()">
-            <a href="/#mtt">Abandon Game</a>
+            <a>Abandon Game</a>
           </li>
           <li>
             <div class="divider"></div>
@@ -100,7 +100,7 @@
                             <div class="panel panel-default" style="margin-top: 5px">
                               <div class="row">
                                 <div class="col-xs-8" ng-show="foundUser">
-                                  <p class="panel-body" style="font-family: 'Nova Flat'; color: #540032">{{searchResult}}</p>
+                                  <p class="panel-body" style="; color: #540032">{{searchResult}}</p>
                                 </div>
                                 <div class="col-xs-6" ng-show="userDetails.email !== undefined && !isInvitingUser">
                                   <button class="btn btn-default" style="background-color: #540032;" ng-click="inviteUser()">invite</button>
@@ -110,41 +110,56 @@
                           </div>
                         </div>
                       </div>
-                    </div>                
-                     <div id="game-already-started-modal" class="modal animated rollIn" style="z-index: 1000; margin-top: 0px; height: 270px">
-                      <div class="modal-dialog modal-sm">     
+                    </div>
+                    <div id="game-already-started-modal" class="modal animated rollIn" style="z-index: 1000; margin-top: 0px; height: 300px">
+                      <div class="modal-dialog modal-sm">
                         <!-- Modal content-->
                         <div class="modal-content animated rollIn" style="background-color: white;">
                           <div class="modal-header">
                             <h4 class="modal-title center-align" style="color: #2E112D">MAXIMUM PLAYERS REACHED</h4>
                           </div>
                           <div class="modal-body" style="text-align: center; margin-top: 10px" style="font-size: 1.8em; padding-left: 30px; padding-right: 20px;">
-                            <p style="font-size: 1.2em;">Hi!, The game You want to join has reached it's maximum player<br>limit,but you can still join the general game,<br>click join if you want to do just that</p>
+                            <p style="font-size: 1.2em;">Hi!, The game You want to join has reached it's maximum player
+                              <br>limit,but you can still join the general game,
+                              <br>click join if you want to do just that</p>
                           </div>
                           <div class="center-align">
-                            <a class="btn waves-effect waves-green" style="background-color: #540032; font-family: 'Nova Flat'" href="/play">JOIN</a>
-                            <button type="button" class="btn waves-effect" data-dismiss="modal" style="background-color: #540032" ng-click="abandonGame()">no, THANKS</button>
+                            <a class="btn waves-effect" style="background-color: #540032" href="/play">JOIN</a>
                           </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn waves-effect" data-dismiss="modal" style="background-color: #540032"
+                                  ng-click="abandonGame()">no, THANKS</button>
                         </div>
                       </div>
                     </div>
-                    <div id="cannot-start-game-modal" class="modal animated rollIn" style="z-index: 1000; margin-top: 0px; height: 250px">
+                    <div id="cannot-start-game-modal" class="modal animated rollIn" style="z-index: 1000; margin-top: 0px; height: 280px">
                       <div class="modal-dialog modal-sm">
                         <!-- Modal content-->
                         <div class="modal-content animated rollIn" style="background-color: white;">
-                          <div style="float: right; color: #2E112D; font-weight: bold; font-size: 28px;margin-top: -20px" ng-click="closeCannotStartGameModal()">&times;</div>
                           <div class="modal-header">
                             <h4 class="modal-title center-align" style="color: #2E112D">NOT ENOUGH PLAYERS</h4>
                           </div>
                           <div class="modal-body" style="text-align: center; margin-top: 10px" style="font-size: 1.8em; padding-left: 30px; padding-right: 20px;">
-                            <p style=" font-size: 1.2em;">Hi!, The game cannot start now because<br>the number of players is not yet up to<br>three, Please wait or invite Friends</p>
+                            <p style="font-size: 1.2em;">Hi!, The game cannot start now because
+                              <br>the number of players is not yet up to
+                              <br>three, Please wait or invite Friends</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn waves-effect" data-dismiss="modal" style="background-color: #540032"
+                                    ng-click="closeCannotStartGameModal()">ok, THANKS</button>
                           </div>
                         </div>
                       </div>
                     </div>
-                <div class="col s12 l3 ">
-                  <scoreboard></scoreboard>
+                  </div>
+                  <div class="col s12">
+                    <answers></answers>
+                  </div>
                 </div>
+              </div>
+              <div class="col s12 l3 ">
+                <scoreboard></scoreboard>
               </div>
             </div>
           </div>
@@ -152,3 +167,5 @@
       </div>
     </div>
   </div>
+  <chat></chat>
+</div>

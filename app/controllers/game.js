@@ -1,3 +1,4 @@
+/* eslint-disable  import/no-unresolved, import/extensions */
 import mongoose from 'mongoose';
 
 const GameHistory = mongoose.model('GameHistory');

@@ -1,6 +1,6 @@
 <div id="">
   <div class="card-panel minHeight">
-    <div id="quest-ion" ng-bind-html-unsafe="game.curQuestion.text" class="left fsize" ng-hide="game.state === 'game ended' || game.state ==='game dissolved' || game.state === 'awaiting players'">
+    <div id="quest-ion" ng-bind-html="game.curQuestion.text" class="left fsize" ng-hide="game.state === 'game ended' || game.state ==='game dissolved' || game.state === 'awaiting players'">
     </div>
     <div ng-show="game.state === 'awaiting players'">
       <h3 class="center dark-pink-text">Finding Players</h3>
@@ -26,7 +26,7 @@
       </div>
     </div>
 
-    <!-- Game Over Stuff -->
+  <!-- Game Over Stuff -->
     <div id="game-end-info">
       <div id="people-left-game-top" ng-show="game.state ==='game dissolved' && game.gameWinner === -1">
         <div class="game-end-headline dark-pink-text fsize">What the!? The game ended because too many people left! </div>
