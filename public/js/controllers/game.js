@@ -30,8 +30,7 @@ angular.module('mean.system')
           $http.defaults.headers.common.Authorization = authToken;
         }
 
-        $scope.openSearchModal = (e) => {
-          e.preventDefault();
+        $scope.openSearchModal = () => {
           $('#myModal').modal('open');
         };
 
@@ -54,8 +53,7 @@ angular.module('mean.system')
           $('#game-already-started-modal').modal('open');
         });
 
-        $scope.startTour = (e) => {
-          e.preventDefault();
+        $scope.startTour = () => {
           $scope.hopscotch.startTour(
             {
               id: 'hello-hopscotch',
