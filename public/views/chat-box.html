@@ -1,0 +1,38 @@
+<div class="fixed-action-btn horizontal" id="chat-container" ng-controller="ChatController">
+  <div id="chatbox">
+    <div id="chatview" class="p1">
+      <div class="mute-btn" ng-click="muteAudio($event)">
+        <i class="material-icons">&#xE050;</i>
+      </div>
+
+      <div class="close-btn" ng-click="closeChat($event)">
+        <i class="material-icons">close</i>
+      </div>
+
+      <div id="chat-messages">
+
+        <div class="animated fadeInUp message {{(chat.align === 'right') ? chat.align : '';}}" ng-repeat="chat in chats">
+          <div class="bubble">
+            <span class="bubble-title">{{chat.username}} says:</span>
+            <span class="bubble-message" ng-bind-html="chat.message"></span>
+            <div class="corner"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <form id="chat-form" ng-submit="sendMessage(chatContent)">
+        <div id="sendmessage">
+          <input id="chat-input" type="text" ng-model="chatContent" name="chatContent" placeholder="Click Enter/Return to Send message..." autocomplete="off" />
+          <button type="submit" class="hide" id="chat-submit-btn"></button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <a ng-click="openChat($event)" id="openChatbox" class="lighter-pink white-text btn-floating btn-large" style="position: relative; overflow: visible;">
+    <span class="notification pulse" ng-show="newChatLength"></span>
+    <i class="material-icons" id="chat-icon">question_answer</i>
+  </a>
+</div>

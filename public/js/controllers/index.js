@@ -7,13 +7,8 @@ angular.module('mean.system')
       $location.path('/app');
     };
 
-    $scope.showError = function() {
-      if ($location.search().error) {
-        return $location.search().error;
-      } else {
-        return false;
-      }
-    };
+    $scope.showError = false;
+    $scope.errorMessage = '';
 
     $scope.avatars = [];
     AvatarService.getAvatars()
@@ -49,6 +44,31 @@ angular.module('mean.system')
       $http.post('/api/auth/signup', userInfo)
         .then((response) => {
           setData(response.data);
+        }, ({ data }) => {
+          $scope.errorMessage = data.error;
+          $scope.showError = true;
+          setTimeout(() => {
+            $scope.errorMessage = '';
+            $scope.showError = false;
+          }, 10000);
+        });
+    };
+
+    $scope.signin = () => {
+      const userInfo = {
+        email: $scope.email,
+        password: $scope.password
+      };
+      $http.post('/api/auth/login', userInfo)
+        .then((response) => {
+          setData(response.data);
+        }, ({ data }) => {
+          $scope.errorMessage = data.error;
+          $scope.showError = true;
+          setTimeout(() => {
+            $scope.errorMessage = '';
+            $scope.showError = false;
+          }, 10000);
         });
     };
 
@@ -56,5 +76,17 @@ angular.module('mean.system')
       setData();
       $cookies.userData = '';
       $window.location = '/';
+    };
+
+    $scope.custom = false;
+
+    $scope.openModal = (custom) => {
+      $scope.custom = custom;
+      $('#region').modal('open');
+    };
+
+    $scope.next = () => {
+      const regionId = $window.document.getElementById('regionId').value;
+      $window.location = `/play?custom=${$scope.custom}&region=${regionId}`;
     };
   }]);

@@ -35,20 +35,18 @@ gulp.task('nodemon', () =>
 
 gulp.task('build', ['babel', 'sass', 'dist-dep', 'dist-base']);
 gulp.task('babel', () => {
-  gulp
-    .src([
-      './**/*.js',
-      '!dist/**',
-      '!node_modules/**',
-      '!gulpfile.babel.js',
-      '!bower_components/**/*'
-    ])
+  gulp.src([
+    './**/*.js',
+    '!dist/**',
+    '!node_modules/**',
+    '!gulpfile.babel.js',
+    '!bower_components/**/*'
+  ])
     .pipe(babel())
     .pipe(gulp.dest('./dist'));
 });
 gulp.task('sass', () => {
-  gulp
-    .src('public/css/common.scss')
+  gulp.src('public/css/common.scss')
     .pipe(sass())
     .pipe(gulp.dest('public/css/'));
 });
@@ -58,12 +56,17 @@ gulp.task('dist-dep', [
   'mv-jquery',
   'mv-underscore',
   'mv-angularUtils',
-  'mv-angular-bootstrap'
+  'mv-angular-bootstrap',
+  'mv-hopscotch',
+  'mv-angular-bootstrap',
+  'emojioneCSS',
+  'emojioneJS',
+  'emojionearea'
 ]);
 
 gulp.task('test', () => {
   gulp
-    .src(['test/**/*.js'])
+    .src(['test/user/*.js'])
     .pipe(mocha({
       reporter: 'spec',
       exit: true,
@@ -88,11 +91,29 @@ gulp.task('mv-jquery', () =>
 gulp.task('mv-underscore', () =>
   move('bower_components/underscore/**/*', './dist/public/lib/underscore'));
 
+gulp.task('mv-hopscotch', () =>
+  move('bower_components/hopscotch/**/*', './dist/public/lib/hopscotch'));
+
 gulp.task('mv-angularUtils', () =>
   move(
     'bower_components/angular-ui-utils/modules/route/route.js',
     './dist/public/lib/angular-ui-utils/modules'
   ));
+
+gulp.task('emojioneCSS', () => {
+  gulp.src('bower_components/emojione/extras/css/emojione.css')
+    .pipe(gulp.dest('./dist/public/lib/emojionearea'));
+});
+
+gulp.task('emojioneJS', () => {
+  gulp.src('bower_components/emojione/lib/js/emojione.js')
+    .pipe(gulp.dest('./dist/public/lib/emojionearea'));
+});
+
+gulp.task('emojionearea', () => {
+  gulp.src('bower_components/emojionearea/dist/*')
+    .pipe(gulp.dest('./dist/public/lib/emojionearea'));
+});
 
 gulp.task('mv-angular-bootstrap', () =>
   move(
@@ -108,8 +129,7 @@ gulp.task('mv-public', () =>
   move(['public/**/*', '!public/js/**'], './dist/public'));
 
 gulp.task('test', () => {
-  gulp
-    .src(['test/**/*.js'])
+  gulp.src(['test/**/*.js'])
     .pipe(mocha({
       reporter: 'spec',
       exit: true,
